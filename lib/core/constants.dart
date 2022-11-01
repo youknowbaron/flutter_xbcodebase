@@ -7,3 +7,5 @@ class RKeys {
   static const youtube = '/youtube';
   static const library = '/library';
 }
+
+const kAccessTokenKey = 'access_token';
