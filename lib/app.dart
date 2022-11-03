@@ -1,8 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:xbcodebase/core/constants.dart';
+import 'package:xbcodebase/features/auth/pages/login_page.dart';
 import 'package:xbcodebase/features/dashboard_page.dart';
 import 'package:xbcodebase/features/home_page.dart';
+import 'package:xbcodebase/features/library_page.dart';
+import 'package:xbcodebase/features/top_charts_page.dart';
+import 'package:xbcodebase/features/youtube_page.dart';
+
+import 'app_constants.dart';
 
 final GlobalKey<NavigatorState> _rootNavigatorKey =
     GlobalKey<NavigatorState>(debugLabel: 'root');
@@ -14,8 +20,12 @@ class MyApp extends StatelessWidget {
 
   final GoRouter _router = GoRouter(
     navigatorKey: _rootNavigatorKey,
-    initialLocation: RKeys.home,
+    initialLocation: RKeys.login,
     routes: <RouteBase>[
+      GoRoute(
+        path: RKeys.login,
+        builder: (context, state) => const LoginPage(),
+      ),
       ShellRoute(
         navigatorKey: _shellNavigatorKey,
         builder: (context, state, child) {
@@ -28,15 +38,15 @@ class MyApp extends StatelessWidget {
           ),
           GoRoute(
             path: RKeys.topCharts,
-            builder: (context, state) => const HomePage(),
+            builder: (context, state) => const TopChartsPage(),
           ),
           GoRoute(
             path: RKeys.youtube,
-            builder: (context, state) => const HomePage(),
+            builder: (context, state) => const YouTubePage(),
           ),
           GoRoute(
             path: RKeys.library,
-            builder: (context, state) => const HomePage(),
+            builder: (context, state) => const LibraryPage(),
           ),
         ],
       ),

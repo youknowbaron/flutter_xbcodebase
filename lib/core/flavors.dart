@@ -1,12 +1,11 @@
-enum Flavor {
-  dev,
-  prod
-}
+enum Flavor { dev, prod }
 
 class F {
   static Flavor appFlavor = Flavor.dev;
 
   static String get name => appFlavor.name;
+
+  static String get authUrl => 'https://api.dev.guide-navi.com/';
 
   static String get baseUrl {
     switch (appFlavor) {

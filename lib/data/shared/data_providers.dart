@@ -9,6 +9,16 @@ import '../network/authentication_intercepter.dart';
 import '../network/logger_intercepter.dart';
 
 final _baseOptions = BaseOptions(
+  baseUrl: F.authUrl,
+  connectTimeout: 3000,
+  receiveTimeout: 3000,
+  followRedirects: false,
+  headers: {
+    'Content-Type': 'application/json',
+  },
+);
+
+final _baseOptions2 = BaseOptions(
   baseUrl: F.baseUrl,
   connectTimeout: 3000,
   receiveTimeout: 3000,
@@ -35,7 +45,7 @@ final goodBoyDioProvider = Provider<Dio>((ref) {
       ref.watch(authenticationInterceptorProvider);
   final dioLoggerInterceptor = ref.read(dioLoggerInterceptorProvider);
   dio
-    ..options = _baseOptions
+    ..options = _baseOptions2
     ..options.validateStatus =
         ((status) => status != null && status >= 200 && status < 400)
     ..interceptors.addAll(

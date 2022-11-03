@@ -1,6 +1,6 @@
-import 'package:xbcodebase/domain/models/api_result.dart';
-import 'package:xbcodebase/domain/models/token_response.dart';
+import '../../core/api_result.dart';
+import '../models/token_response.dart';
 
 abstract class AuthenticationService {
-  Future<ApiResult<TokenResponse>> logIn();
+  Future<ApiResult<TokenResponse>> logIn(String email, String password);
 }

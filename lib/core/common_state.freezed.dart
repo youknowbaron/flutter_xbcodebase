@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
-part of 'event_state.dart';
+part of 'common_state.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -15,13 +15,13 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
-mixin _$EventState<T> {
+mixin _$CommonState<T> {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(T? data) init,
     required TResult Function() loading,
     required TResult Function(T data) loaded,
-    required TResult Function(int? status, String? message) error,
+    required TResult Function(AnyFailure? failure) error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -29,7 +29,7 @@ mixin _$EventState<T> {
     TResult? Function(T? data)? init,
     TResult? Function()? loading,
     TResult? Function(T data)? loaded,
-    TResult? Function(int? status, String? message)? error,
+    TResult? Function(AnyFailure? failure)? error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -37,7 +37,7 @@ mixin _$EventState<T> {
     TResult Function(T? data)? init,
     TResult Function()? loading,
     TResult Function(T data)? loaded,
-    TResult Function(int? status, String? message)? error,
+    TResult Function(AnyFailure? failure)? error,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -69,16 +69,16 @@ mixin _$EventState<T> {
 }
 
 /// @nodoc
-abstract class $EventStateCopyWith<T, $Res> {
-  factory $EventStateCopyWith(
-          EventState<T> value, $Res Function(EventState<T>) then) =
-      _$EventStateCopyWithImpl<T, $Res, EventState<T>>;
+abstract class $CommonStateCopyWith<T, $Res> {
+  factory $CommonStateCopyWith(
+          CommonState<T> value, $Res Function(CommonState<T>) then) =
+      _$CommonStateCopyWithImpl<T, $Res, CommonState<T>>;
 }
 
 /// @nodoc
-class _$EventStateCopyWithImpl<T, $Res, $Val extends EventState<T>>
-    implements $EventStateCopyWith<T, $Res> {
-  _$EventStateCopyWithImpl(this._value, this._then);
+class _$CommonStateCopyWithImpl<T, $Res, $Val extends CommonState<T>>
+    implements $CommonStateCopyWith<T, $Res> {
+  _$CommonStateCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -96,7 +96,7 @@ abstract class _$$_InitCopyWith<T, $Res> {
 
 /// @nodoc
 class __$$_InitCopyWithImpl<T, $Res>
-    extends _$EventStateCopyWithImpl<T, $Res, _$_Init<T>>
+    extends _$CommonStateCopyWithImpl<T, $Res, _$_Init<T>>
     implements _$$_InitCopyWith<T, $Res> {
   __$$_InitCopyWithImpl(_$_Init<T> _value, $Res Function(_$_Init<T>) _then)
       : super(_value, _then);
@@ -125,7 +125,7 @@ class _$_Init<T> extends _Init<T> {
 
   @override
   String toString() {
-    return 'EventState<$T>.init(data: $data)';
+    return 'CommonState<$T>.init(data: $data)';
   }
 
   @override
@@ -152,7 +152,7 @@ class _$_Init<T> extends _Init<T> {
     required TResult Function(T? data) init,
     required TResult Function() loading,
     required TResult Function(T data) loaded,
-    required TResult Function(int? status, String? message) error,
+    required TResult Function(AnyFailure? failure) error,
   }) {
     return init(data);
   }
@@ -163,7 +163,7 @@ class _$_Init<T> extends _Init<T> {
     TResult? Function(T? data)? init,
     TResult? Function()? loading,
     TResult? Function(T data)? loaded,
-    TResult? Function(int? status, String? message)? error,
+    TResult? Function(AnyFailure? failure)? error,
   }) {
     return init?.call(data);
   }
@@ -174,7 +174,7 @@ class _$_Init<T> extends _Init<T> {
     TResult Function(T? data)? init,
     TResult Function()? loading,
     TResult Function(T data)? loaded,
-    TResult Function(int? status, String? message)? error,
+    TResult Function(AnyFailure? failure)? error,
     required TResult orElse(),
   }) {
     if (init != null) {
@@ -221,7 +221,7 @@ class _$_Init<T> extends _Init<T> {
   }
 }
 
-abstract class _Init<T> extends EventState<T> {
+abstract class _Init<T> extends CommonState<T> {
   const factory _Init([final T? data]) = _$_Init<T>;
   const _Init._() : super._();
 
@@ -240,7 +240,7 @@ abstract class _$$_LoadingCopyWith<T, $Res> {
 
 /// @nodoc
 class __$$_LoadingCopyWithImpl<T, $Res>
-    extends _$EventStateCopyWithImpl<T, $Res, _$_Loading<T>>
+    extends _$CommonStateCopyWithImpl<T, $Res, _$_Loading<T>>
     implements _$$_LoadingCopyWith<T, $Res> {
   __$$_LoadingCopyWithImpl(
       _$_Loading<T> _value, $Res Function(_$_Loading<T>) _then)
@@ -254,7 +254,7 @@ class _$_Loading<T> extends _Loading<T> {
 
   @override
   String toString() {
-    return 'EventState<$T>.loading()';
+    return 'CommonState<$T>.loading()';
   }
 
   @override
@@ -272,7 +272,7 @@ class _$_Loading<T> extends _Loading<T> {
     required TResult Function(T? data) init,
     required TResult Function() loading,
     required TResult Function(T data) loaded,
-    required TResult Function(int? status, String? message) error,
+    required TResult Function(AnyFailure? failure) error,
   }) {
     return loading();
   }
@@ -283,7 +283,7 @@ class _$_Loading<T> extends _Loading<T> {
     TResult? Function(T? data)? init,
     TResult? Function()? loading,
     TResult? Function(T data)? loaded,
-    TResult? Function(int? status, String? message)? error,
+    TResult? Function(AnyFailure? failure)? error,
   }) {
     return loading?.call();
   }
@@ -294,7 +294,7 @@ class _$_Loading<T> extends _Loading<T> {
     TResult Function(T? data)? init,
     TResult Function()? loading,
     TResult Function(T data)? loaded,
-    TResult Function(int? status, String? message)? error,
+    TResult Function(AnyFailure? failure)? error,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -341,7 +341,7 @@ class _$_Loading<T> extends _Loading<T> {
   }
 }
 
-abstract class _Loading<T> extends EventState<T> {
+abstract class _Loading<T> extends CommonState<T> {
   const factory _Loading() = _$_Loading<T>;
   const _Loading._() : super._();
 }
@@ -357,7 +357,7 @@ abstract class _$$_LoadedCopyWith<T, $Res> {
 
 /// @nodoc
 class __$$_LoadedCopyWithImpl<T, $Res>
-    extends _$EventStateCopyWithImpl<T, $Res, _$_Loaded<T>>
+    extends _$CommonStateCopyWithImpl<T, $Res, _$_Loaded<T>>
     implements _$$_LoadedCopyWith<T, $Res> {
   __$$_LoadedCopyWithImpl(
       _$_Loaded<T> _value, $Res Function(_$_Loaded<T>) _then)
@@ -387,7 +387,7 @@ class _$_Loaded<T> extends _Loaded<T> {
 
   @override
   String toString() {
-    return 'EventState<$T>.loaded(data: $data)';
+    return 'CommonState<$T>.loaded(data: $data)';
   }
 
   @override
@@ -414,7 +414,7 @@ class _$_Loaded<T> extends _Loaded<T> {
     required TResult Function(T? data) init,
     required TResult Function() loading,
     required TResult Function(T data) loaded,
-    required TResult Function(int? status, String? message) error,
+    required TResult Function(AnyFailure? failure) error,
   }) {
     return loaded(data);
   }
@@ -425,7 +425,7 @@ class _$_Loaded<T> extends _Loaded<T> {
     TResult? Function(T? data)? init,
     TResult? Function()? loading,
     TResult? Function(T data)? loaded,
-    TResult? Function(int? status, String? message)? error,
+    TResult? Function(AnyFailure? failure)? error,
   }) {
     return loaded?.call(data);
   }
@@ -436,7 +436,7 @@ class _$_Loaded<T> extends _Loaded<T> {
     TResult Function(T? data)? init,
     TResult Function()? loading,
     TResult Function(T data)? loaded,
-    TResult Function(int? status, String? message)? error,
+    TResult Function(AnyFailure? failure)? error,
     required TResult orElse(),
   }) {
     if (loaded != null) {
@@ -483,7 +483,7 @@ class _$_Loaded<T> extends _Loaded<T> {
   }
 }
 
-abstract class _Loaded<T> extends EventState<T> {
+abstract class _Loaded<T> extends CommonState<T> {
   const factory _Loaded(final T data) = _$_Loaded<T>;
   const _Loaded._() : super._();
 
@@ -499,12 +499,12 @@ abstract class _$$_ErrorCopyWith<T, $Res> {
           _$_Error<T> value, $Res Function(_$_Error<T>) then) =
       __$$_ErrorCopyWithImpl<T, $Res>;
   @useResult
-  $Res call({int? status, String? message});
+  $Res call({AnyFailure? failure});
 }
 
 /// @nodoc
 class __$$_ErrorCopyWithImpl<T, $Res>
-    extends _$EventStateCopyWithImpl<T, $Res, _$_Error<T>>
+    extends _$CommonStateCopyWithImpl<T, $Res, _$_Error<T>>
     implements _$$_ErrorCopyWith<T, $Res> {
   __$$_ErrorCopyWithImpl(_$_Error<T> _value, $Res Function(_$_Error<T>) _then)
       : super(_value, _then);
@@ -512,18 +512,13 @@ class __$$_ErrorCopyWithImpl<T, $Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? status = freezed,
-    Object? message = freezed,
+    Object? failure = freezed,
   }) {
     return _then(_$_Error<T>(
-      status: freezed == status
-          ? _value.status
-          : status // ignore: cast_nullable_to_non_nullable
-              as int?,
-      message: freezed == message
-          ? _value.message
-          : message // ignore: cast_nullable_to_non_nullable
-              as String?,
+      freezed == failure
+          ? _value.failure
+          : failure // ignore: cast_nullable_to_non_nullable
+              as AnyFailure?,
     ));
   }
 }
@@ -531,16 +526,14 @@ class __$$_ErrorCopyWithImpl<T, $Res>
 /// @nodoc
 
 class _$_Error<T> extends _Error<T> {
-  const _$_Error({this.status, this.message}) : super._();
+  const _$_Error([this.failure]) : super._();
 
   @override
-  final int? status;
-  @override
-  final String? message;
+  final AnyFailure? failure;
 
   @override
   String toString() {
-    return 'EventState<$T>.error(status: $status, message: $message)';
+    return 'CommonState<$T>.error(failure: $failure)';
   }
 
   @override
@@ -548,12 +541,11 @@ class _$_Error<T> extends _Error<T> {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_Error<T> &&
-            (identical(other.status, status) || other.status == status) &&
-            (identical(other.message, message) || other.message == message));
+            (identical(other.failure, failure) || other.failure == failure));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, status, message);
+  int get hashCode => Object.hash(runtimeType, failure);
 
   @JsonKey(ignore: true)
   @override
@@ -567,9 +559,9 @@ class _$_Error<T> extends _Error<T> {
     required TResult Function(T? data) init,
     required TResult Function() loading,
     required TResult Function(T data) loaded,
-    required TResult Function(int? status, String? message) error,
+    required TResult Function(AnyFailure? failure) error,
   }) {
-    return error(status, message);
+    return error(failure);
   }
 
   @override
@@ -578,9 +570,9 @@ class _$_Error<T> extends _Error<T> {
     TResult? Function(T? data)? init,
     TResult? Function()? loading,
     TResult? Function(T data)? loaded,
-    TResult? Function(int? status, String? message)? error,
+    TResult? Function(AnyFailure? failure)? error,
   }) {
-    return error?.call(status, message);
+    return error?.call(failure);
   }
 
   @override
@@ -589,11 +581,11 @@ class _$_Error<T> extends _Error<T> {
     TResult Function(T? data)? init,
     TResult Function()? loading,
     TResult Function(T data)? loaded,
-    TResult Function(int? status, String? message)? error,
+    TResult Function(AnyFailure? failure)? error,
     required TResult orElse(),
   }) {
     if (error != null) {
-      return error(status, message);
+      return error(failure);
     }
     return orElse();
   }
@@ -636,13 +628,11 @@ class _$_Error<T> extends _Error<T> {
   }
 }
 
-abstract class _Error<T> extends EventState<T> {
-  const factory _Error({final int? status, final String? message}) =
-      _$_Error<T>;
+abstract class _Error<T> extends CommonState<T> {
+  const factory _Error([final AnyFailure? failure]) = _$_Error<T>;
   const _Error._() : super._();
 
-  int? get status;
-  String? get message;
+  AnyFailure? get failure;
   @JsonKey(ignore: true)
   _$$_ErrorCopyWith<T, _$_Error<T>> get copyWith =>
       throw _privateConstructorUsedError;

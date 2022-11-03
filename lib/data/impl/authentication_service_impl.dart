@@ -1,9 +1,9 @@
 import 'package:dio/dio.dart';
-import 'package:xbcodebase/data/network/dio_broker.dart';
-import 'package:xbcodebase/domain/models/api_result.dart';
-import 'package:xbcodebase/domain/repository/authentication_service.dart';
 
+import '../../core/api_result.dart';
 import '../../domain/models/token_response.dart';
+import '../../domain/repository/authentication_service.dart';
+import '../network/dio_broker.dart';
 
 class AuthenticationServiceImpl
     with DioBroker
@@ -13,11 +13,17 @@ class AuthenticationServiceImpl
   final Dio _dio;
 
   @override
-  Future<ApiResult<TokenResponse>> logIn() async {
-    // return mapResponseToResult(call, (data) => null)
-    return ApiResult.data(TokenResponse(
-      accessToken: 'accessToken',
-      requestToken: 'requestToken',
-    ));
+  Future<ApiResult<TokenResponse>> logIn(String email, String password) async {
+    final call = _dio.post(
+      '/api/v1/login',
+      data: {
+        'email': email,
+        'password': password,
+      },
+    );
+    return mapResponseToResult(
+      call,
+      converter: (data) => TokenResponse.fromJson(data['data']),
+    );
   }
 }

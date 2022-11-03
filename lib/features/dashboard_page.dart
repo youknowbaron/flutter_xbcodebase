@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
-import 'package:xbcodebase/core/constants.dart';
+
+import '../app_constants.dart';
 
 class DashboardPage extends StatelessWidget {
   const DashboardPage({super.key, required this.child});
