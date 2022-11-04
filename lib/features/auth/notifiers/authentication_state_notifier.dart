@@ -1,5 +1,4 @@
-import 'package:xbcodebase/core/common_state_notifier.dart';
-
+import '../../../core/application/common_state_notifier.dart';
 import '../../../domain/repository/authentication_service.dart';
 
 class AuthenticationStateNotifier extends CommonStateNotifier {

@@ -1,7 +1,7 @@
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:xbcodebase/core/api_result.dart';
 
-import 'common_state.dart';
+import '../../domain/core/api_result.dart';
+import '../../domain/core/common_state.dart';
 
 abstract class CommonStateNotifier extends StateNotifier<CommonState> {
   CommonStateNotifier() : super(const CommonState.init());

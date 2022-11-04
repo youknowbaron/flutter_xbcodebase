@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
-import 'package:xbcodebase/core/api_failure.dart';
 
-import '../../core/api_result.dart';
+import '../../domain/core/api_failure.dart';
+import '../../domain/core/api_result.dart';
 import 'dio_extensions.dart';
 
 mixin DioBroker {

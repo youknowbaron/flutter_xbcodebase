@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
 
-import '../../core/api_result.dart';
+import '../../domain/core/api_result.dart';
 import '../../domain/models/token_response.dart';
 import '../../domain/repository/authentication_service.dart';
 import '../network/dio_broker.dart';

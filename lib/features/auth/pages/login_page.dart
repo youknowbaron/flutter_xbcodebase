@@ -3,11 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:xbcodebase/app_constants.dart';
-import 'package:xbcodebase/core/common_state.dart';
-import 'package:xbcodebase/features/auth/shared/providers.dart';
 
+import '../../../app_constants.dart';
 import '../../../common/widgets/common_input.dart';
+import '../../../domain/core/common_state.dart';
+import '../shared/providers.dart';
 
 class LoginPage extends HookConsumerWidget {
   const LoginPage({Key? key}) : super(key: key);

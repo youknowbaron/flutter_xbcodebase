@@ -1,16 +1,9 @@
 # xbcodebase
 
-A new Flutter project.
+A new Flutter codebase is coming.
 
-## Getting Started
+## Core dependencies
 
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+- [Riverpod](https://riverpod.dev/docs/getting_started): State management library
+- [Hooks](https://pub.dev/packages/flutter_hooks): Less code, more compicated 🥲🥲
+- [Dio](https://pub.dev/packages/dio): For communicating with APIs

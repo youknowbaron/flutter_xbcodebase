@@ -1,6 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:xbcodebase/core/api_failure.dart';
-import 'package:xbcodebase/core/common_state.dart';
+
+import 'api_failure.dart';
 
 part 'api_result.freezed.dart';
 
