@@ -23,7 +23,7 @@ mixin _$TokenResponse {
   @JsonKey(name: 'access_token')
   String get accessToken => throw _privateConstructorUsedError;
   @JsonKey(name: 'refresh_token')
-  String get requestToken => throw _privateConstructorUsedError;
+  String get refreshToken => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -39,7 +39,7 @@ abstract class $TokenResponseCopyWith<$Res> {
   @useResult
   $Res call(
       {@JsonKey(name: 'access_token') String accessToken,
-      @JsonKey(name: 'refresh_token') String requestToken});
+      @JsonKey(name: 'refresh_token') String refreshToken});
 }
 
 /// @nodoc
@@ -56,16 +56,16 @@ class _$TokenResponseCopyWithImpl<$Res, $Val extends TokenResponse>
   @override
   $Res call({
     Object? accessToken = null,
-    Object? requestToken = null,
+    Object? refreshToken = null,
   }) {
     return _then(_value.copyWith(
       accessToken: null == accessToken
           ? _value.accessToken
           : accessToken // ignore: cast_nullable_to_non_nullable
               as String,
-      requestToken: null == requestToken
-          ? _value.requestToken
-          : requestToken // ignore: cast_nullable_to_non_nullable
+      refreshToken: null == refreshToken
+          ? _value.refreshToken
+          : refreshToken // ignore: cast_nullable_to_non_nullable
               as String,
     ) as $Val);
   }
@@ -81,7 +81,7 @@ abstract class _$$_TokenResponseCopyWith<$Res>
   @useResult
   $Res call(
       {@JsonKey(name: 'access_token') String accessToken,
-      @JsonKey(name: 'refresh_token') String requestToken});
+      @JsonKey(name: 'refresh_token') String refreshToken});
 }
 
 /// @nodoc
@@ -96,16 +96,16 @@ class __$$_TokenResponseCopyWithImpl<$Res>
   @override
   $Res call({
     Object? accessToken = null,
-    Object? requestToken = null,
+    Object? refreshToken = null,
   }) {
     return _then(_$_TokenResponse(
       accessToken: null == accessToken
           ? _value.accessToken
           : accessToken // ignore: cast_nullable_to_non_nullable
               as String,
-      requestToken: null == requestToken
-          ? _value.requestToken
-          : requestToken // ignore: cast_nullable_to_non_nullable
+      refreshToken: null == refreshToken
+          ? _value.refreshToken
+          : refreshToken // ignore: cast_nullable_to_non_nullable
               as String,
     ));
   }
@@ -116,7 +116,7 @@ class __$$_TokenResponseCopyWithImpl<$Res>
 class _$_TokenResponse extends _TokenResponse {
   _$_TokenResponse(
       {@JsonKey(name: 'access_token') required this.accessToken,
-      @JsonKey(name: 'refresh_token') required this.requestToken})
+      @JsonKey(name: 'refresh_token') required this.refreshToken})
       : super._();
 
   factory _$_TokenResponse.fromJson(Map<String, dynamic> json) =>
@@ -127,11 +127,11 @@ class _$_TokenResponse extends _TokenResponse {
   final String accessToken;
   @override
   @JsonKey(name: 'refresh_token')
-  final String requestToken;
+  final String refreshToken;
 
   @override
   String toString() {
-    return 'TokenResponse(accessToken: $accessToken, requestToken: $requestToken)';
+    return 'TokenResponse(accessToken: $accessToken, refreshToken: $refreshToken)';
   }
 
   @override
@@ -141,13 +141,13 @@ class _$_TokenResponse extends _TokenResponse {
             other is _$_TokenResponse &&
             (identical(other.accessToken, accessToken) ||
                 other.accessToken == accessToken) &&
-            (identical(other.requestToken, requestToken) ||
-                other.requestToken == requestToken));
+            (identical(other.refreshToken, refreshToken) ||
+                other.refreshToken == refreshToken));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, accessToken, requestToken);
+  int get hashCode => Object.hash(runtimeType, accessToken, refreshToken);
 
   @JsonKey(ignore: true)
   @override
@@ -166,7 +166,7 @@ class _$_TokenResponse extends _TokenResponse {
 abstract class _TokenResponse extends TokenResponse {
   factory _TokenResponse(
           {@JsonKey(name: 'access_token') required final String accessToken,
-          @JsonKey(name: 'refresh_token') required final String requestToken}) =
+          @JsonKey(name: 'refresh_token') required final String refreshToken}) =
       _$_TokenResponse;
   _TokenResponse._() : super._();
 
@@ -178,7 +178,7 @@ abstract class _TokenResponse extends TokenResponse {
   String get accessToken;
   @override
   @JsonKey(name: 'refresh_token')
-  String get requestToken;
+  String get refreshToken;
   @override
   @JsonKey(ignore: true)
   _$$_TokenResponseCopyWith<_$_TokenResponse> get copyWith =>

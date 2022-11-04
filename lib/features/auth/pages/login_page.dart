@@ -7,7 +7,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import '../../../app_constants.dart';
 import '../../../common/widgets/common_input.dart';
 import '../../../domain/core/common_state.dart';
-import '../shared/providers.dart';
+import '../shared/auth_providers.dart';
 
 class LoginPage extends HookConsumerWidget {
   const LoginPage({Key? key}) : super(key: key);

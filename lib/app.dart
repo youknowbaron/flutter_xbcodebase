@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:xbcodebase/core/constants.dart';
 import 'package:xbcodebase/features/auth/pages/login_page.dart';
 import 'package:xbcodebase/features/dashboard_page.dart';
 import 'package:xbcodebase/features/home_page.dart';
 import 'package:xbcodebase/features/library_page.dart';
+import 'package:xbcodebase/features/splash/splash_page.dart';
 import 'package:xbcodebase/features/top_charts_page.dart';
 import 'package:xbcodebase/features/youtube_page.dart';
 
@@ -20,8 +20,12 @@ class MyApp extends StatelessWidget {
 
   final GoRouter _router = GoRouter(
     navigatorKey: _rootNavigatorKey,
-    initialLocation: RKeys.login,
+    initialLocation: RKeys.splash,
     routes: <RouteBase>[
+      GoRoute(
+        path: RKeys.splash,
+        builder: (context, state) => const SplashPage(),
+      ),
       GoRoute(
         path: RKeys.login,
         builder: (context, state) => const LoginPage(),

@@ -9,12 +9,14 @@ mixin DioBroker {
     Future<Response> call, {
     required T Function(dynamic data) converter,
     String? errorMessage,
+    Function(T)? onSuccess,
   }) async {
     try {
       final response = await call;
       final result = converter(response.data);
 
       if (result != null) {
+        onSuccess?.call(result);
         return ApiResult.data(result);
       }
       return const ApiResult.failure();
