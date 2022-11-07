@@ -1,6 +1,6 @@
 import 'package:xbcodebase/domain/core/common_state.dart';
 
-import '../../../../core/application/common_state_notifier.dart';
+import '../../../core/notifiers/common_state_notifier.dart';
 import '../../../../domain/repository/authentication_service.dart';
 
 class SplashStateNotifier extends CommonStateNotifier {
