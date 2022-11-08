@@ -35,7 +35,7 @@ class LoginPage extends HookConsumerWidget {
         error: (error) {
           errorText.value = "loiroibanoi";
         },
-        loaded: (data) => context.go(RKeys.home),
+        loaded: (data) => context.go(RKeys.dashboard),
       );
     });
 

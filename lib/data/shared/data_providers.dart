@@ -4,7 +4,7 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../core/flavors.dart';
-import '../../core/logger.dart';
+import '../../core/loggers/logger.dart';
 import '../network/authentication_intercepter.dart';
 import '../network/logger_intercepter.dart';
 

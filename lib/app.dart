@@ -2,15 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:go_router/go_router.dart';
+import 'package:xbcodebase/core/loggers/navigator_logger.dart';
 import 'package:xbcodebase/features/auth/pages/login_page.dart';
 import 'package:xbcodebase/features/dashboard_page.dart';
-import 'package:xbcodebase/features/home_page.dart';
-import 'package:xbcodebase/features/library_page.dart';
 import 'package:xbcodebase/features/splash/splash_page.dart';
-import 'package:xbcodebase/features/top_charts_page.dart';
-import 'package:xbcodebase/features/youtube_page.dart';
 
 import 'app_constants.dart';
+import 'features/search/search_page.dart';
 
 final GlobalKey<NavigatorState> _rootNavigatorKey =
     GlobalKey<NavigatorState>(debugLabel: 'root');
@@ -23,6 +21,7 @@ class MyApp extends StatelessWidget {
   final GoRouter _router = GoRouter(
     navigatorKey: _rootNavigatorKey,
     initialLocation: RKeys.splash,
+    observers: [NavigatorLogger()],
     routes: <RouteBase>[
       GoRoute(
         path: RKeys.splash,
@@ -32,30 +31,53 @@ class MyApp extends StatelessWidget {
         path: RKeys.login,
         builder: (context, state) => const LoginPage(),
       ),
-      ShellRoute(
-        navigatorKey: _shellNavigatorKey,
-        builder: (context, state, child) {
-          return DashboardPage(child: child);
-        },
-        routes: <RouteBase>[
+      GoRoute(
+        path: RKeys.dashboard,
+        builder: (context, state) => const DashboardPage(),
+        routes: <GoRoute>[
           GoRoute(
-            path: RKeys.home,
-            builder: (context, state) => const HomePage(),
-          ),
-          GoRoute(
-            path: RKeys.topCharts,
-            builder: (context, state) => const TopChartsPage(),
-          ),
-          GoRoute(
-            path: RKeys.youtube,
-            builder: (context, state) => const YouTubePage(),
-          ),
-          GoRoute(
-            path: RKeys.library,
-            builder: (context, state) => const LibraryPage(),
+            parentNavigatorKey: _rootNavigatorKey,
+            path: RKeys.search,
+            builder: (context, state) => const SearchPage(),
           ),
         ],
       ),
+      // ShellRoute(
+      //   navigatorKey: _shellNavigatorKey,
+      //   builder: (context, state, child) {
+      //     return DashboardPage(child: child);
+      //   },
+      //   routes: <RouteBase>[
+      //     GoRoute(
+      //       path: RKeys.home,
+      //       builder: (context, state) => const HomePage(),
+      //       routes: <GoRoute>[
+      //         GoRoute(
+      //           parentNavigatorKey: _rootNavigatorKey,
+      //           path: RKeys.search,
+      //           builder: (context, state) => const SearchPage(),
+      //         ),
+      //       ],
+      //     ),
+      //     GoRoute(
+      //       path: RKeys.topCharts,
+      //       builder: (context, state) => const TopChartsPage(),
+      //     ),
+      //     GoRoute(
+      //       path: RKeys.youtube,
+      //       builder: (context, state) => const YouTubePage(),
+      //     ),
+      //     GoRoute(
+      //       path: RKeys.library,
+      //       builder: (context, state) => const LibraryPage(),
+      //     ),
+      //   ],
+      // ),
+      // GoRoute(
+      //   parentNavigatorKey: _rootNavigatorKey,
+      //   path: RKeys.search,
+      //   builder: (context, state) => const SearchPage(),
+      // ),
     ],
   );
 

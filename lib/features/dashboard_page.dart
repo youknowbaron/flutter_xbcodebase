@@ -2,19 +2,21 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:go_router/go_router.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
+import 'package:xbcodebase/features/home/home_page.dart';
+import 'package:xbcodebase/features/library_page.dart';
+import 'package:xbcodebase/features/top_charts_page.dart';
+import 'package:xbcodebase/features/youtube_page.dart';
 
-import '../app_constants.dart';
-
-class DashboardPage extends StatelessWidget {
-  const DashboardPage({super.key, required this.child});
-
-  final Widget child;
+class DashboardPage extends HookWidget {
+  const DashboardPage({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final pageController = usePageController();
+    final currentPage = useValueNotifier(0);
     return Scaffold(
       drawer: Drawer(
         child: CustomScrollView(
@@ -84,7 +86,8 @@ class DashboardPage extends StatelessWidget {
                         color: Theme.of(context).colorScheme.secondary,
                       ),
                     ),
-                    contentPadding: const EdgeInsets.symmetric(horizontal: 20.0),
+                    contentPadding:
+                        const EdgeInsets.symmetric(horizontal: 20.0),
                     leading: Icon(
                       Icons.home_rounded,
                       color: Theme.of(context).colorScheme.secondary,
@@ -117,7 +120,8 @@ class DashboardPage extends StatelessWidget {
                     ),
                   ListTile(
                     title: Text(AppLocalizations.of(context)!.downs),
-                    contentPadding: const EdgeInsets.symmetric(horizontal: 20.0),
+                    contentPadding:
+                        const EdgeInsets.symmetric(horizontal: 20.0),
                     leading: Icon(
                       Icons.download_done_rounded,
                       color: Theme.of(context).iconTheme.color,
@@ -129,7 +133,8 @@ class DashboardPage extends StatelessWidget {
                   ),
                   ListTile(
                     title: Text(AppLocalizations.of(context)!.playlists),
-                    contentPadding: const EdgeInsets.symmetric(horizontal: 20.0),
+                    contentPadding:
+                        const EdgeInsets.symmetric(horizontal: 20.0),
                     leading: Icon(
                       Icons.playlist_play_rounded,
                       color: Theme.of(context).iconTheme.color,
@@ -141,7 +146,8 @@ class DashboardPage extends StatelessWidget {
                   ),
                   ListTile(
                     title: Text(AppLocalizations.of(context)!.settings),
-                    contentPadding: const EdgeInsets.symmetric(horizontal: 20.0),
+                    contentPadding:
+                        const EdgeInsets.symmetric(horizontal: 20.0),
                     leading: Icon(
                       Icons.settings_rounded, // miscellaneous_services_rounded,
                       color: Theme.of(context).iconTheme.color,
@@ -158,7 +164,8 @@ class DashboardPage extends StatelessWidget {
                   ),
                   ListTile(
                     title: Text(AppLocalizations.of(context)!.about),
-                    contentPadding: const EdgeInsets.symmetric(horizontal: 20.0),
+                    contentPadding:
+                        const EdgeInsets.symmetric(horizontal: 20.0),
                     leading: Icon(
                       Icons.info_outline_rounded,
                       color: Theme.of(context).iconTheme.color,
@@ -192,11 +199,25 @@ class DashboardPage extends StatelessWidget {
           ],
         ),
       ),
-      body: child,
+      body: PageView(
+        controller: pageController,
+        physics: const CustomPhysics(),
+        children: const [
+          HomePage(),
+          TopChartsPage(),
+          YouTubePage(),
+          LibraryPage(),
+        ],
+      ),
       bottomNavigationBar: SalomonBottomBar(
-        currentIndex: _calculateSelectedIndex(context),
+        currentIndex: useValueListenable(currentPage),
         onTap: (index) {
-          _onItemTapped(index, context);
+          currentPage.value = index;
+          pageController.animateToPage(
+            index,
+            duration: const Duration(milliseconds: 300),
+            curve: Curves.easeInOut,
+          );
         },
         items: [
           SalomonBottomBarItem(
@@ -223,39 +244,20 @@ class DashboardPage extends StatelessWidget {
       ),
     );
   }
+}
 
-  static int _calculateSelectedIndex(BuildContext context) {
-    final GoRouter route = GoRouter.of(context);
-    final String location = route.location;
-    if (location.startsWith(RKeys.home)) {
-      return 0;
-    }
-    if (location.startsWith(RKeys.topCharts)) {
-      return 1;
-    }
-    if (location.startsWith(RKeys.youtube)) {
-      return 2;
-    }
-    if (location.startsWith(RKeys.library)) {
-      return 3;
-    }
-    return 0;
+class CustomPhysics extends ScrollPhysics {
+  const CustomPhysics({super.parent});
+
+  @override
+  CustomPhysics applyTo(ScrollPhysics? ancestor) {
+    return CustomPhysics(parent: buildParent(ancestor));
   }
 
-  void _onItemTapped(int index, BuildContext context) {
-    switch (index) {
-      case 0:
-        GoRouter.of(context).go(RKeys.home);
-        break;
-      case 1:
-        GoRouter.of(context).go(RKeys.topCharts);
-        break;
-      case 2:
-        GoRouter.of(context).go(RKeys.youtube);
-        break;
-      case 3:
-        GoRouter.of(context).go(RKeys.library);
-        break;
-    }
-  }
+  @override
+  SpringDescription get spring => const SpringDescription(
+        mass: 150,
+        stiffness: 100,
+        damping: 1,
+      );
 }

@@ -26,7 +26,7 @@ class SplashPage extends HookConsumerWidget {
     animation.addStatusListener((status) async {
       if (status == AnimationStatus.completed) {
         ref.read(splashProvider.notifier).state.whenOrNull(loaded: (data) {
-          GoRouter.of(context).go(data == true ? RKeys.home : RKeys.login);
+          GoRouter.of(context).go(data == true ? RKeys.dashboard : RKeys.login);
         });
       }
     });
