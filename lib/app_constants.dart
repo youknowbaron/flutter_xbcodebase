@@ -12,3 +12,13 @@ class RKeys {
 
   static const search = 'search';
 }
+
+class BoxKeys {
+  BoxKeys._();
+  static const settings = 'settings';
+}
+
+class PKeys {
+  PKeys._();
+  static const themeMode = 'themeMode';
+}

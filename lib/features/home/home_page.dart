@@ -7,6 +7,7 @@ import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:xbcodebase/app_constants.dart';
+import 'package:xbcodebase/core/shared/core_providers.dart';
 import 'package:xbcodebase/core/widgets/space.dart';
 import 'package:xbcodebase/features/home/shared/home_providers.dart';
 
@@ -16,6 +17,7 @@ class HomePage extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     ref.listen(homeProvider, (previous, next) {});
+    final appTheme = ref.watch(appThemeProvider.notifier);
 
     final scrollController = useScrollController();
     return SafeArea(
@@ -29,7 +31,13 @@ class HomePage extends HookConsumerWidget {
             },
             body: Column(
               children: [
-                Text('Home Page', style: Theme.of(context).textTheme.headline1)
+                Text('Home Page', style: Theme.of(context).textTheme.headline1),
+                Switch(
+                  value: appTheme.currentTheme == ThemeMode.dark,
+                  onChanged: (value) {
+                    appTheme.toggleTheme();
+                  },
+                ),
               ],
             ),
           ),
