@@ -1,19 +1,20 @@
 import 'package:dio/dio.dart';
+import 'package:xbcodebase/core/loggers/logger.dart';
 
-import '../../domain/core/api_failure.dart';
-import '../../domain/core/api_result.dart';
+import '../../../domain/core/api_failure.dart';
+import '../../../domain/core/api_result.dart';
 import 'dio_extensions.dart';
 
 mixin DioBroker {
   Future<ApiResult<T>> mapResponseToResult<T>(
     Future<Response> call, {
-    required T Function(dynamic data) converter,
+    required Future<T> Function(dynamic data) converter,
     String? errorMessage,
     Function(T)? onSuccess,
   }) async {
     try {
       final response = await call;
-      final result = converter(response.data);
+      final result = await converter(response.data);
 
       if (result != null) {
         onSuccess?.call(result);
@@ -35,8 +36,10 @@ mixin DioBroker {
         return const ApiResult.failure();
       }
     } on Exception catch (e) {
+      logger.e(e);
       return ApiResult.failure(ApiFailure.unknown(message: e.toString()));
     } catch (err) {
+      logger.e(err);
       return const ApiResult.failure(ApiFailure.unknown());
     }
   }

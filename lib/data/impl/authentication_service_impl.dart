@@ -5,7 +5,7 @@ import 'package:xbcodebase/core/constants.dart';
 import '../../domain/core/api_result.dart';
 import '../../domain/models/token_response.dart';
 import '../../domain/repository/authentication_service.dart';
-import '../network/dio_broker.dart';
+import '../network/api/dio_broker.dart';
 
 class AuthenticationServiceImpl
     with DioBroker
@@ -24,11 +24,13 @@ class AuthenticationServiceImpl
         'password': password,
       },
     );
-    return mapResponseToResult(call,
-        converter: (data) => TokenResponse.fromJson(data['data']),
-        onSuccess: (data) {
-          _storage.write(key: kAccessTokenKey, value: data.accessToken);
-        });
+    return mapResponseToResult(
+      call,
+      converter: (data) async => TokenResponse.fromJson(data['data']),
+      onSuccess: (data) {
+        _storage.write(key: kAccessTokenKey, value: data.accessToken);
+      },
+    );
   }
 
   @override

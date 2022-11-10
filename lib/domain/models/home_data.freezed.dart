@@ -1,0 +1,227 @@
+// coverage:ignore-file
+// GENERATED CODE - DO NOT MODIFY BY HAND
+// ignore_for_file: type=lint
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+
+part of 'home_data.dart';
+
+// **************************************************************************
+// FreezedGenerator
+// **************************************************************************
+
+T _$identity<T>(T value) => value;
+
+final _privateConstructorUsedError = UnsupportedError(
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+
+HomeData _$HomeDataFromJson(Map<String, dynamic> json) {
+  return _HomeData.fromJson(json);
+}
+
+/// @nodoc
+mixin _$HomeData {
+// @JsonKey(name: 'new_trending') @Default([]) List<Media> newTrending,
+  @JsonKey(name: 'top_playlists')
+  List<Media> get topPlaylists => throw _privateConstructorUsedError;
+  @JsonKey(name: 'new_albums')
+  List<Media> get newAlbums => throw _privateConstructorUsedError;
+  List<Media> get radio => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $HomeDataCopyWith<HomeData> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $HomeDataCopyWith<$Res> {
+  factory $HomeDataCopyWith(HomeData value, $Res Function(HomeData) then) =
+      _$HomeDataCopyWithImpl<$Res, HomeData>;
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'top_playlists') List<Media> topPlaylists,
+      @JsonKey(name: 'new_albums') List<Media> newAlbums,
+      List<Media> radio});
+}
+
+/// @nodoc
+class _$HomeDataCopyWithImpl<$Res, $Val extends HomeData>
+    implements $HomeDataCopyWith<$Res> {
+  _$HomeDataCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? topPlaylists = null,
+    Object? newAlbums = null,
+    Object? radio = null,
+  }) {
+    return _then(_value.copyWith(
+      topPlaylists: null == topPlaylists
+          ? _value.topPlaylists
+          : topPlaylists // ignore: cast_nullable_to_non_nullable
+              as List<Media>,
+      newAlbums: null == newAlbums
+          ? _value.newAlbums
+          : newAlbums // ignore: cast_nullable_to_non_nullable
+              as List<Media>,
+      radio: null == radio
+          ? _value.radio
+          : radio // ignore: cast_nullable_to_non_nullable
+              as List<Media>,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$_HomeDataCopyWith<$Res> implements $HomeDataCopyWith<$Res> {
+  factory _$$_HomeDataCopyWith(
+          _$_HomeData value, $Res Function(_$_HomeData) then) =
+      __$$_HomeDataCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'top_playlists') List<Media> topPlaylists,
+      @JsonKey(name: 'new_albums') List<Media> newAlbums,
+      List<Media> radio});
+}
+
+/// @nodoc
+class __$$_HomeDataCopyWithImpl<$Res>
+    extends _$HomeDataCopyWithImpl<$Res, _$_HomeData>
+    implements _$$_HomeDataCopyWith<$Res> {
+  __$$_HomeDataCopyWithImpl(
+      _$_HomeData _value, $Res Function(_$_HomeData) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? topPlaylists = null,
+    Object? newAlbums = null,
+    Object? radio = null,
+  }) {
+    return _then(_$_HomeData(
+      topPlaylists: null == topPlaylists
+          ? _value._topPlaylists
+          : topPlaylists // ignore: cast_nullable_to_non_nullable
+              as List<Media>,
+      newAlbums: null == newAlbums
+          ? _value._newAlbums
+          : newAlbums // ignore: cast_nullable_to_non_nullable
+              as List<Media>,
+      radio: null == radio
+          ? _value._radio
+          : radio // ignore: cast_nullable_to_non_nullable
+              as List<Media>,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$_HomeData implements _HomeData {
+  const _$_HomeData(
+      {@JsonKey(name: 'top_playlists')
+          final List<Media> topPlaylists = const [],
+      @JsonKey(name: 'new_albums')
+          final List<Media> newAlbums = const [],
+      final List<Media> radio = const []})
+      : _topPlaylists = topPlaylists,
+        _newAlbums = newAlbums,
+        _radio = radio;
+
+  factory _$_HomeData.fromJson(Map<String, dynamic> json) =>
+      _$$_HomeDataFromJson(json);
+
+// @JsonKey(name: 'new_trending') @Default([]) List<Media> newTrending,
+  final List<Media> _topPlaylists;
+// @JsonKey(name: 'new_trending') @Default([]) List<Media> newTrending,
+  @override
+  @JsonKey(name: 'top_playlists')
+  List<Media> get topPlaylists {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_topPlaylists);
+  }
+
+  final List<Media> _newAlbums;
+  @override
+  @JsonKey(name: 'new_albums')
+  List<Media> get newAlbums {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_newAlbums);
+  }
+
+  final List<Media> _radio;
+  @override
+  @JsonKey()
+  List<Media> get radio {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_radio);
+  }
+
+  @override
+  String toString() {
+    return 'HomeData(topPlaylists: $topPlaylists, newAlbums: $newAlbums, radio: $radio)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_HomeData &&
+            const DeepCollectionEquality()
+                .equals(other._topPlaylists, _topPlaylists) &&
+            const DeepCollectionEquality()
+                .equals(other._newAlbums, _newAlbums) &&
+            const DeepCollectionEquality().equals(other._radio, _radio));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(_topPlaylists),
+      const DeepCollectionEquality().hash(_newAlbums),
+      const DeepCollectionEquality().hash(_radio));
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_HomeDataCopyWith<_$_HomeData> get copyWith =>
+      __$$_HomeDataCopyWithImpl<_$_HomeData>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$_HomeDataToJson(
+      this,
+    );
+  }
+}
+
+abstract class _HomeData implements HomeData {
+  const factory _HomeData(
+      {@JsonKey(name: 'top_playlists') final List<Media> topPlaylists,
+      @JsonKey(name: 'new_albums') final List<Media> newAlbums,
+      final List<Media> radio}) = _$_HomeData;
+
+  factory _HomeData.fromJson(Map<String, dynamic> json) = _$_HomeData.fromJson;
+
+  @override // @JsonKey(name: 'new_trending') @Default([]) List<Media> newTrending,
+  @JsonKey(name: 'top_playlists')
+  List<Media> get topPlaylists;
+  @override
+  @JsonKey(name: 'new_albums')
+  List<Media> get newAlbums;
+  @override
+  List<Media> get radio;
+  @override
+  @JsonKey(ignore: true)
+  _$$_HomeDataCopyWith<_$_HomeData> get copyWith =>
+      throw _privateConstructorUsedError;
+}

@@ -39,7 +39,6 @@ class MyApp extends ConsumerWidget {
         builder: (context, state) => const DashboardPage(),
         routes: <GoRoute>[
           GoRoute(
-            parentNavigatorKey: _rootNavigatorKey,
             path: RKeys.search,
             builder: (context, state) => const SearchPage(),
           ),

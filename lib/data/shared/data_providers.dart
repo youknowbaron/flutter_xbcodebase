@@ -2,11 +2,12 @@ import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:xbcodebase/data/network/api/saavn_dio.dart';
 
 import '../../core/flavors.dart';
 import '../../core/loggers/logger.dart';
-import '../network/authentication_intercepter.dart';
-import '../network/logger_intercepter.dart';
+import '../network/api/authentication_intercepter.dart';
+import '../network/api/logger_intercepter.dart';
 
 final _baseOptions = BaseOptions(
   baseUrl: F.authUrl,
@@ -70,3 +71,12 @@ final storageProvider = Provider<FlutterSecureStorage>(
     aOptions: AndroidOptions(encryptedSharedPreferences: true),
   ),
 );
+
+final saavnDioProvider = Provider<SaavnDio>((ref) {
+  final dio = SaavnDio();
+  if (kDebugMode) {
+    final dioLoggerInterceptor = ref.read(dioLoggerInterceptorProvider);
+    dio.interceptors.add(dioLoggerInterceptor);
+  }
+  return dio;
+});

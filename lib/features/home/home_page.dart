@@ -7,19 +7,39 @@ import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:xbcodebase/app_constants.dart';
+import 'package:xbcodebase/common/widgets/drawer_icon.dart';
 import 'package:xbcodebase/core/shared/core_providers.dart';
 import 'package:xbcodebase/core/widgets/space.dart';
+import 'package:xbcodebase/domain/core/common_state.dart';
+import 'package:xbcodebase/domain/models/home_data.dart';
 import 'package:xbcodebase/features/home/shared/home_providers.dart';
 
-class HomePage extends HookConsumerWidget {
+import '../../common/widgets/media_horizontal_list.dart';
+
+class HomePage extends StatefulHookConsumerWidget {
   const HomePage({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    ref.listen(homeProvider, (previous, next) {});
-    final appTheme = ref.watch(appThemeProvider.notifier);
+  ConsumerState<ConsumerStatefulWidget> createState() => _HomePageState();
+}
+
+class _HomePageState extends ConsumerState<HomePage>
+    with AutomaticKeepAliveClientMixin<HomePage> {
+  @override
+  bool get wantKeepAlive => true;
+
+  @override
+  Widget build(BuildContext context) {
+    final appTheme = ref.read(appThemeProvider.notifier);
+
+    useEffect(() {
+      ref.read(homeProvider.notifier).getHomePageData();
+      return;
+    }, const []);
 
     final scrollController = useScrollController();
+
+    final state = ref.watch<CommonState<HomeData>>(homeProvider);
     return SafeArea(
       child: Stack(
         children: [
@@ -29,40 +49,92 @@ class HomePage extends HookConsumerWidget {
             headerSliverBuilder: (context, innerBoxIsScrolled) {
               return _headerSliverBuilder(context, scrollController);
             },
-            body: Column(
-              children: [
-                Text('Home Page', style: Theme.of(context).textTheme.headline1),
-                Switch(
-                  value: appTheme.currentTheme == ThemeMode.dark,
-                  onChanged: (value) {
-                    appTheme.toggleTheme();
-                  },
-                ),
-              ],
+            body: state.maybeWhen(
+              orElse: () => const SizedBox.shrink(),
+              loaded: _buildBody,
             ),
           ),
           Builder(
-            builder: (context) => Padding(
-              padding: const EdgeInsets.only(
+            builder: (context) => const Padding(
+              padding: EdgeInsets.only(
                 top: 8.0,
                 left: 4.0,
               ),
-              child: Transform.rotate(
-                angle: 22 / 7 * 2,
-                child: IconButton(
-                  icon: const Icon(
-                    Icons.horizontal_split_rounded,
-                  ),
-                  // color: Theme.of(context).iconTheme.color,
-                  onPressed: () {
-                    Scaffold.of(context).openDrawer();
-                  },
-                  tooltip:
-                      MaterialLocalizations.of(context).openAppDrawerTooltip,
-                ),
-              ),
+              child: DrawerIconButton(),
             ),
           ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildBody(HomeData homeData) {
+    return SingleChildScrollView(
+      child: Column(
+        children: [
+          // if (homeData.newTrending.isNotEmpty)
+          //   Column(
+          //     crossAxisAlignment: CrossAxisAlignment.stretch,
+          //     children: [
+          //       Padding(
+          //         padding: const EdgeInsets.fromLTRB(16, 12, 0, 4),
+          //         child: Text(
+          //           'New Treding',
+          //           style: TextStyle(
+          //             color: Theme.of(context).colorScheme.secondary,
+          //             fontSize: 18,
+          //             fontWeight: FontWeight.bold,
+          //           ),
+          //         ),
+          //       ),
+          //       MediaHorizontalList(
+          //         mediaList: homeData.newTrending,
+          //         onTap: (int idx) {},
+          //       ),
+          //     ],
+          //   ),
+          if (homeData.newAlbums.isNotEmpty)
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(16, 12, 0, 4),
+                  child: Text(
+                    'New Albums',
+                    style: TextStyle(
+                      color: Theme.of(context).colorScheme.secondary,
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+                MediaHorizontalList(
+                  mediaList: homeData.newAlbums,
+                  onTap: (int idx) {},
+                ),
+              ],
+            ),
+          if (homeData.radio.isNotEmpty)
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(16, 12, 0, 4),
+                  child: Text(
+                    'Radio Stations',
+                    style: TextStyle(
+                      color: Theme.of(context).colorScheme.secondary,
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+                MediaHorizontalList(
+                  mediaList: homeData.radio,
+                  onTap: (int idx) {},
+                ),
+              ],
+            ),
         ],
       ),
     );
@@ -134,7 +206,7 @@ class HomePage extends HookConsumerWidget {
       SliverAppBar(
         automaticallyImplyLeading: false,
         pinned: true,
-        backgroundColor: Colors.transparent,
+        backgroundColor: Theme.of(context).canvasColor,
         elevation: 0,
         stretch: true,
         toolbarHeight: 65,
