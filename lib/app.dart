@@ -8,6 +8,7 @@ import 'package:xbcodebase/core/loggers/navigator_logger.dart';
 import 'package:xbcodebase/core/shared/core_providers.dart';
 import 'package:xbcodebase/features/auth/pages/login_page.dart';
 import 'package:xbcodebase/features/dashboard_page.dart';
+import 'package:xbcodebase/features/settings/settings_page.dart';
 import 'package:xbcodebase/features/splash/splash_page.dart';
 
 import 'app_constants.dart';
@@ -41,6 +42,10 @@ class MyApp extends ConsumerWidget {
           GoRoute(
             path: RKeys.search,
             builder: (context, state) => const SearchPage(),
+          ),
+          GoRoute(
+            path: RKeys.settings,
+            builder: (context, state) => const SettingsPage(),
           ),
         ],
       ),
@@ -86,13 +91,14 @@ class MyApp extends ConsumerWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final themeMode = ref.watch(appThemeProvider);
+    final globalConfig = ref.watch(globalConfigureProvider);
     return MaterialApp.router(
       routerConfig: _router,
       title: 'Flutter Demo',
-      themeMode: themeMode,
+      themeMode: globalConfig.appTheme.currentTheme,
       theme: AppTheme.lightTheme,
       darkTheme: AppTheme.darkTheme,
+      locale: globalConfig.locale,
       localizationsDelegates: const [
         AppLocalizations.delegate,
         GlobalMaterialLocalizations.delegate,

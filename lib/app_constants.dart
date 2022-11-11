@@ -11,6 +11,7 @@ class RKeys {
   // static const library = '/library';
 
   static const search = 'search';
+  static const settings = 'settings';
 }
 
 class BoxKeys {
@@ -21,4 +22,10 @@ class BoxKeys {
 class PKeys {
   PKeys._();
   static const themeMode = 'themeMode';
+  static const locale = 'locale';
 }
+
+const kAppLocale = {
+  'en': 'English',
+  'vi': 'Vietnamese',
+};

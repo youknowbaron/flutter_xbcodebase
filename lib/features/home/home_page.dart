@@ -8,7 +8,6 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:xbcodebase/app_constants.dart';
 import 'package:xbcodebase/common/widgets/drawer_icon.dart';
-import 'package:xbcodebase/core/shared/core_providers.dart';
 import 'package:xbcodebase/core/widgets/space.dart';
 import 'package:xbcodebase/domain/core/common_state.dart';
 import 'package:xbcodebase/domain/models/home_data.dart';
@@ -30,8 +29,6 @@ class _HomePageState extends ConsumerState<HomePage>
 
   @override
   Widget build(BuildContext context) {
-    final appTheme = ref.read(appThemeProvider.notifier);
-
     useEffect(() {
       ref.read(homeProvider.notifier).getHomePageData();
       return;

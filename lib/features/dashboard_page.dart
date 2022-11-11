@@ -3,12 +3,15 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:go_router/go_router.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
 import 'package:xbcodebase/features/home/home_page.dart';
 import 'package:xbcodebase/features/library_page.dart';
 import 'package:xbcodebase/features/top_charts_page.dart';
 import 'package:xbcodebase/features/youtube_page.dart';
+
+import '../app_constants.dart';
 
 class DashboardPage extends HookWidget {
   const DashboardPage({super.key});
@@ -154,12 +157,7 @@ class DashboardPage extends HookWidget {
                     ),
                     onTap: () {
                       Navigator.pop(context);
-                      // Navigator.push(
-                      //   context,
-                      //   MaterialPageRoute(
-                      //     builder: (context) => SettingPage(callback: callback),
-                      //   ),
-                      // );
+                      context.go('/${RKeys.settings}');
                     },
                   ),
                   ListTile(

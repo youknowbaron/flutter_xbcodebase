@@ -5,14 +5,12 @@ class SearchPage extends HookConsumerWidget {
   const SearchPage({super.key});
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return SafeArea(
-      child: Scaffold(
-        appBar: AppBar(),
-        body: Center(
-          child: Text(
-            'Search Page',
-            style: Theme.of(context).textTheme.headline1,
-          ),
+    return Scaffold(
+      appBar: AppBar(),
+      body: Center(
+        child: Text(
+          'Search Page',
+          style: Theme.of(context).textTheme.headline1,
         ),
       ),
     );

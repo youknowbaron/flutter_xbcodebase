@@ -27,4 +27,8 @@ class AppTheme {
     primarySwatch: Colors.deepPurple,
     brightness: Brightness.dark,
   );
+
+  AppTheme copyWith({ThemeMode? themeMode}) {
+    return AppTheme().._currentTheme = themeMode ?? _currentTheme;
+  }
 }
