@@ -6,21 +6,34 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:go_router/go_router.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
-import 'package:xbcodebase/features/home/home_page.dart';
+import 'package:xbcodebase/common/widgets/no_app_bar.dart';
+import 'package:xbcodebase/features/home/pages/home_page.dart';
 import 'package:xbcodebase/features/library_page.dart';
-import 'package:xbcodebase/features/top_charts_page.dart';
+import 'package:xbcodebase/features/top_charts/top_charts_page.dart';
 import 'package:xbcodebase/features/youtube_page.dart';
 
-import '../app_constants.dart';
-
 class DashboardPage extends HookWidget {
-  const DashboardPage({super.key});
+  const DashboardPage({this.initialIndex, super.key});
+
+  final int? initialIndex;
 
   @override
   Widget build(BuildContext context) {
     final pageController = usePageController();
-    final currentPage = useValueNotifier(0);
+    final currentPage = useValueNotifier(initialIndex ?? 0);
+    useEffect(() {
+      if (initialIndex == null) return;
+      currentPage.value = initialIndex!;
+      pageController.animateToPage(
+        initialIndex!,
+        duration: const Duration(milliseconds: 300),
+        curve: Curves.easeInOut,
+      );
+      return;
+    }, [initialIndex]);
+
     return Scaffold(
+      appBar: const NoAppBar(),
       drawer: Drawer(
         child: CustomScrollView(
           shrinkWrap: true,
@@ -157,7 +170,7 @@ class DashboardPage extends HookWidget {
                     ),
                     onTap: () {
                       Navigator.pop(context);
-                      context.go('/${RKeys.settings}');
+                      context.go('/settings');
                     },
                   ),
                   ListTile(

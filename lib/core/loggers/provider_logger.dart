@@ -6,7 +6,7 @@ class ProviderLogger extends ProviderObserver {
   @override
   void didAddProvider(
       ProviderBase provider, Object? value, ProviderContainer container) {
-    logger.i(
+    logger.wtf(
         'provider: ${provider.name ?? provider.runtimeType} was created.\nvalue: $value');
   }
 
@@ -17,13 +17,13 @@ class ProviderLogger extends ProviderObserver {
     Object? newValue,
     ProviderContainer container,
   ) {
-    logger.i(
+    logger.wtf(
         'previousValue: $previousValue\nprovider: ${provider.name ?? provider.runtimeType},\nnewValue: $newValue\n');
   }
 
   @override
   void didDisposeProvider(ProviderBase provider, ProviderContainer containers) {
     logger
-        .i('provider: ${provider.name ?? provider.runtimeType} was disposed.');
+        .wtf('provider: ${provider.name ?? provider.runtimeType} was disposed.');
   }
 }

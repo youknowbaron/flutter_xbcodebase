@@ -4,7 +4,6 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import '../../../app_constants.dart';
 import '../../../common/widgets/common_input.dart';
 import '../../../domain/core/common_state.dart';
 import '../shared/auth_providers.dart';
@@ -35,7 +34,7 @@ class LoginPage extends HookConsumerWidget {
         error: (error) {
           errorText.value = "loiroibanoi";
         },
-        loaded: (data) => context.go(RKeys.dashboard),
+        loaded: (data) => context.go('/'),
       );
     });
 

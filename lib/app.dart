@@ -4,14 +4,19 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:xbcodebase/core/app_theme.dart';
+import 'package:xbcodebase/core/loggers/logger.dart';
 import 'package:xbcodebase/core/loggers/navigator_logger.dart';
 import 'package:xbcodebase/core/shared/core_providers.dart';
+import 'package:xbcodebase/domain/models/media.dart';
 import 'package:xbcodebase/features/auth/pages/login_page.dart';
 import 'package:xbcodebase/features/dashboard_page.dart';
+import 'package:xbcodebase/features/home/pages/after_media_details_page.dart';
+import 'package:xbcodebase/features/home/pages/media_details_page.dart';
 import 'package:xbcodebase/features/settings/settings_page.dart';
 import 'package:xbcodebase/features/splash/splash_page.dart';
+import 'package:xbcodebase/features/top_charts/detail_chart_page.dart';
+import 'package:xbcodebase/features/top_charts/top_charts_page.dart';
 
-import 'app_constants.dart';
 import 'features/search/search_page.dart';
 
 final GlobalKey<NavigatorState> _rootNavigatorKey =
@@ -24,67 +29,53 @@ class MyApp extends ConsumerWidget {
 
   final GoRouter _router = GoRouter(
     navigatorKey: _rootNavigatorKey,
-    initialLocation: RKeys.splash,
+    initialLocation: '/splash',
     observers: [NavigatorLogger()],
     routes: <RouteBase>[
       GoRoute(
-        path: RKeys.splash,
+        path: '/splash',
         builder: (context, state) => const SplashPage(),
       ),
       GoRoute(
-        path: RKeys.login,
+        path: '/login',
         builder: (context, state) => const LoginPage(),
       ),
       GoRoute(
-        path: RKeys.dashboard,
-        builder: (context, state) => const DashboardPage(),
+        path: '/',
+        builder: (context, state) {
+          final index = int.tryParse(state.queryParams['index'] ?? '');
+          logger.w('index $index');
+          return DashboardPage(initialIndex: index);
+        },
         routes: <GoRoute>[
           GoRoute(
-            path: RKeys.search,
+            path: 'search',
             builder: (context, state) => const SearchPage(),
           ),
           GoRoute(
-            path: RKeys.settings,
+            path: 'settings',
             builder: (context, state) => const SettingsPage(),
+          ),
+          GoRoute(
+            path: 'media/:mid',
+            builder: (context, state) {
+              return MediaDetailsPage(media: state.extra as Media);
+            },
+            routes: [
+              GoRoute(
+                path: 'after_media_details',
+                builder: (context, state) {
+                  return AfterMediaDetailsPage(id: state.params['mid']!);
+                },
+              )
+            ],
+          ),
+          GoRoute(
+            path: 'chart/:cid',
+            builder: (context, state) => DetailChartPage(state.extra as Chart),
           ),
         ],
       ),
-      // ShellRoute(
-      //   navigatorKey: _shellNavigatorKey,
-      //   builder: (context, state, child) {
-      //     return DashboardPage(child: child);
-      //   },
-      //   routes: <RouteBase>[
-      //     GoRoute(
-      //       path: RKeys.home,
-      //       builder: (context, state) => const HomePage(),
-      //       routes: <GoRoute>[
-      //         GoRoute(
-      //           parentNavigatorKey: _rootNavigatorKey,
-      //           path: RKeys.search,
-      //           builder: (context, state) => const SearchPage(),
-      //         ),
-      //       ],
-      //     ),
-      //     GoRoute(
-      //       path: RKeys.topCharts,
-      //       builder: (context, state) => const TopChartsPage(),
-      //     ),
-      //     GoRoute(
-      //       path: RKeys.youtube,
-      //       builder: (context, state) => const YouTubePage(),
-      //     ),
-      //     GoRoute(
-      //       path: RKeys.library,
-      //       builder: (context, state) => const LibraryPage(),
-      //     ),
-      //   ],
-      // ),
-      // GoRoute(
-      //   parentNavigatorKey: _rootNavigatorKey,
-      //   path: RKeys.search,
-      //   builder: (context, state) => const SearchPage(),
-      // ),
     ],
   );
 
@@ -96,8 +87,8 @@ class MyApp extends ConsumerWidget {
       routerConfig: _router,
       title: 'Flutter Demo',
       themeMode: globalConfig.appTheme.currentTheme,
-      theme: AppTheme.lightTheme,
-      darkTheme: AppTheme.darkTheme,
+      theme: AppTheme.lightTheme(context),
+      darkTheme: AppTheme.darkTheme(context),
       locale: globalConfig.locale,
       localizationsDelegates: const [
         AppLocalizations.delegate,

@@ -18,15 +18,23 @@ class AppTheme {
     _currentTheme = isDark ? ThemeMode.dark : ThemeMode.light;
   }
 
-  static ThemeData lightTheme = ThemeData(
-    primarySwatch: Colors.deepOrange,
-    brightness: Brightness.light,
-  );
+  static ThemeData lightTheme(BuildContext context) => ThemeData(
+        primarySwatch: Colors.deepOrange,
+        brightness: Brightness.light,
+        appBarTheme: const AppBarTheme(
+          elevation: 0,
+          color: Colors.transparent,
+        ),
+      );
 
-  static ThemeData darkTheme = ThemeData(
-    primarySwatch: Colors.deepPurple,
-    brightness: Brightness.dark,
-  );
+  static ThemeData darkTheme(BuildContext context) => ThemeData(
+        primarySwatch: Colors.deepPurple,
+        brightness: Brightness.dark,
+        appBarTheme: const AppBarTheme(
+          elevation: 0,
+          color: Colors.transparent,
+        ),
+      );
 
   AppTheme copyWith({ThemeMode? themeMode}) {
     return AppTheme().._currentTheme = themeMode ?? _currentTheme;

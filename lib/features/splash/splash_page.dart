@@ -4,11 +4,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:xbcodebase/app_constants.dart';
 import 'package:xbcodebase/features/splash/shared/splash_providers.dart';
 
 class SplashPage extends HookConsumerWidget {
   const SplashPage({super.key});
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final isLoaded = useValueNotifier(false);
@@ -25,8 +25,8 @@ class SplashPage extends HookConsumerWidget {
     });
     animation.addStatusListener((status) async {
       if (status == AnimationStatus.completed) {
-        ref.read(splashProvider.notifier).state.whenOrNull(loaded: (data) {
-          GoRouter.of(context).go(data == true ? RKeys.dashboard : RKeys.login);
+        ref.read(splashProvider).whenOrNull(loaded: (data) {
+          GoRouter.of(context).go(data == true ? '/' : '/login');
         });
       }
     });

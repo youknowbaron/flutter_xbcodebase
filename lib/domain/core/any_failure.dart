@@ -1,3 +1,3 @@
-abstract class AnyFailure {
+class AnyFailure {
   const AnyFailure();
 }

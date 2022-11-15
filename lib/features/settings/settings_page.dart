@@ -1,14 +1,28 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:xbcodebase/app_constants.dart';
 import 'package:xbcodebase/core/global_configuration.dart';
 import 'package:xbcodebase/core/shared/core_providers.dart';
+import 'package:xbcodebase/domain/core/common_state.dart';
+import 'package:xbcodebase/features/auth/shared/auth_providers.dart';
 
 class SettingsPage extends HookConsumerWidget {
   const SettingsPage({super.key});
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    ref.listen<CommonApiState>(authenticationProvider, (previous, next) {
+      next.maybeWhen(
+        orElse: () {},
+        loaded: (data) {
+          if (data == true) {
+            GoRouter.of(context).go('/login');
+          }
+        },
+      );
+    });
     final globalConfiguration =
         ref.watch<GlobalConfiguration>(globalConfigureProvider);
     return Scaffold(
@@ -110,6 +124,12 @@ class SettingsPage extends HookConsumerWidget {
                   ),
                   dense: true,
                 ),
+                TextButton(
+                  onPressed: () async {
+                    await ref.read(authenticationProvider.notifier).logOut();
+                  },
+                  child: const Text('Log out'),
+                )
               ],
             ),
           ),

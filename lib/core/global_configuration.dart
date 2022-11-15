@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:xbcodebase/core/app_theme.dart';
 
-@freezed
 class GlobalConfiguration {
   AppTheme _appTheme = AppTheme();
   Locale _locale = WidgetsBinding.instance.window.locales.first;

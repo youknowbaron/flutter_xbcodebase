@@ -6,29 +6,20 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:xbcodebase/app_constants.dart';
 import 'package:xbcodebase/common/widgets/drawer_icon.dart';
 import 'package:xbcodebase/core/widgets/space.dart';
 import 'package:xbcodebase/domain/core/common_state.dart';
 import 'package:xbcodebase/domain/models/home_data.dart';
 import 'package:xbcodebase/features/home/shared/home_providers.dart';
 
-import '../../common/widgets/media_horizontal_list.dart';
+import '../../../common/widgets/media_horizontal_list.dart';
 
-class HomePage extends StatefulHookConsumerWidget {
+class HomePage extends HookConsumerWidget {
   const HomePage({super.key});
 
   @override
-  ConsumerState<ConsumerStatefulWidget> createState() => _HomePageState();
-}
-
-class _HomePageState extends ConsumerState<HomePage>
-    with AutomaticKeepAliveClientMixin<HomePage> {
-  @override
-  bool get wantKeepAlive => true;
-
-  @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    useAutomaticKeepAlive();
     useEffect(() {
       ref.read(homeProvider.notifier).getHomePageData();
       return;
@@ -36,7 +27,7 @@ class _HomePageState extends ConsumerState<HomePage>
 
     final scrollController = useScrollController();
 
-    final state = ref.watch<CommonState<HomeData>>(homeProvider);
+    final state = ref.watch<CommonApiState<HomeData>>(homeProvider);
     return SafeArea(
       child: Stack(
         children: [
@@ -48,7 +39,7 @@ class _HomePageState extends ConsumerState<HomePage>
             },
             body: state.maybeWhen(
               orElse: () => const SizedBox.shrink(),
-              loaded: _buildBody,
+              loaded: (_) => _buildBody(context, _),
             ),
           ),
           Builder(
@@ -65,7 +56,7 @@ class _HomePageState extends ConsumerState<HomePage>
     );
   }
 
-  Widget _buildBody(HomeData homeData) {
+  Widget _buildBody(BuildContext context, HomeData homeData) {
     return SingleChildScrollView(
       child: Column(
         children: [
@@ -107,7 +98,17 @@ class _HomePageState extends ConsumerState<HomePage>
                 ),
                 MediaHorizontalList(
                   mediaList: homeData.newAlbums,
-                  onTap: (int idx) {},
+                  onTap: (int idx) {
+                    // context.goNamed(
+                    //   'mediaDetails',
+                    //   params: {'mid': homeData.newAlbums[idx].id},
+                    //   extra: homeData.newAlbums[idx],
+                    // );
+                    context.go(
+                      '/media/${homeData.newAlbums[idx].id}',
+                      extra: homeData.newAlbums[idx],
+                    );
+                  },
                 ),
               ],
             ),
@@ -262,7 +263,7 @@ class _HomePageState extends ConsumerState<HomePage>
                   ),
                 ),
                 onTap: () {
-                  context.go('/${RKeys.search}');
+                  context.go('/search');
                 },
               );
             },

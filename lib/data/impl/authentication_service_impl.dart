@@ -34,10 +34,9 @@ class AuthenticationServiceImpl
   }
 
   @override
-  Future<void> saveSession(String accessToken, String? refreshToken) {
-    _storage.write(key: kAccessTokenKey, value: accessToken);
-    _storage.write(key: kRefreshTokenKey, value: refreshToken);
-    throw UnimplementedError();
+  Future<void> saveSession(String accessToken, String? refreshToken) async {
+    await _storage.write(key: kAccessTokenKey, value: accessToken);
+    await _storage.write(key: kRefreshTokenKey, value: refreshToken);
   }
 
   @override
@@ -45,5 +44,11 @@ class AuthenticationServiceImpl
     await Future.delayed(const Duration(milliseconds: 500));
     final accessToken = await _storage.read(key: kAccessTokenKey);
     return accessToken != null && accessToken.isNotEmpty;
+  }
+
+  @override
+  Future<void> logOut() async {
+    await _storage.delete(key: kAccessTokenKey);
+    await _storage.delete(key: kRefreshTokenKey);
   }
 }

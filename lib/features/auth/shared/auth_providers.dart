@@ -5,6 +5,6 @@ import '../../../domain/core/common_state.dart';
 import '../notifiers/authentication_state_notifier.dart';
 
 final authenticationProvider =
-    StateNotifierProvider.autoDispose<AuthenticationStateNotifier, CommonState>(
+    StateNotifierProvider.autoDispose<AuthenticationStateNotifier, CommonApiState>(
   (ref) => AuthenticationStateNotifier(ref.read(authenticationServiceProvider)),
 );
