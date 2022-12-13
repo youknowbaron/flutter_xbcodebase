@@ -213,6 +213,9 @@ class DashboardPage extends HookWidget {
       body: PageView(
         controller: pageController,
         physics: const CustomPhysics(),
+        onPageChanged: (value) {
+          currentPage.value = value;
+        },
         children: const [
           HomePage(),
           TopChartsPage(),
@@ -223,7 +226,6 @@ class DashboardPage extends HookWidget {
       bottomNavigationBar: SalomonBottomBar(
         currentIndex: useValueListenable(currentPage),
         onTap: (index) {
-          currentPage.value = index;
           pageController.animateToPage(
             index,
             duration: const Duration(milliseconds: 300),
