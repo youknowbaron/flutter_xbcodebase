@@ -1,21 +1,21 @@
 import 'package:flutter/material.dart';
 
 class AppTheme {
-  ThemeMode _currentTheme = ThemeMode.system;
+  ThemeMode _currentThemeMode = ThemeMode.system;
 
-  ThemeMode get currentTheme => _currentTheme;
+  ThemeMode get currentThemeMode => _currentThemeMode;
 
   void toggleTheme() {
-    final isDark = _currentTheme == ThemeMode.dark;
-    _currentTheme = isDark ? ThemeMode.light : ThemeMode.dark;
+    final isDark = _currentThemeMode == ThemeMode.dark;
+    _currentThemeMode = isDark ? ThemeMode.light : ThemeMode.dark;
   }
 
   void setTheme(bool? isDark) {
     if (isDark == null) {
-      _currentTheme = ThemeMode.system;
+      _currentThemeMode = ThemeMode.system;
       return;
     }
-    _currentTheme = isDark ? ThemeMode.dark : ThemeMode.light;
+    _currentThemeMode = isDark ? ThemeMode.dark : ThemeMode.light;
   }
 
   static ThemeData lightTheme(BuildContext context) => ThemeData(
@@ -37,6 +37,6 @@ class AppTheme {
       );
 
   AppTheme copyWith({ThemeMode? themeMode}) {
-    return AppTheme().._currentTheme = themeMode ?? _currentTheme;
+    return AppTheme().._currentThemeMode = themeMode ?? _currentThemeMode;
   }
 }

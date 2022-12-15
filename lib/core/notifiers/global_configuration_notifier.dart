@@ -12,7 +12,7 @@ class GlobalConfigurationStateNotifier
     state.toggleTheme();
     state = state.clone();
     Hive.box(BoxKeys.settings)
-        .put(PKeys.themeMode, state.appTheme.currentTheme.name);
+        .put(PKeys.themeMode, state.appTheme.currentThemeMode.name);
   }
 
   changeLocale(Locale locale) {
@@ -21,6 +21,6 @@ class GlobalConfigurationStateNotifier
     Hive.box(BoxKeys.settings).put(PKeys.locale, state.locale.languageCode);
   }
 
-  ThemeMode get currentThemeMode => state.appTheme.currentTheme;
+  ThemeMode get currentThemeMode => state.appTheme.currentThemeMode;
   Locale get currentLocale => state.locale;
 }
