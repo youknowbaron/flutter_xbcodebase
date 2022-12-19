@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:xbcodebase/core/app_theme.dart';
 
 class GlobalConfiguration {

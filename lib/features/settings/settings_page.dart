@@ -72,7 +72,7 @@ class SettingsPage extends HookConsumerWidget {
                   ),
                 ),
                 SwitchListTile(
-                  value: globalConfiguration.appTheme.currentTheme ==
+                  value: globalConfiguration.appTheme.currentThemeMode ==
                       ThemeMode.dark,
                   onChanged: (value) {
                     ref.read(globalConfigureProvider.notifier).toggleTheme();
