@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'package:xbcodebase/data/network/api/saavn_dio.dart';
 import 'package:xbcodebase/domain/models/home_data.dart';
 
-import '../../domain/core/api_result.dart';
+import '../../domain/base/api_result.dart';
 import '../../domain/repository/song_service.dart';
 import '../network/api/dio_broker.dart';
 import '../network/api/saavn_format.dart';

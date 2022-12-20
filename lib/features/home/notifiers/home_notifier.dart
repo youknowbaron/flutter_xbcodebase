@@ -1,13 +1,17 @@
-import 'package:xbcodebase/core/notifiers/common_state_notifier.dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
+import 'package:xbcodebase/data/shared/service_providers.dart';
+import 'package:xbcodebase/domain/base/api_result.dart';
 import 'package:xbcodebase/domain/models/home_data.dart';
 import 'package:xbcodebase/domain/repository/song_service.dart';
 
-class HomeNotifier extends CommonApiStateNotifier<HomeData> {
-  HomeNotifier(this._songService) : super();
+part 'home_notifier.g.dart';
 
-  final SongService _songService;
+@riverpod
+class HomeNotifier extends _$HomeNotifier {
+  SongService get _songService => ref.read(songServiceProvider);
 
-  void getHomePageData() async {
-    assignApiResultToState(await _songService.getHomePageData());
+  @override
+  FutureOr<HomeData?> build() async {
+    return (await _songService.getHomePageData()).mapToData();
   }
 }

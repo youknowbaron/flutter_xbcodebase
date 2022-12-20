@@ -1,3 +1,0 @@
-class AnyFailure {
-  const AnyFailure();
-}
