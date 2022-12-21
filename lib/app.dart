@@ -17,14 +17,14 @@ class MyApp extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final globalConfig = ref.watch(appSettingsNotifierProvider);
+    final appSettings = ref.watch(appSettingsNotifierProvider);
     return MaterialApp.router(
       routerConfig: appRouter,
       title: 'Flutter Demo',
-      themeMode: globalConfig.themeMode,
+      themeMode: appSettings.themeMode,
       theme: AppTheme.lightTheme(context),
       darkTheme: AppTheme.darkTheme(context),
-      locale: globalConfig.locale,
+      locale: appSettings.locale,
       localizationsDelegates: const [
         AppLocalizations.delegate,
         GlobalMaterialLocalizations.delegate,

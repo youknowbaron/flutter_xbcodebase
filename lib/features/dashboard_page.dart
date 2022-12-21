@@ -1,9 +1,5 @@
 import 'dart:io';
 
-import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:go_router/go_router.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
 import 'package:xbcodebase/common/widgets/no_app_bar.dart';
@@ -11,6 +7,8 @@ import 'package:xbcodebase/features/home/pages/home_page.dart';
 import 'package:xbcodebase/features/library_page.dart';
 import 'package:xbcodebase/features/top_charts/top_charts_page.dart';
 import 'package:xbcodebase/features/youtube_page.dart';
+
+import '../bridges.dart';
 
 class DashboardPage extends HookWidget {
   const DashboardPage({this.initialIndex, super.key});
@@ -48,7 +46,7 @@ class DashboardPage extends HookWidget {
               flexibleSpace: FlexibleSpaceBar(
                 title: RichText(
                   text: TextSpan(
-                    text: AppLocalizations.of(context)!.appTitle,
+                    text: $strings.appTitle,
                     style: const TextStyle(
                       fontSize: 30.0,
                       fontWeight: FontWeight.w500,
@@ -97,7 +95,7 @@ class DashboardPage extends HookWidget {
                 [
                   ListTile(
                     title: Text(
-                      AppLocalizations.of(context)!.home,
+                      $strings.home,
                       style: TextStyle(
                         color: Theme.of(context).colorScheme.secondary,
                       ),
@@ -115,7 +113,7 @@ class DashboardPage extends HookWidget {
                   ),
                   if (Platform.isAndroid)
                     ListTile(
-                      title: Text(AppLocalizations.of(context)!.myMusic),
+                      title: Text($strings.myMusic),
                       contentPadding:
                           const EdgeInsets.symmetric(horizontal: 20.0),
                       leading: Icon(
@@ -135,7 +133,7 @@ class DashboardPage extends HookWidget {
                       },
                     ),
                   ListTile(
-                    title: Text(AppLocalizations.of(context)!.downs),
+                    title: Text($strings.downs),
                     contentPadding:
                         const EdgeInsets.symmetric(horizontal: 20.0),
                     leading: Icon(
@@ -148,7 +146,7 @@ class DashboardPage extends HookWidget {
                     },
                   ),
                   ListTile(
-                    title: Text(AppLocalizations.of(context)!.playlists),
+                    title: Text($strings.playlists),
                     contentPadding:
                         const EdgeInsets.symmetric(horizontal: 20.0),
                     leading: Icon(
@@ -161,7 +159,7 @@ class DashboardPage extends HookWidget {
                     },
                   ),
                   ListTile(
-                    title: Text(AppLocalizations.of(context)!.settings),
+                    title: Text($strings.settings),
                     contentPadding:
                         const EdgeInsets.symmetric(horizontal: 20.0),
                     leading: Icon(
@@ -174,7 +172,7 @@ class DashboardPage extends HookWidget {
                     },
                   ),
                   ListTile(
-                    title: Text(AppLocalizations.of(context)!.about),
+                    title: Text($strings.about),
                     contentPadding:
                         const EdgeInsets.symmetric(horizontal: 20.0),
                     leading: Icon(
@@ -198,7 +196,7 @@ class DashboardPage extends HookWidget {
                     padding: const EdgeInsets.fromLTRB(5, 30, 5, 20),
                     child: Center(
                       child: Text(
-                        AppLocalizations.of(context)!.madeBy,
+                        $strings.madeBy,
                         textAlign: TextAlign.center,
                         style: const TextStyle(fontSize: 12),
                       ),

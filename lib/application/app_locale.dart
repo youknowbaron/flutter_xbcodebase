@@ -5,8 +5,7 @@ import 'package:hive/hive.dart';
 import 'app_constants.dart';
 
 class AppLocale {
-
-  static const defaultLocale = 'en';
+  static const _defaultLocale = 'en';
 
   static AppLocale? _instance;
   static AppLocale get instance {
@@ -19,15 +18,13 @@ class AppLocale {
   AppLocalizations? _strings;
   AppLocalizations get strings => _strings!;
 
-  Future<void> load() async {
+  Future<void> initilize(Box settingsBox) async {
     final languageCode =
-        Hive.box(BoxKeys.settings).get(PKeys.locale) as String?;
-    Locale locale = languageCode != null
-        ? Locale(languageCode)
-        : WidgetsBinding.instance.window.locales.first;
+        settingsBox.get(PKeys.locale) as String? ?? _defaultLocale;
+    Locale locale = Locale(languageCode);
 
     if (AppLocalizations.supportedLocales.contains(locale) == false) {
-      locale = const Locale(defaultLocale);
+      locale = const Locale(_defaultLocale);
     }
     _strings = await AppLocalizations.delegate.load(locale);
   }
@@ -39,3 +36,5 @@ class AppLocale {
     }
   }
 }
+
+AppLocalizations get $strings => AppLocale.instance.strings;

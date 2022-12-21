@@ -1,12 +1,6 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:go_router/go_router.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:xbcodebase/application/notifiers/app_settings_notifier.dart';
 import 'package:xbcodebase/features/auth/notifiers/authentication_notifier.dart';
 
-import '../../application/app_constants.dart';
-import '../../application/app_settings.dart';
+import '../../bridges.dart';
 
 class SettingsPage extends HookConsumerWidget {
   const SettingsPage({super.key});
@@ -23,7 +17,7 @@ class SettingsPage extends HookConsumerWidget {
         },
       );
     });
-    final appSettings = ref.watch<AppSettings>(appSettingsNotifierProvider);
+    final appSettings = ref.watch(appSettingsNotifierProvider);
     return Scaffold(
       body: CustomScrollView(
         slivers: [
@@ -48,7 +42,7 @@ class SettingsPage extends HookConsumerWidget {
                 blendMode: BlendMode.dstIn,
                 child: Center(
                   child: Text(
-                    AppLocalizations.of(context)!.settings,
+                    $strings.settings,
                     textAlign: TextAlign.center,
                     style: const TextStyle(
                       fontSize: 80,
@@ -63,7 +57,7 @@ class SettingsPage extends HookConsumerWidget {
             delegate: SliverChildListDelegate(
               [
                 Text(
-                  AppLocalizations.of(context)!.theme,
+                  $strings.theme,
                   style: TextStyle(
                     fontSize: 22,
                     fontWeight: FontWeight.bold,
@@ -78,11 +72,11 @@ class SettingsPage extends HookConsumerWidget {
                         .toggleTheme();
                   },
                   title: Text(
-                    AppLocalizations.of(context)!.darkMode,
+                    $strings.darkMode,
                   ),
                 ),
                 Text(
-                  AppLocalizations.of(context)!.lang,
+                  $strings.lang,
                   style: TextStyle(
                     fontSize: 22,
                     fontWeight: FontWeight.bold,
@@ -91,10 +85,10 @@ class SettingsPage extends HookConsumerWidget {
                 ),
                 ListTile(
                   title: Text(
-                    AppLocalizations.of(context)!.lang,
+                    $strings.lang,
                   ),
                   subtitle: Text(
-                    AppLocalizations.of(context)!.langSub,
+                    $strings.langSub,
                   ),
                   onTap: () {},
                   trailing: DropdownButton(

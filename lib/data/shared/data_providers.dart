@@ -9,31 +9,35 @@ import '../../core/loggers/logger.dart';
 import '../network/api/authentication_intercepter.dart';
 import '../network/api/logger_intercepter.dart';
 
-final _baseOptions = BaseOptions(
-  baseUrl: F.authUrl,
-  connectTimeout: 3000,
-  receiveTimeout: 3000,
-  followRedirects: false,
-  headers: {
-    'Content-Type': 'application/json',
-  },
+final _authBaseOptionsProvider = Provider<BaseOptions>(
+  (_) => BaseOptions(
+    baseUrl: F.authUrl,
+    connectTimeout: 3000,
+    receiveTimeout: 3000,
+    followRedirects: false,
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  ),
 );
 
-final _baseOptions2 = BaseOptions(
-  baseUrl: F.baseUrl,
-  connectTimeout: 3000,
-  receiveTimeout: 3000,
-  followRedirects: false,
-  headers: {
-    'Content-Type': 'application/json',
-  },
+final _baseOptions = Provider<BaseOptions>(
+  (_) => BaseOptions(
+    baseUrl: F.baseUrl,
+    connectTimeout: 3000,
+    receiveTimeout: 3000,
+    followRedirects: false,
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  ),
 );
 
 final dioLoggerInterceptorProvider =
     Provider((ref) => LoggerInterceptor(logger));
 
 final basicDioProvider = Provider<Dio>((ref) {
-  final dio = Dio()..options = _baseOptions;
+  final dio = Dio()..options = ref.read(_authBaseOptionsProvider);
   if (kDebugMode) {
     dio.interceptors.add(ref.read(dioLoggerInterceptorProvider));
   }
@@ -46,7 +50,7 @@ final goodBoyDioProvider = Provider<Dio>((ref) {
       ref.watch(authenticationInterceptorProvider);
   final dioLoggerInterceptor = ref.read(dioLoggerInterceptorProvider);
   dio
-    ..options = _baseOptions2
+    ..options = ref.read(_baseOptions)
     ..options.validateStatus =
         ((status) => status != null && status >= 200 && status < 400)
     ..interceptors.addAll(

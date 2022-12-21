@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+import 'package:xbcodebase/application/app_locale.dart';
+import 'package:xbcodebase/core/shared/core_providers.dart';
 
 import '../app_constants.dart';
 import '../app_settings.dart';
@@ -9,11 +11,12 @@ part 'app_settings_notifier.g.dart';
 
 @Riverpod(keepAlive: true)
 class AppSettingsNotifier extends _$AppSettingsNotifier {
+  Box get settingsBox => ref.read(settingsBoxProvider);
 
   @override
   AppSettings build() {
-    final dark = Hive.box(BoxKeys.settings).get(PKeys.themeMode) as String?;
-    final locale = Hive.box(BoxKeys.settings).get(PKeys.locale) as String?;
+    final dark = settingsBox.get(PKeys.themeMode) as String?;
+    final locale = settingsBox.get(PKeys.locale) as String?;
     final config = AppSettings(
       themeMode: dark == 'dark' ? ThemeMode.dark : null,
       locale: locale != null ? Locale(locale, '') : null,
@@ -23,12 +26,13 @@ class AppSettingsNotifier extends _$AppSettingsNotifier {
 
   toggleTheme() {
     state = state.toggleTheme();
-    Hive.box(BoxKeys.settings).put(PKeys.themeMode, state.themeMode.name);
+    settingsBox.put(PKeys.themeMode, state.themeMode.name);
   }
 
-  changeLocale(Locale locale) {
+  changeLocale(Locale locale) async {
+    await AppLocale.instance.loadIfChanged(locale);
     state = state.setLocale(locale);
-    Hive.box(BoxKeys.settings).put(PKeys.locale, locale.languageCode);
+    settingsBox.put(PKeys.locale, locale.languageCode);
   }
 
   ThemeMode get themeMode => state.themeMode;
