@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:dio/dio.dart';
 import 'package:xbcodebase/core/loggers/logger.dart';
 
@@ -8,7 +10,7 @@ import 'dio_extensions.dart';
 mixin DioBroker {
   Future<ApiResult<T>> mapResponseToResult<T>(
     Future<Response> call, {
-    required Future<T> Function(dynamic data) converter,
+    required FutureOr<T> Function(dynamic data) converter,
     String? errorMessage,
     Function(T)? onSuccess,
   }) async {

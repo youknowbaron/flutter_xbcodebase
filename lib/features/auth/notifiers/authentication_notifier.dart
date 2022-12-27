@@ -1,8 +1,7 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
-import 'package:xbcodebase/data/shared/service_providers.dart';
-import 'package:xbcodebase/domain/base/api_result.dart';
+import 'package:xbcodebase/data/shared/repository_providers.dart';
 
-import '../../../domain/repository/authentication_service.dart';
+import '../../../domain/repositories/authentication_repository.dart';
 
 part 'authentication_notifier.g.dart';
 
@@ -13,15 +12,16 @@ class AuthenticationNotifier extends _$AuthenticationNotifier {
     return null;
   }
 
-  AuthenticationService get _service => ref.read(authenticationServiceProvider);
+  AuthenticationRepository get _repository =>
+      ref.read(authenticationRepositoryProvider);
 
   Future<void> logIn(String email, String password) async {
-    final result = await _service.logIn(email, password);
+    final result = await _repository.logIn(email, password);
     state = result.mapToAsyncValue();
   }
 
   Future<void> logOut() async {
-    await _service.logOut();
+    await _repository.logOut();
     state = const AsyncValue.data(true);
   }
 }

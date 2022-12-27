@@ -4,13 +4,13 @@ import 'package:xbcodebase/core/constants.dart';
 
 import '../../domain/base/api_result.dart';
 import '../../domain/models/token_response.dart';
-import '../../domain/repository/authentication_service.dart';
+import '../../domain/repositories/authentication_repository.dart';
 import '../network/api/dio_broker.dart';
 
-class AuthenticationServiceImpl
+class AuthenticationRepositoryImpl
     with DioBroker
-    implements AuthenticationService {
-  AuthenticationServiceImpl(this._dio, this._storage);
+    implements AuthenticationRepository {
+  AuthenticationRepositoryImpl(this._dio, this._storage);
 
   final Dio _dio;
   final FlutterSecureStorage _storage;
@@ -26,7 +26,7 @@ class AuthenticationServiceImpl
     );
     return mapResponseToResult(
       call,
-      converter: (data) async => TokenResponse.fromJson(data['data']),
+      converter: (data) => TokenResponse.fromJson(data['data']),
       onSuccess: (data) {
         _storage.write(key: kAccessTokenKey, value: data.accessToken);
       },
