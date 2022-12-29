@@ -1,11 +1,15 @@
 import 'package:dio/dio.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:xbcodebase/core/constants.dart';
+import 'package:xbcodebase/data/shared/data_providers.dart';
 
 import '../../domain/base/api_result.dart';
 import '../../domain/models/token_response.dart';
 import '../../domain/repositories/authentication_repository.dart';
 import '../network/api/dio_broker.dart';
+
+part 'authentication_repository_impl.g.dart';
 
 class AuthenticationRepositoryImpl
     with DioBroker
@@ -51,4 +55,9 @@ class AuthenticationRepositoryImpl
     await _storage.delete(key: kAccessTokenKey);
     await _storage.delete(key: kRefreshTokenKey);
   }
+}
+
+@riverpod
+AuthenticationRepository authenticationRepository(AuthenticationRepositoryRef ref) {
+  return AuthenticationRepositoryImpl(ref.read(basicDioProvider), ref.read(storageProvider));
 }

@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'app_settings_notifier.dart';
+part of 'saavn_dio.dart';
 
 // **************************************************************************
 // RiverpodGenerator
@@ -29,21 +29,13 @@ class _SystemHash {
   }
 }
 
-String $AppSettingsNotifierHash() =>
-    r'c04ea01ecec8c4e43a5be663252059c3cc9b5221';
+String $saavnDioHash() => r'dc27908a8246c575579e5f0d0c1c163f2e2fcf09';
 
-/// See also [AppSettingsNotifier].
-final appSettingsNotifierProvider =
-    NotifierProvider<AppSettingsNotifier, AppSettings>(
-  AppSettingsNotifier.new,
-  name: r'appSettingsNotifierProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-      ? null
-      : $AppSettingsNotifierHash,
+/// See also [saavnDio].
+final saavnDioProvider = Provider<SaavnDio>(
+  saavnDio,
+  name: r'saavnDioProvider',
+  debugGetCreateSourceHash:
+      const bool.fromEnvironment('dart.vm.product') ? null : $saavnDioHash,
 );
-typedef AppSettingsNotifierRef = NotifierProviderRef<AppSettings>;
-
-abstract class _$AppSettingsNotifier extends Notifier<AppSettings> {
-  @override
-  AppSettings build();
-}
+typedef SaavnDioRef = ProviderRef<SaavnDio>;

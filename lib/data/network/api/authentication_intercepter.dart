@@ -1,7 +1,11 @@
 import 'package:dio/dio.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../../../core/constants.dart';
+import '../../shared/data_providers.dart';
+
+part 'authentication_intercepter.g.dart';
 
 class AuthenticationInterceptor extends Interceptor {
   final FlutterSecureStorage _storage;
@@ -32,4 +36,12 @@ class AuthenticationInterceptor extends Interceptor {
       handler.next(err);
     }
   }
+}
+
+@Riverpod(keepAlive: true)
+AuthenticationInterceptor authenticationInterceptor(AuthenticationInterceptorRef ref) {
+  return AuthenticationInterceptor(
+    ref.read(goodBoyDioProvider),
+    ref.read(storageProvider),
+  );
 }

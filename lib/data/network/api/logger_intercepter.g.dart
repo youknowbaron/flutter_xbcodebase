@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'app_settings_notifier.dart';
+part of 'logger_intercepter.dart';
 
 // **************************************************************************
 // RiverpodGenerator
@@ -29,21 +29,14 @@ class _SystemHash {
   }
 }
 
-String $AppSettingsNotifierHash() =>
-    r'c04ea01ecec8c4e43a5be663252059c3cc9b5221';
+String $loggerInterceptorHash() => r'aad87e1a9dd13e439885942994b33d6b693dcae6';
 
-/// See also [AppSettingsNotifier].
-final appSettingsNotifierProvider =
-    NotifierProvider<AppSettingsNotifier, AppSettings>(
-  AppSettingsNotifier.new,
-  name: r'appSettingsNotifierProvider',
+/// See also [loggerInterceptor].
+final loggerInterceptorProvider = Provider<LoggerInterceptor>(
+  loggerInterceptor,
+  name: r'loggerInterceptorProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
       ? null
-      : $AppSettingsNotifierHash,
+      : $loggerInterceptorHash,
 );
-typedef AppSettingsNotifierRef = NotifierProviderRef<AppSettings>;
-
-abstract class _$AppSettingsNotifier extends Notifier<AppSettings> {
-  @override
-  AppSettings build();
-}
+typedef LoggerInterceptorRef = ProviderRef<LoggerInterceptor>;

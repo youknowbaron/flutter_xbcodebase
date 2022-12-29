@@ -30,7 +30,7 @@ class _SystemHash {
 }
 
 String $AuthenticationNotifierHash() =>
-    r'b546e5f89a9181ae853e7649a329e2d61f978334';
+    r'ac1383025a700910cde4eb6bd37b0dabdd00e0f4';
 
 /// See also [AuthenticationNotifier].
 final authenticationNotifierProvider =

@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'app_settings_notifier.dart';
+part of 'authentication_repository_impl.dart';
 
 // **************************************************************************
 // RiverpodGenerator
@@ -29,21 +29,17 @@ class _SystemHash {
   }
 }
 
-String $AppSettingsNotifierHash() =>
-    r'c04ea01ecec8c4e43a5be663252059c3cc9b5221';
+String $authenticationRepositoryHash() =>
+    r'020986e056a3f7a78e0b4c249ee2ae6bbdf8a1d5';
 
-/// See also [AppSettingsNotifier].
-final appSettingsNotifierProvider =
-    NotifierProvider<AppSettingsNotifier, AppSettings>(
-  AppSettingsNotifier.new,
-  name: r'appSettingsNotifierProvider',
+/// See also [authenticationRepository].
+final authenticationRepositoryProvider =
+    AutoDisposeProvider<AuthenticationRepository>(
+  authenticationRepository,
+  name: r'authenticationRepositoryProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
       ? null
-      : $AppSettingsNotifierHash,
+      : $authenticationRepositoryHash,
 );
-typedef AppSettingsNotifierRef = NotifierProviderRef<AppSettings>;
-
-abstract class _$AppSettingsNotifier extends Notifier<AppSettings> {
-  @override
-  AppSettings build();
-}
+typedef AuthenticationRepositoryRef
+    = AutoDisposeProviderRef<AuthenticationRepository>;

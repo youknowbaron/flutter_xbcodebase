@@ -29,7 +29,7 @@ class _SystemHash {
   }
 }
 
-String $SplashNotifierHash() => r'd48a3d00cec6ea3e391e7d3abc5dcf3736a1dc6f';
+String $SplashNotifierHash() => r'7641d2b8bb4e22bacfa864a821fdf4f85cec978c';
 
 /// See also [SplashNotifier].
 final splashNotifierProvider =

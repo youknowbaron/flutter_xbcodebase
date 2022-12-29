@@ -29,7 +29,7 @@ class _SystemHash {
   }
 }
 
-String $HomeNotifierHash() => r'0d66ad4b0a1af5076cab03250ba32c21edac29ad';
+String $HomeNotifierHash() => r'816d86d980e099553b5f086c51137d9b9063b4bb';
 
 /// See also [HomeNotifier].
 final homeNotifierProvider =
