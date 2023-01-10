@@ -11,5 +11,5 @@ class PKeys {
 
 const kAppLocale = {
   'en': 'English',
-  'vi': 'Vietnamese',
+  'vi': 'Tiếng Việt',
 };

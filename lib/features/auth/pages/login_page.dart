@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:xbcodebase/core/loggers/logger.dart';
+import 'package:xbcodebase/features/auth/notifiers/authentication_notifier.dart';
 
 import '../../../common/widgets/common_input.dart';
-import '../../../domain/core/common_state.dart';
-import '../shared/auth_providers.dart';
 
 class LoginPage extends HookConsumerWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -28,13 +28,18 @@ class LoginPage extends HookConsumerWidget {
     final passwordErrorText = useValueNotifier<String?>(null);
     final errorText = useValueNotifier<String?>(null);
 
-    ref.listen<CommonState>(authenticationProvider, (previous, next) {
+    ref.listen<AsyncValue>(authenticationNotifierProvider, (previous, next) {
       next.maybeWhen(
         orElse: () {},
-        error: (error) {
+        error: (_, __) {
           errorText.value = "loiroibanoi";
         },
-        loaded: (data) => context.go('/'),
+        data: (data) {
+          logger.w('login provider listener $data');
+          if (data != null) {
+            context.go('/');
+          }
+        },
       );
     });
 
@@ -302,7 +307,7 @@ class LoginPage extends HookConsumerWidget {
 
   void _onLoginTapped(WidgetRef ref, String email, String password) {
     FocusManager.instance.primaryFocus?.unfocus();
-    ref.read(authenticationProvider.notifier).logIn(email, password);
+    ref.read(authenticationNotifierProvider.notifier).logIn(email, password);
   }
 
   Widget _logoWidget(

@@ -1,14 +1,16 @@
+import 'dart:async';
+
 import 'package:dio/dio.dart';
 import 'package:xbcodebase/core/loggers/logger.dart';
 
-import '../../../domain/core/api_failure.dart';
-import '../../../domain/core/api_result.dart';
+import '../../../domain/base/api_failure.dart';
+import '../../../domain/base/api_result.dart';
 import 'dio_extensions.dart';
 
 mixin DioBroker {
   Future<ApiResult<T>> mapResponseToResult<T>(
     Future<Response> call, {
-    required Future<T> Function(dynamic data) converter,
+    required FutureOr<T> Function(dynamic data) converter,
     String? errorMessage,
     Function(T)? onSuccess,
   }) async {

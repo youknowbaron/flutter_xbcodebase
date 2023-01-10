@@ -1,18 +1,12 @@
 import 'dart:math';
 
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:go_router/go_router.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:xbcodebase/common/widgets/drawer_icon.dart';
-import 'package:xbcodebase/core/widgets/space.dart';
-import 'package:xbcodebase/domain/core/common_state.dart';
 import 'package:xbcodebase/domain/models/home_data.dart';
-import 'package:xbcodebase/features/home/shared/home_providers.dart';
+import 'package:xbcodebase/features/home/notifiers/home_notifier.dart';
 
 import '../../../common/widgets/media_horizontal_list.dart';
+import '../../../bridges.dart';
 
 class HomePage extends HookConsumerWidget {
   const HomePage({super.key});
@@ -20,14 +14,10 @@ class HomePage extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     useAutomaticKeepAlive();
-    useEffect(() {
-      ref.read(homeProvider.notifier).getHomePageData();
-      return;
-    }, const []);
 
     final scrollController = useScrollController();
 
-    final state = ref.watch<CommonApiState<HomeData>>(homeProvider);
+    final state = ref.watch<AsyncValue<HomeData?>>(homeNotifierProvider);
     return SafeArea(
       child: Stack(
         children: [
@@ -39,7 +29,7 @@ class HomePage extends HookConsumerWidget {
             },
             body: state.maybeWhen(
               orElse: () => const SizedBox.shrink(),
-              loaded: (_) => _buildBody(context, _),
+              data: (_) => _buildBody(context, _),
             ),
           ),
           Builder(
@@ -56,7 +46,8 @@ class HomePage extends HookConsumerWidget {
     );
   }
 
-  Widget _buildBody(BuildContext context, HomeData homeData) {
+  Widget _buildBody(BuildContext context, HomeData? homeData) {
+    if (homeData == null) return const SizedBox.shrink();
     return SingleChildScrollView(
       child: Column(
         children: [
@@ -167,7 +158,7 @@ class HomePage extends HookConsumerWidget {
                         Padding(
                           padding: const EdgeInsets.only(left: 15.0),
                           child: Text(
-                            AppLocalizations.of(context)!.homeGreet,
+                            $strings.homeGreet,
                             style: TextStyle(
                               letterSpacing: 2,
                               color: Theme.of(context).colorScheme.secondary,
@@ -252,7 +243,7 @@ class HomePage extends HookConsumerWidget {
                       ),
                       const Width(10),
                       Text(
-                        AppLocalizations.of(context)!.searchText,
+                        $strings.searchText,
                         style: TextStyle(
                           fontSize: 16.0,
                           color: Theme.of(context).textTheme.caption!.color,

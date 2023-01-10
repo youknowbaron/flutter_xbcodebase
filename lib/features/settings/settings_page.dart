@@ -1,30 +1,23 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:go_router/go_router.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:xbcodebase/app_constants.dart';
-import 'package:xbcodebase/core/global_configuration.dart';
-import 'package:xbcodebase/core/shared/core_providers.dart';
-import 'package:xbcodebase/domain/core/common_state.dart';
-import 'package:xbcodebase/features/auth/shared/auth_providers.dart';
+import 'package:xbcodebase/features/auth/notifiers/authentication_notifier.dart';
+
+import '../../bridges.dart';
 
 class SettingsPage extends HookConsumerWidget {
   const SettingsPage({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    ref.listen<CommonApiState>(authenticationProvider, (previous, next) {
+    ref.listen<AsyncValue>(authenticationNotifierProvider, (previous, next) {
       next.maybeWhen(
         orElse: () {},
-        loaded: (data) {
+        data: (data) {
           if (data == true) {
             GoRouter.of(context).go('/login');
           }
         },
       );
     });
-    final globalConfiguration =
-        ref.watch<GlobalConfiguration>(globalConfigureProvider);
+    final appSettings = ref.watch(appSettingsNotifierProvider);
     return Scaffold(
       body: CustomScrollView(
         slivers: [
@@ -49,7 +42,7 @@ class SettingsPage extends HookConsumerWidget {
                 blendMode: BlendMode.dstIn,
                 child: Center(
                   child: Text(
-                    AppLocalizations.of(context)!.settings,
+                    $strings.settings,
                     textAlign: TextAlign.center,
                     style: const TextStyle(
                       fontSize: 80,
@@ -64,7 +57,7 @@ class SettingsPage extends HookConsumerWidget {
             delegate: SliverChildListDelegate(
               [
                 Text(
-                  AppLocalizations.of(context)!.theme,
+                  $strings.theme,
                   style: TextStyle(
                     fontSize: 22,
                     fontWeight: FontWeight.bold,
@@ -72,17 +65,18 @@ class SettingsPage extends HookConsumerWidget {
                   ),
                 ),
                 SwitchListTile(
-                  value: globalConfiguration.appTheme.currentThemeMode ==
-                      ThemeMode.dark,
+                  value: appSettings.themeMode == ThemeMode.dark,
                   onChanged: (value) {
-                    ref.read(globalConfigureProvider.notifier).toggleTheme();
+                    ref
+                        .read(appSettingsNotifierProvider.notifier)
+                        .toggleTheme();
                   },
                   title: Text(
-                    AppLocalizations.of(context)!.darkMode,
+                    $strings.darkMode,
                   ),
                 ),
                 Text(
-                  AppLocalizations.of(context)!.lang,
+                  $strings.lang,
                   style: TextStyle(
                     fontSize: 22,
                     fontWeight: FontWeight.bold,
@@ -91,14 +85,14 @@ class SettingsPage extends HookConsumerWidget {
                 ),
                 ListTile(
                   title: Text(
-                    AppLocalizations.of(context)!.lang,
+                    $strings.lang,
                   ),
                   subtitle: Text(
-                    AppLocalizations.of(context)!.langSub,
+                    $strings.langSub,
                   ),
                   onTap: () {},
                   trailing: DropdownButton(
-                    value: globalConfiguration.locale.languageCode,
+                    value: appSettings.locale?.languageCode,
                     style: TextStyle(
                       fontSize: 12,
                       color: Theme.of(context).textTheme.bodyText1!.color,
@@ -107,7 +101,7 @@ class SettingsPage extends HookConsumerWidget {
                     onChanged: (String? newValue) {
                       if (newValue != null) {
                         ref
-                            .read(globalConfigureProvider.notifier)
+                            .read(appSettingsNotifierProvider.notifier)
                             .changeLocale(Locale(newValue, ''));
                       }
                     },
@@ -126,7 +120,9 @@ class SettingsPage extends HookConsumerWidget {
                 ),
                 TextButton(
                   onPressed: () async {
-                    await ref.read(authenticationProvider.notifier).logOut();
+                    await ref
+                        .read(authenticationNotifierProvider.notifier)
+                        .logOut();
                   },
                   child: const Text('Log out'),
                 )

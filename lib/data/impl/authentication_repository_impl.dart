@@ -1,16 +1,15 @@
-import 'package:dio/dio.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
-import 'package:xbcodebase/core/constants.dart';
 
-import '../../domain/core/api_result.dart';
 import '../../domain/models/token_response.dart';
-import '../../domain/repository/authentication_service.dart';
-import '../network/api/dio_broker.dart';
+import '../../domain/repositories/authentication_repository.dart';
+import '../../tunnels.dart';
 
-class AuthenticationServiceImpl
+part 'authentication_repository_impl.g.dart';
+
+class AuthenticationRepositoryImpl
     with DioBroker
-    implements AuthenticationService {
-  AuthenticationServiceImpl(this._dio, this._storage);
+    implements AuthenticationRepository {
+  AuthenticationRepositoryImpl(this._dio, this._storage);
 
   final Dio _dio;
   final FlutterSecureStorage _storage;
@@ -26,7 +25,7 @@ class AuthenticationServiceImpl
     );
     return mapResponseToResult(
       call,
-      converter: (data) async => TokenResponse.fromJson(data['data']),
+      converter: (data) => TokenResponse.fromJson(data['data']),
       onSuccess: (data) {
         _storage.write(key: kAccessTokenKey, value: data.accessToken);
       },
@@ -51,4 +50,11 @@ class AuthenticationServiceImpl
     await _storage.delete(key: kAccessTokenKey);
     await _storage.delete(key: kRefreshTokenKey);
   }
+}
+
+@riverpod
+AuthenticationRepository authenticationRepository(
+    AuthenticationRepositoryRef ref) {
+  return AuthenticationRepositoryImpl(
+      ref.read(basicDioProvider), ref.read(storageProvider));
 }

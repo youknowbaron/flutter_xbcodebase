@@ -4,7 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:xbcodebase/features/splash/shared/splash_providers.dart';
+
+import 'notifiers/splash_notifier.dart';
 
 class SplashPage extends HookConsumerWidget {
   const SplashPage({super.key});
@@ -25,7 +26,7 @@ class SplashPage extends HookConsumerWidget {
     });
     animation.addStatusListener((status) async {
       if (status == AnimationStatus.completed) {
-        ref.read(splashProvider).whenOrNull(loaded: (data) {
+        ref.read(splashNotifierProvider).whenOrNull(data: (data) {
           GoRouter.of(context).go(data == true ? '/' : '/login');
         });
       }
@@ -43,14 +44,13 @@ class SplashPage extends HookConsumerWidget {
 
     useEffect(() {
       fadedAnimationController.forward();
-      ref.read(splashProvider.notifier).checkSession();
       return;
     }, const []);
 
-    ref.listen(splashProvider, (previous, next) {
+    ref.listen(splashNotifierProvider, (previous, next) {
       next.maybeWhen(
         orElse: () {},
-        loaded: (data) {
+        data: (data) {
           isLoaded.value = true;
           if (animation.isCompleted) return;
           if (isLoaded.value) {

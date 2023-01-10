@@ -5,7 +5,7 @@ import 'logger.dart';
 class NavigatorLogger extends NavigatorObserver {
   @override
   void didPop(Route route, Route? previousRoute) {
-    logger.d(
+    logger.w(
         'didPop from ${route.settings.name} to ${previousRoute?.settings.name}');
   }
 
@@ -21,17 +21,17 @@ class NavigatorLogger extends NavigatorObserver {
     if (argument2 != null && argument2 is Map && argument2.isNotEmpty) {
       log += ' with params ${route.settings.arguments}';
     }
-    logger.v(log);
+    logger.w(log);
   }
 
   @override
   void didRemove(Route route, Route? previousRoute) {
-    logger.v('didRemove ${route.settings.name}');
+    logger.w('didRemove ${route.settings.name}');
   }
 
   @override
   void didReplace({Route? newRoute, Route? oldRoute}) {
-    logger.v(
+    logger.w(
         'didReplace ${oldRoute?.settings.name} by ${newRoute?.settings.name}');
   }
 }

@@ -1,13 +1,17 @@
-import 'package:xbcodebase/core/notifiers/common_state_notifier.dart';
 import 'package:xbcodebase/domain/models/home_data.dart';
-import 'package:xbcodebase/domain/repository/song_service.dart';
+import 'package:xbcodebase/domain/repositories/song_repository.dart';
 
-class HomeNotifier extends CommonApiStateNotifier<HomeData> {
-  HomeNotifier(this._songService) : super();
+import '../../../data/impl/song_repository_impl.dart';
+import '../../../tunnels.dart';
 
-  final SongService _songService;
+part 'home_notifier.g.dart';
 
-  void getHomePageData() async {
-    assignApiResultToState(await _songService.getHomePageData());
+@riverpod
+class HomeNotifier extends _$HomeNotifier {
+  SongRepository get _repository => ref.read(songRepositoryProvider);
+
+  @override
+  FutureOr<HomeData?> build() async {
+    return (await _repository.getHomePageData()).mapToData();
   }
 }

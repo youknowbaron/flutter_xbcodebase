@@ -1,15 +1,14 @@
-import 'dart:convert';
-
 import 'package:xbcodebase/data/network/api/saavn_dio.dart';
 import 'package:xbcodebase/domain/models/home_data.dart';
 
-import '../../domain/core/api_result.dart';
-import '../../domain/repository/song_service.dart';
-import '../network/api/dio_broker.dart';
+import '../../domain/repositories/song_repository.dart';
+import '../../tunnels.dart';
 import '../network/api/saavn_format.dart';
 
-class SongServiceImpl with DioBroker implements SongService {
-  SongServiceImpl(this._dio);
+part 'song_repository_impl.g.dart';
+
+class SongRepositoryImpl with DioBroker implements SongRepository {
+  SongRepositoryImpl(this._dio);
 
   final SaavnDio _dio;
 
@@ -28,4 +27,9 @@ class SongServiceImpl with DioBroker implements SongService {
     // TODO: implement getSongDetails
     throw UnimplementedError();
   }
+}
+
+@riverpod
+SongRepository songRepository(SongRepositoryRef ref) {
+  return SongRepositoryImpl(ref.read(saavnDioProvider));
 }

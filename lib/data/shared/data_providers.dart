@@ -2,40 +2,39 @@ import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:xbcodebase/data/network/api/saavn_dio.dart';
 
 import '../../core/flavors.dart';
-import '../../core/loggers/logger.dart';
 import '../network/api/authentication_intercepter.dart';
 import '../network/api/logger_intercepter.dart';
 
-final _baseOptions = BaseOptions(
-  baseUrl: F.authUrl,
-  connectTimeout: 3000,
-  receiveTimeout: 3000,
-  followRedirects: false,
-  headers: {
-    'Content-Type': 'application/json',
-  },
+final _authBaseOptionsProvider = Provider<BaseOptions>(
+  (_) => BaseOptions(
+    baseUrl: F.authUrl,
+    connectTimeout: 3000,
+    receiveTimeout: 3000,
+    followRedirects: false,
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  ),
 );
 
-final _baseOptions2 = BaseOptions(
-  baseUrl: F.baseUrl,
-  connectTimeout: 3000,
-  receiveTimeout: 3000,
-  followRedirects: false,
-  headers: {
-    'Content-Type': 'application/json',
-  },
+final _baseOptions = Provider<BaseOptions>(
+  (_) => BaseOptions(
+    baseUrl: F.baseUrl,
+    connectTimeout: 3000,
+    receiveTimeout: 3000,
+    followRedirects: false,
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  ),
 );
-
-final dioLoggerInterceptorProvider =
-    Provider((ref) => LoggerInterceptor(logger));
 
 final basicDioProvider = Provider<Dio>((ref) {
-  final dio = Dio()..options = _baseOptions;
+  final dio = Dio()..options = ref.read(_authBaseOptionsProvider);
   if (kDebugMode) {
-    dio.interceptors.add(ref.read(dioLoggerInterceptorProvider));
+    dio.interceptors.add(ref.read(loggerInterceptorProvider));
   }
   return dio;
 });
@@ -44,9 +43,9 @@ final goodBoyDioProvider = Provider<Dio>((ref) {
   final dio = Dio();
   final authenticationInterceptor =
       ref.watch(authenticationInterceptorProvider);
-  final dioLoggerInterceptor = ref.read(dioLoggerInterceptorProvider);
+  final dioLoggerInterceptor = ref.read(loggerInterceptorProvider);
   dio
-    ..options = _baseOptions2
+    ..options = ref.read(_baseOptions)
     ..options.validateStatus =
         ((status) => status != null && status >= 200 && status < 400)
     ..interceptors.addAll(
@@ -59,24 +58,8 @@ final goodBoyDioProvider = Provider<Dio>((ref) {
   return dio;
 });
 
-final authenticationInterceptorProvider = Provider((ref) {
-  return AuthenticationInterceptor(
-    ref.watch(goodBoyDioProvider),
-    ref.watch(storageProvider),
-  );
-});
-
 final storageProvider = Provider<FlutterSecureStorage>(
   (ref) => const FlutterSecureStorage(
     aOptions: AndroidOptions(encryptedSharedPreferences: true),
   ),
 );
-
-final saavnDioProvider = Provider<SaavnDio>((ref) {
-  final dio = SaavnDio();
-  if (kDebugMode) {
-    final dioLoggerInterceptor = ref.read(dioLoggerInterceptorProvider);
-    dio.interceptors.add(dioLoggerInterceptor);
-  }
-  return dio;
-});

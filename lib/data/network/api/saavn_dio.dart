@@ -1,5 +1,11 @@
 import 'package:dio/dio.dart';
 import 'package:dio/native_imp.dart';
+import 'package:flutter/foundation.dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
+
+import 'logger_intercepter.dart';
+
+part 'saavn_dio.g.dart';
 
 class SaavnDio extends DioForNative {
   SaavnDio()
@@ -50,4 +56,14 @@ class SaavnDio extends DioForNative {
     if (useProxy) {}
     return super.get(path, options: options);
   }
+}
+
+@Riverpod(keepAlive: true)
+SaavnDio saavnDio(SaavnDioRef ref) {
+  final dio = SaavnDio();
+  if (kDebugMode) {
+    final dioLoggerInterceptor = ref.read(loggerInterceptorProvider);
+    dio.interceptors.add(dioLoggerInterceptor);
+  }
+  return dio;
 }
