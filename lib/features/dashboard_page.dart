@@ -181,7 +181,7 @@ class DashboardPage extends HookWidget {
                     ),
                     onTap: () {
                       Navigator.pop(context);
-                      Navigator.pushNamed(context, '/about');
+                      // Navigator.pushNamed(context, '/about');
                     },
                   ),
                 ],

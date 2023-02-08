@@ -16,7 +16,6 @@ class MyApp extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    
     final appSettings = ref.watch(appSettingsNotifierProvider);
     return MaterialApp.router(
       routerConfig: appRouter,

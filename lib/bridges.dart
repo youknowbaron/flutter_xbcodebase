@@ -12,5 +12,6 @@ export 'application/app_locale.dart';
 export 'application/app_router.dart';
 export 'application/app_settings.dart';
 export 'application/app_theme.dart';
+export 'application/app_styles.dart';
 export 'application/notifiers/app_settings_notifier.dart';
 export 'core/widgets/space.dart';

@@ -18,9 +18,9 @@ class AppLocale {
   AppLocalizations? _strings;
   AppLocalizations get strings => _strings!;
 
-  Future<void> initilize(Box settingsBox) async {
+  Future<void> initilize([Box? settingsBox]) async {
     final languageCode =
-        settingsBox.get(PKeys.locale) as String? ?? _defaultLocale;
+        settingsBox?.get(PKeys.locale) as String? ?? _defaultLocale;
     Locale locale = Locale(languageCode);
 
     if (AppLocalizations.supportedLocales.contains(locale) == false) {
