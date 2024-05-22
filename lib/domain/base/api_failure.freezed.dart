@@ -1,7 +1,7 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'api_failure.dart';
 
@@ -12,7 +12,7 @@ part of 'api_failure.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
 mixin _$ApiFailure {
@@ -87,25 +87,25 @@ class _$ApiFailureCopyWithImpl<$Res, $Val extends ApiFailure>
 }
 
 /// @nodoc
-abstract class _$$_NoConnectionCopyWith<$Res> {
-  factory _$$_NoConnectionCopyWith(
-          _$_NoConnection value, $Res Function(_$_NoConnection) then) =
-      __$$_NoConnectionCopyWithImpl<$Res>;
+abstract class _$$NoConnectionImplCopyWith<$Res> {
+  factory _$$NoConnectionImplCopyWith(
+          _$NoConnectionImpl value, $Res Function(_$NoConnectionImpl) then) =
+      __$$NoConnectionImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$_NoConnectionCopyWithImpl<$Res>
-    extends _$ApiFailureCopyWithImpl<$Res, _$_NoConnection>
-    implements _$$_NoConnectionCopyWith<$Res> {
-  __$$_NoConnectionCopyWithImpl(
-      _$_NoConnection _value, $Res Function(_$_NoConnection) _then)
+class __$$NoConnectionImplCopyWithImpl<$Res>
+    extends _$ApiFailureCopyWithImpl<$Res, _$NoConnectionImpl>
+    implements _$$NoConnectionImplCopyWith<$Res> {
+  __$$NoConnectionImplCopyWithImpl(
+      _$NoConnectionImpl _value, $Res Function(_$NoConnectionImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$_NoConnection extends _NoConnection {
-  const _$_NoConnection() : super._();
+class _$NoConnectionImpl extends _NoConnection {
+  const _$NoConnectionImpl() : super._();
 
   @override
   String toString() {
@@ -113,9 +113,9 @@ class _$_NoConnection extends _NoConnection {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_NoConnection);
+        (other.runtimeType == runtimeType && other is _$NoConnectionImpl);
   }
 
   @override
@@ -197,25 +197,25 @@ class _$_NoConnection extends _NoConnection {
 }
 
 abstract class _NoConnection extends ApiFailure {
-  const factory _NoConnection() = _$_NoConnection;
+  const factory _NoConnection() = _$NoConnectionImpl;
   const _NoConnection._() : super._();
 }
 
 /// @nodoc
-abstract class _$$_HttpErrorCopyWith<$Res> {
-  factory _$$_HttpErrorCopyWith(
-          _$_HttpError value, $Res Function(_$_HttpError) then) =
-      __$$_HttpErrorCopyWithImpl<$Res>;
+abstract class _$$HttpErrorImplCopyWith<$Res> {
+  factory _$$HttpErrorImplCopyWith(
+          _$HttpErrorImpl value, $Res Function(_$HttpErrorImpl) then) =
+      __$$HttpErrorImplCopyWithImpl<$Res>;
   @useResult
   $Res call({int? statusCode, String? message});
 }
 
 /// @nodoc
-class __$$_HttpErrorCopyWithImpl<$Res>
-    extends _$ApiFailureCopyWithImpl<$Res, _$_HttpError>
-    implements _$$_HttpErrorCopyWith<$Res> {
-  __$$_HttpErrorCopyWithImpl(
-      _$_HttpError _value, $Res Function(_$_HttpError) _then)
+class __$$HttpErrorImplCopyWithImpl<$Res>
+    extends _$ApiFailureCopyWithImpl<$Res, _$HttpErrorImpl>
+    implements _$$HttpErrorImplCopyWith<$Res> {
+  __$$HttpErrorImplCopyWithImpl(
+      _$HttpErrorImpl _value, $Res Function(_$HttpErrorImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -224,7 +224,7 @@ class __$$_HttpErrorCopyWithImpl<$Res>
     Object? statusCode = freezed,
     Object? message = freezed,
   }) {
-    return _then(_$_HttpError(
+    return _then(_$HttpErrorImpl(
       freezed == statusCode
           ? _value.statusCode
           : statusCode // ignore: cast_nullable_to_non_nullable
@@ -239,8 +239,8 @@ class __$$_HttpErrorCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_HttpError extends _HttpError {
-  const _$_HttpError(this.statusCode, {this.message}) : super._();
+class _$HttpErrorImpl extends _HttpError {
+  const _$HttpErrorImpl(this.statusCode, {this.message}) : super._();
 
   @override
   final int? statusCode;
@@ -253,10 +253,10 @@ class _$_HttpError extends _HttpError {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_HttpError &&
+            other is _$HttpErrorImpl &&
             (identical(other.statusCode, statusCode) ||
                 other.statusCode == statusCode) &&
             (identical(other.message, message) || other.message == message));
@@ -268,8 +268,8 @@ class _$_HttpError extends _HttpError {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_HttpErrorCopyWith<_$_HttpError> get copyWith =>
-      __$$_HttpErrorCopyWithImpl<_$_HttpError>(this, _$identity);
+  _$$HttpErrorImplCopyWith<_$HttpErrorImpl> get copyWith =>
+      __$$HttpErrorImplCopyWithImpl<_$HttpErrorImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -348,31 +348,31 @@ class _$_HttpError extends _HttpError {
 
 abstract class _HttpError extends ApiFailure {
   const factory _HttpError(final int? statusCode, {final String? message}) =
-      _$_HttpError;
+      _$HttpErrorImpl;
   const _HttpError._() : super._();
 
   int? get statusCode;
   String? get message;
   @JsonKey(ignore: true)
-  _$$_HttpErrorCopyWith<_$_HttpError> get copyWith =>
+  _$$HttpErrorImplCopyWith<_$HttpErrorImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$_ParseErrorCopyWith<$Res> {
-  factory _$$_ParseErrorCopyWith(
-          _$_ParseError value, $Res Function(_$_ParseError) then) =
-      __$$_ParseErrorCopyWithImpl<$Res>;
+abstract class _$$ParseErrorImplCopyWith<$Res> {
+  factory _$$ParseErrorImplCopyWith(
+          _$ParseErrorImpl value, $Res Function(_$ParseErrorImpl) then) =
+      __$$ParseErrorImplCopyWithImpl<$Res>;
   @useResult
   $Res call({String? errorCode, String? message});
 }
 
 /// @nodoc
-class __$$_ParseErrorCopyWithImpl<$Res>
-    extends _$ApiFailureCopyWithImpl<$Res, _$_ParseError>
-    implements _$$_ParseErrorCopyWith<$Res> {
-  __$$_ParseErrorCopyWithImpl(
-      _$_ParseError _value, $Res Function(_$_ParseError) _then)
+class __$$ParseErrorImplCopyWithImpl<$Res>
+    extends _$ApiFailureCopyWithImpl<$Res, _$ParseErrorImpl>
+    implements _$$ParseErrorImplCopyWith<$Res> {
+  __$$ParseErrorImplCopyWithImpl(
+      _$ParseErrorImpl _value, $Res Function(_$ParseErrorImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -381,7 +381,7 @@ class __$$_ParseErrorCopyWithImpl<$Res>
     Object? errorCode = freezed,
     Object? message = freezed,
   }) {
-    return _then(_$_ParseError(
+    return _then(_$ParseErrorImpl(
       errorCode: freezed == errorCode
           ? _value.errorCode
           : errorCode // ignore: cast_nullable_to_non_nullable
@@ -396,8 +396,8 @@ class __$$_ParseErrorCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_ParseError extends _ParseError {
-  const _$_ParseError({this.errorCode, this.message}) : super._();
+class _$ParseErrorImpl extends _ParseError {
+  const _$ParseErrorImpl({this.errorCode, this.message}) : super._();
 
   @override
   final String? errorCode;
@@ -410,10 +410,10 @@ class _$_ParseError extends _ParseError {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_ParseError &&
+            other is _$ParseErrorImpl &&
             (identical(other.errorCode, errorCode) ||
                 other.errorCode == errorCode) &&
             (identical(other.message, message) || other.message == message));
@@ -425,8 +425,8 @@ class _$_ParseError extends _ParseError {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_ParseErrorCopyWith<_$_ParseError> get copyWith =>
-      __$$_ParseErrorCopyWithImpl<_$_ParseError>(this, _$identity);
+  _$$ParseErrorImplCopyWith<_$ParseErrorImpl> get copyWith =>
+      __$$ParseErrorImplCopyWithImpl<_$ParseErrorImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -505,30 +505,31 @@ class _$_ParseError extends _ParseError {
 
 abstract class _ParseError extends ApiFailure {
   const factory _ParseError({final String? errorCode, final String? message}) =
-      _$_ParseError;
+      _$ParseErrorImpl;
   const _ParseError._() : super._();
 
   String? get errorCode;
   String? get message;
   @JsonKey(ignore: true)
-  _$$_ParseErrorCopyWith<_$_ParseError> get copyWith =>
+  _$$ParseErrorImplCopyWith<_$ParseErrorImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$_UnknownCopyWith<$Res> {
-  factory _$$_UnknownCopyWith(
-          _$_Unknown value, $Res Function(_$_Unknown) then) =
-      __$$_UnknownCopyWithImpl<$Res>;
+abstract class _$$UnknownImplCopyWith<$Res> {
+  factory _$$UnknownImplCopyWith(
+          _$UnknownImpl value, $Res Function(_$UnknownImpl) then) =
+      __$$UnknownImplCopyWithImpl<$Res>;
   @useResult
   $Res call({String? errorCode, String? message});
 }
 
 /// @nodoc
-class __$$_UnknownCopyWithImpl<$Res>
-    extends _$ApiFailureCopyWithImpl<$Res, _$_Unknown>
-    implements _$$_UnknownCopyWith<$Res> {
-  __$$_UnknownCopyWithImpl(_$_Unknown _value, $Res Function(_$_Unknown) _then)
+class __$$UnknownImplCopyWithImpl<$Res>
+    extends _$ApiFailureCopyWithImpl<$Res, _$UnknownImpl>
+    implements _$$UnknownImplCopyWith<$Res> {
+  __$$UnknownImplCopyWithImpl(
+      _$UnknownImpl _value, $Res Function(_$UnknownImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -537,7 +538,7 @@ class __$$_UnknownCopyWithImpl<$Res>
     Object? errorCode = freezed,
     Object? message = freezed,
   }) {
-    return _then(_$_Unknown(
+    return _then(_$UnknownImpl(
       errorCode: freezed == errorCode
           ? _value.errorCode
           : errorCode // ignore: cast_nullable_to_non_nullable
@@ -552,8 +553,8 @@ class __$$_UnknownCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_Unknown extends _Unknown {
-  const _$_Unknown({this.errorCode, this.message}) : super._();
+class _$UnknownImpl extends _Unknown {
+  const _$UnknownImpl({this.errorCode, this.message}) : super._();
 
   @override
   final String? errorCode;
@@ -566,10 +567,10 @@ class _$_Unknown extends _Unknown {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_Unknown &&
+            other is _$UnknownImpl &&
             (identical(other.errorCode, errorCode) ||
                 other.errorCode == errorCode) &&
             (identical(other.message, message) || other.message == message));
@@ -581,8 +582,8 @@ class _$_Unknown extends _Unknown {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_UnknownCopyWith<_$_Unknown> get copyWith =>
-      __$$_UnknownCopyWithImpl<_$_Unknown>(this, _$identity);
+  _$$UnknownImplCopyWith<_$UnknownImpl> get copyWith =>
+      __$$UnknownImplCopyWithImpl<_$UnknownImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -661,12 +662,12 @@ class _$_Unknown extends _Unknown {
 
 abstract class _Unknown extends ApiFailure {
   const factory _Unknown({final String? errorCode, final String? message}) =
-      _$_Unknown;
+      _$UnknownImpl;
   const _Unknown._() : super._();
 
   String? get errorCode;
   String? get message;
   @JsonKey(ignore: true)
-  _$$_UnknownCopyWith<_$_Unknown> get copyWith =>
+  _$$UnknownImplCopyWith<_$UnknownImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

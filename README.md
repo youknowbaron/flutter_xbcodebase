@@ -1,6 +1,6 @@
 # xbcodebase
 
-A new Flutter codebase is coming.
+A codebase for Flutter projects uses Riverpod for the state management, adopts Clean Architecture.
 
 ## Core dependencies
 
@@ -20,7 +20,7 @@ A new Flutter codebase is coming.
 
 ## App Localizations
 
-Run command to generate the `AppLocalizations` file.
+Run below command line to generate the `AppLocalizations` file.
 
 ```bash
 flutter gen-l10n
@@ -33,8 +33,13 @@ Manage string constants:
 
 ## Riverpod Generator
 
-- Use `@riverpod` to generate a auto dispose provider.
-- Use `@Riverpod(keepAlive: true)` to generate a always keep alive provider.
+- `@riverpod` to generate a auto dispose provider.
+- `@Riverpod(keepAlive: true)` to generate a always keep alive provider.
+- Run below command line to generate code:
+
+```bash
+dart run build_runner build --delete-conflicting-outputs
+```
 
 ### Example code
 

@@ -10,8 +10,8 @@ import '../network/api/logger_intercepter.dart';
 final _authBaseOptionsProvider = Provider<BaseOptions>(
   (_) => BaseOptions(
     baseUrl: F.authUrl,
-    connectTimeout: 3000,
-    receiveTimeout: 3000,
+    connectTimeout: const Duration(milliseconds: 3000),
+    receiveTimeout: const Duration(milliseconds: 3000),
     followRedirects: false,
     headers: {
       'Content-Type': 'application/json',
@@ -22,8 +22,8 @@ final _authBaseOptionsProvider = Provider<BaseOptions>(
 final _baseOptions = Provider<BaseOptions>(
   (_) => BaseOptions(
     baseUrl: F.baseUrl,
-    connectTimeout: 3000,
-    receiveTimeout: 3000,
+    connectTimeout: const Duration(milliseconds: 3000),
+    receiveTimeout: const Duration(milliseconds: 3000),
     followRedirects: false,
     headers: {
       'Content-Type': 'application/json',

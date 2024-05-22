@@ -6,7 +6,8 @@ part of 'home_data.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_HomeData _$$_HomeDataFromJson(Map<String, dynamic> json) => _$_HomeData(
+_$HomeDataImpl _$$HomeDataImplFromJson(Map<String, dynamic> json) =>
+    _$HomeDataImpl(
       topPlaylists: (json['top_playlists'] as List<dynamic>?)
               ?.map((e) => Media.fromJson(e as Map<String, dynamic>))
               .toList() ??
@@ -21,7 +22,7 @@ _$_HomeData _$$_HomeDataFromJson(Map<String, dynamic> json) => _$_HomeData(
           const [],
     );
 
-Map<String, dynamic> _$$_HomeDataToJson(_$_HomeData instance) =>
+Map<String, dynamic> _$$HomeDataImplToJson(_$HomeDataImpl instance) =>
     <String, dynamic>{
       'top_playlists': instance.topPlaylists,
       'new_albums': instance.newAlbums,

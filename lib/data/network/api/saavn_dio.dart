@@ -1,5 +1,5 @@
 import 'package:dio/dio.dart';
-import 'package:dio/native_imp.dart';
+import 'package:dio/io.dart';
 import 'package:flutter/foundation.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 

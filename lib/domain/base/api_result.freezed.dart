@@ -1,7 +1,7 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'api_result.dart';
 
@@ -12,7 +12,7 @@ part of 'api_result.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
 mixin _$ApiResult<T> {
@@ -81,29 +81,29 @@ class _$ApiResultCopyWithImpl<T, $Res, $Val extends ApiResult<T>>
 }
 
 /// @nodoc
-abstract class _$$_NotModifiedCopyWith<T, $Res> {
-  factory _$$_NotModifiedCopyWith(
-          _$_NotModified<T> value, $Res Function(_$_NotModified<T>) then) =
-      __$$_NotModifiedCopyWithImpl<T, $Res>;
+abstract class _$$NotModifiedImplCopyWith<T, $Res> {
+  factory _$$NotModifiedImplCopyWith(_$NotModifiedImpl<T> value,
+          $Res Function(_$NotModifiedImpl<T>) then) =
+      __$$NotModifiedImplCopyWithImpl<T, $Res>;
   @useResult
   $Res call({T data});
 }
 
 /// @nodoc
-class __$$_NotModifiedCopyWithImpl<T, $Res>
-    extends _$ApiResultCopyWithImpl<T, $Res, _$_NotModified<T>>
-    implements _$$_NotModifiedCopyWith<T, $Res> {
-  __$$_NotModifiedCopyWithImpl(
-      _$_NotModified<T> _value, $Res Function(_$_NotModified<T>) _then)
+class __$$NotModifiedImplCopyWithImpl<T, $Res>
+    extends _$ApiResultCopyWithImpl<T, $Res, _$NotModifiedImpl<T>>
+    implements _$$NotModifiedImplCopyWith<T, $Res> {
+  __$$NotModifiedImplCopyWithImpl(
+      _$NotModifiedImpl<T> _value, $Res Function(_$NotModifiedImpl<T>) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? data = null,
+    Object? data = freezed,
   }) {
-    return _then(_$_NotModified<T>(
-      null == data
+    return _then(_$NotModifiedImpl<T>(
+      freezed == data
           ? _value.data
           : data // ignore: cast_nullable_to_non_nullable
               as T,
@@ -113,8 +113,8 @@ class __$$_NotModifiedCopyWithImpl<T, $Res>
 
 /// @nodoc
 
-class _$_NotModified<T> extends _NotModified<T> {
-  const _$_NotModified(this.data) : super._();
+class _$NotModifiedImpl<T> extends _NotModified<T> {
+  const _$NotModifiedImpl(this.data) : super._();
 
   @override
   final T data;
@@ -125,10 +125,10 @@ class _$_NotModified<T> extends _NotModified<T> {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_NotModified<T> &&
+            other is _$NotModifiedImpl<T> &&
             const DeepCollectionEquality().equals(other.data, data));
   }
 
@@ -139,8 +139,9 @@ class _$_NotModified<T> extends _NotModified<T> {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_NotModifiedCopyWith<T, _$_NotModified<T>> get copyWith =>
-      __$$_NotModifiedCopyWithImpl<T, _$_NotModified<T>>(this, _$identity);
+  _$$NotModifiedImplCopyWith<T, _$NotModifiedImpl<T>> get copyWith =>
+      __$$NotModifiedImplCopyWithImpl<T, _$NotModifiedImpl<T>>(
+          this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -212,37 +213,39 @@ class _$_NotModified<T> extends _NotModified<T> {
 }
 
 abstract class _NotModified<T> extends ApiResult<T> {
-  const factory _NotModified(final T data) = _$_NotModified<T>;
+  const factory _NotModified(final T data) = _$NotModifiedImpl<T>;
   const _NotModified._() : super._();
 
   T get data;
   @JsonKey(ignore: true)
-  _$$_NotModifiedCopyWith<T, _$_NotModified<T>> get copyWith =>
+  _$$NotModifiedImplCopyWith<T, _$NotModifiedImpl<T>> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$_DataCopyWith<T, $Res> {
-  factory _$$_DataCopyWith(_$_Data<T> value, $Res Function(_$_Data<T>) then) =
-      __$$_DataCopyWithImpl<T, $Res>;
+abstract class _$$DataImplCopyWith<T, $Res> {
+  factory _$$DataImplCopyWith(
+          _$DataImpl<T> value, $Res Function(_$DataImpl<T>) then) =
+      __$$DataImplCopyWithImpl<T, $Res>;
   @useResult
   $Res call({T data});
 }
 
 /// @nodoc
-class __$$_DataCopyWithImpl<T, $Res>
-    extends _$ApiResultCopyWithImpl<T, $Res, _$_Data<T>>
-    implements _$$_DataCopyWith<T, $Res> {
-  __$$_DataCopyWithImpl(_$_Data<T> _value, $Res Function(_$_Data<T>) _then)
+class __$$DataImplCopyWithImpl<T, $Res>
+    extends _$ApiResultCopyWithImpl<T, $Res, _$DataImpl<T>>
+    implements _$$DataImplCopyWith<T, $Res> {
+  __$$DataImplCopyWithImpl(
+      _$DataImpl<T> _value, $Res Function(_$DataImpl<T>) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? data = null,
+    Object? data = freezed,
   }) {
-    return _then(_$_Data<T>(
-      null == data
+    return _then(_$DataImpl<T>(
+      freezed == data
           ? _value.data
           : data // ignore: cast_nullable_to_non_nullable
               as T,
@@ -252,8 +255,8 @@ class __$$_DataCopyWithImpl<T, $Res>
 
 /// @nodoc
 
-class _$_Data<T> extends _Data<T> {
-  const _$_Data(this.data) : super._();
+class _$DataImpl<T> extends _Data<T> {
+  const _$DataImpl(this.data) : super._();
 
   @override
   final T data;
@@ -264,10 +267,10 @@ class _$_Data<T> extends _Data<T> {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_Data<T> &&
+            other is _$DataImpl<T> &&
             const DeepCollectionEquality().equals(other.data, data));
   }
 
@@ -278,8 +281,8 @@ class _$_Data<T> extends _Data<T> {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_DataCopyWith<T, _$_Data<T>> get copyWith =>
-      __$$_DataCopyWithImpl<T, _$_Data<T>>(this, _$identity);
+  _$$DataImplCopyWith<T, _$DataImpl<T>> get copyWith =>
+      __$$DataImplCopyWithImpl<T, _$DataImpl<T>>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -351,20 +354,20 @@ class _$_Data<T> extends _Data<T> {
 }
 
 abstract class _Data<T> extends ApiResult<T> {
-  const factory _Data(final T data) = _$_Data<T>;
+  const factory _Data(final T data) = _$DataImpl<T>;
   const _Data._() : super._();
 
   T get data;
   @JsonKey(ignore: true)
-  _$$_DataCopyWith<T, _$_Data<T>> get copyWith =>
+  _$$DataImplCopyWith<T, _$DataImpl<T>> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$_FailureCopyWith<T, $Res> {
-  factory _$$_FailureCopyWith(
-          _$_Failure<T> value, $Res Function(_$_Failure<T>) then) =
-      __$$_FailureCopyWithImpl<T, $Res>;
+abstract class _$$FailureImplCopyWith<T, $Res> {
+  factory _$$FailureImplCopyWith(
+          _$FailureImpl<T> value, $Res Function(_$FailureImpl<T>) then) =
+      __$$FailureImplCopyWithImpl<T, $Res>;
   @useResult
   $Res call({ApiFailure? failure});
 
@@ -372,11 +375,11 @@ abstract class _$$_FailureCopyWith<T, $Res> {
 }
 
 /// @nodoc
-class __$$_FailureCopyWithImpl<T, $Res>
-    extends _$ApiResultCopyWithImpl<T, $Res, _$_Failure<T>>
-    implements _$$_FailureCopyWith<T, $Res> {
-  __$$_FailureCopyWithImpl(
-      _$_Failure<T> _value, $Res Function(_$_Failure<T>) _then)
+class __$$FailureImplCopyWithImpl<T, $Res>
+    extends _$ApiResultCopyWithImpl<T, $Res, _$FailureImpl<T>>
+    implements _$$FailureImplCopyWith<T, $Res> {
+  __$$FailureImplCopyWithImpl(
+      _$FailureImpl<T> _value, $Res Function(_$FailureImpl<T>) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -384,7 +387,7 @@ class __$$_FailureCopyWithImpl<T, $Res>
   $Res call({
     Object? failure = freezed,
   }) {
-    return _then(_$_Failure<T>(
+    return _then(_$FailureImpl<T>(
       freezed == failure
           ? _value.failure
           : failure // ignore: cast_nullable_to_non_nullable
@@ -407,8 +410,8 @@ class __$$_FailureCopyWithImpl<T, $Res>
 
 /// @nodoc
 
-class _$_Failure<T> extends _Failure<T> {
-  const _$_Failure([this.failure]) : super._();
+class _$FailureImpl<T> extends _Failure<T> {
+  const _$FailureImpl([this.failure]) : super._();
 
   @override
   final ApiFailure? failure;
@@ -419,10 +422,10 @@ class _$_Failure<T> extends _Failure<T> {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_Failure<T> &&
+            other is _$FailureImpl<T> &&
             (identical(other.failure, failure) || other.failure == failure));
   }
 
@@ -432,8 +435,8 @@ class _$_Failure<T> extends _Failure<T> {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_FailureCopyWith<T, _$_Failure<T>> get copyWith =>
-      __$$_FailureCopyWithImpl<T, _$_Failure<T>>(this, _$identity);
+  _$$FailureImplCopyWith<T, _$FailureImpl<T>> get copyWith =>
+      __$$FailureImplCopyWithImpl<T, _$FailureImpl<T>>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -505,11 +508,11 @@ class _$_Failure<T> extends _Failure<T> {
 }
 
 abstract class _Failure<T> extends ApiResult<T> {
-  const factory _Failure([final ApiFailure? failure]) = _$_Failure<T>;
+  const factory _Failure([final ApiFailure? failure]) = _$FailureImpl<T>;
   const _Failure._() : super._();
 
   ApiFailure? get failure;
   @JsonKey(ignore: true)
-  _$$_FailureCopyWith<T, _$_Failure<T>> get copyWith =>
+  _$$FailureImplCopyWith<T, _$FailureImpl<T>> get copyWith =>
       throw _privateConstructorUsedError;
 }

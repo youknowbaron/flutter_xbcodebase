@@ -2,8 +2,11 @@ import 'dart:io';
 
 import 'package:dio/dio.dart';
 
-extension DioErrorX on DioError {
+extension DioErrorX on DioException {
   bool get isNoConnectionError {
-    return type == DioErrorType.other && error != null && error is SocketException;
+    // TODO: this statement needs to be test
+    return type == DioExceptionType.connectionTimeout &&
+        error != null &&
+        error is SocketException;
   }
 }

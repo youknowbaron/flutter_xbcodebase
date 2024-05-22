@@ -27,7 +27,7 @@ class AuthenticationInterceptor extends Interceptor {
   }
 
   @override
-  Future<void> onError(DioError err, ErrorInterceptorHandler handler) async {
+  Future<void> onError(DioException err, ErrorInterceptorHandler handler) async {
     final errResponse = err.response;
     if (errResponse != null && errResponse.statusCode == 401) {
       // TODO: Handle HTTP Code 401

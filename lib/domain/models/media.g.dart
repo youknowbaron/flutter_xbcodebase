@@ -6,7 +6,7 @@ part of 'media.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_Media _$$_MediaFromJson(Map<String, dynamic> json) => _$_Media(
+_$MediaImpl _$$MediaImplFromJson(Map<String, dynamic> json) => _$MediaImpl(
       id: json['id'] as String,
       title: json['title'] as String,
       subtitle: json['subtitle'] as String? ?? "",
@@ -23,7 +23,8 @@ _$_Media _$$_MediaFromJson(Map<String, dynamic> json) => _$_Media(
       list: json['list'] as String? ?? "",
     );
 
-Map<String, dynamic> _$$_MediaToJson(_$_Media instance) => <String, dynamic>{
+Map<String, dynamic> _$$MediaImplToJson(_$MediaImpl instance) =>
+    <String, dynamic>{
       'id': instance.id,
       'title': instance.title,
       'subtitle': instance.subtitle,

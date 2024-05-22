@@ -9,7 +9,7 @@ import 'package:xbcodebase/features/auth/notifiers/authentication_notifier.dart'
 import '../../../common/widgets/common_input.dart';
 
 class LoginPage extends HookConsumerWidget {
-  const LoginPage({Key? key}) : super(key: key);
+  const LoginPage({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -19,7 +19,6 @@ class LoginPage extends HookConsumerWidget {
     final animation =
         Tween<double>(begin: 0.0, end: 1.0).animate(animationController);
 
-    final mounted = useIsMounted()();
     final emailController = useTextEditingController();
     final passwordController = useTextEditingController();
     final emailFocusNode = useFocusNode();
@@ -31,8 +30,19 @@ class LoginPage extends HookConsumerWidget {
     ref.listen<AsyncValue>(authenticationNotifierProvider, (previous, next) {
       next.maybeWhen(
         orElse: () {},
-        error: (_, __) {
-          errorText.value = "loiroibanoi";
+        error: (_, __) async {
+          errorText.value =
+              "loiroibanoi, navigate to home page in 3 seconds...";
+          await Future.delayed(const Duration(seconds: 1));
+          errorText.value =
+              "loiroibanoi, navigate to home page in 2 seconds...";
+          await Future.delayed(const Duration(seconds: 1));
+          errorText.value =
+              "loiroibanoi, navigate to home page in 1 seconds...";
+          await Future.delayed(const Duration(seconds: 1));
+          if (context.mounted) {
+            context.go('/');
+          }
         },
         data: (data) {
           logger.w('login provider listener $data');
@@ -53,13 +63,13 @@ class LoginPage extends HookConsumerWidget {
       Future.delayed(
         const Duration(milliseconds: 400),
         () {
-          if (!mounted) return;
+          if (!context.mounted) return;
           animationController.forward();
         },
       );
 
       emailFocusNode.addListener(() {
-        if (!mounted) return;
+        if (!context.mounted) return;
         debugPrint('🚑🚑🚑 emailFocusNode ${emailFocusNode.hasFocus}');
         // Unfocus
         if (!emailFocusNode.hasFocus) {
@@ -76,7 +86,7 @@ class LoginPage extends HookConsumerWidget {
       });
 
       passwordFocusNode.addListener(() {
-        if (!mounted) return;
+        if (!context.mounted) return;
         debugPrint('🚑🚑🚑 passwordForcusNode ${passwordFocusNode.hasFocus}');
         // Unfocus
         if (!passwordFocusNode.hasFocus) {
@@ -133,9 +143,9 @@ class LoginPage extends HookConsumerWidget {
       ),
     );
 
-    return WillPopScope(
+    return PopScope(
+      canPop: false,
       child: scaffold,
-      onWillPop: () async => false,
     );
   }
 

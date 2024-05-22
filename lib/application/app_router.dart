@@ -28,7 +28,7 @@ final appRouter = GoRouter(
     GoRoute(
       path: '/',
       builder: (context, state) {
-        final index = int.tryParse(state.queryParams['index'] ?? '');
+        final index = int.tryParse(state.pathParameters['index'] ?? '');
         logger.w('index $index');
         return DashboardPage(initialIndex: index);
       },
@@ -50,7 +50,7 @@ final appRouter = GoRouter(
             GoRoute(
               path: 'after_media_details',
               builder: (context, state) {
-                return AfterMediaDetailsPage(id: state.params['mid']!);
+                return AfterMediaDetailsPage(id: state.pathParameters['mid']!);
               },
             )
           ],

@@ -240,7 +240,7 @@ class DashboardPage extends HookWidget {
             selectedColor: Theme.of(context).colorScheme.secondary,
           ),
           SalomonBottomBarItem(
-            icon: const Icon(MdiIcons.youtube),
+            icon: Icon(MdiIcons.youtube),
             title: const Text('YouTube'),
             selectedColor: Theme.of(context).colorScheme.secondary,
           ),
