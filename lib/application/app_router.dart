@@ -1,4 +1,6 @@
+import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:path/path.dart';
 
 import '../core/loggers/logger.dart';
 import '../core/loggers/navigator_logger.dart';
@@ -13,53 +15,142 @@ import '../features/splash/splash_page.dart';
 import '../features/top_charts/detail_chart_page.dart';
 import '../features/top_charts/top_charts_page.dart';
 
+final class AppRoute extends GoRoute {
+  AppRoute(GoStep step, {String? name})
+      : super(
+          path: step.path,
+          name: name ?? step.name,
+          builder: step.builder,
+          pageBuilder: step.pageBuilder,
+          routes: step.routes,
+          parentNavigatorKey: step.parentKey,
+        );
+}
+
+enum GoStep {
+  splash('/splash'),
+  login('/login'),
+  home('/'),
+  search('search'),
+  settings('settings'),
+  mediaDetails('media/:mid'),
+  afterMediaDetails('after_media_details'),
+  chart('charts/:cid');
+
+  final String path;
+
+  const GoStep(this.path);
+
+  GoRouterWidgetBuilder? get builder => switch (this) {
+        splash => (context, state) => const SplashPage(),
+        login => (context, state) => const LoginPage(),
+        home => (context, state) {
+            final index =
+                int.tryParse(state.uri.queryParameters['index'] ?? '');
+            return DashboardPage(initialIndex: index);
+          },
+        search => (context, state) => const SearchPage(),
+        settings => (context, state) => const SettingsPage(),
+        mediaDetails => (context, state) =>
+            MediaDetailsPage(mediaId: int.parse(state.pathParameters['mid']!)),
+        afterMediaDetails => (context, state) =>
+            AfterMediaDetailsPage(id: state.pathParameters['mid']!),
+        chart => (context, state) =>
+            DetailChartPage(int.parse(state.pathParameters['cid']!)),
+      };
+
+  GoRouterPageBuilder? get pageBuilder => null;
+
+  Set<GoStep>? get children => switch (this) {
+        home => {search, settings, mediaDetails, chart},
+        mediaDetails => {afterMediaDetails, chart},
+        _ => null,
+      };
+
+  GlobalKey<NavigatorState>? get parentKey => null;
+
+  List<RouteBase> get routes =>
+      children?.map((e) => AppRoute(e, name: '$name-${e.name}')).toList() ?? [];
+
+  // Set<GoStep>? get parent => switch (this) {
+  //   search => {home},
+  //   settings => {home},
+  //   mediaDetails => {home},
+  //   afterMediaDetails => {mediaDetails},
+  //   chart => {home, mediaDetails},
+  //   _ => null,
+  // };
+
+  void go(
+    BuildContext context, {
+    List<String>? pathParameters,
+    Map<String, dynamic> queryParameters = const <String, dynamic>{},
+    Object? extra,
+  }) {
+    context.go(
+      _location(
+          pathParameters: pathParameters, queryParameters: queryParameters),
+      extra: extra,
+    );
+  }
+
+  Future<T?> push<T extends Object?>(
+    BuildContext context, {
+    List<String>? pathParameters,
+    Map<String, dynamic> queryParameters = const <String, dynamic>{},
+    Object? extra,
+  }) {
+    return context.push(
+      _location(
+          pathParameters: pathParameters, queryParameters: queryParameters),
+      extra: extra,
+    );
+  }
+
+  String _location({
+    List<String>? pathParameters,
+    Map<String, dynamic> queryParameters = const <String, dynamic>{},
+  }) {
+    var newPath = path;
+    if (pathParameters != null) {
+      newPath = _pathPatternToLocation(newPath, pathParameters);
+    }
+    final currentUri = appRouter.routeInformationProvider.value.uri;
+    Map<String, dynamic> params = Map.of(currentUri.queryParameters);
+    if (queryParameters.isNotEmpty) {
+      params.addAll(queryParameters);
+    }
+    final fullPath = join(currentUri.path, newPath);
+    Uri loc = Uri(path: fullPath, queryParameters: params);
+    return loc.toString();
+  }
+
+  String _pathPatternToLocation(String pattern, List<String> parameters) {
+    final StringBuffer buffer = StringBuffer('');
+    int start = 0;
+    int count = 0;
+    final RegExp parameterRegExp = RegExp(r':(\w+)(\((?:\\.|[^\\()])+\))?');
+    for (final RegExpMatch match in parameterRegExp.allMatches(pattern)) {
+      if (match.start > start) {
+        buffer.write(RegExp.escape(pattern.substring(start, match.start)));
+      }
+      buffer.write(parameters[count]);
+      start = match.end;
+      count++;
+    }
+    if (start < pattern.length) {
+      buffer.write(pattern.substring(start));
+    }
+    return buffer.toString();
+  }
+}
+
 final appRouter = GoRouter(
-  initialLocation: '/splash',
+  initialLocation: GoStep.splash.path,
   observers: [NavigatorLogger()],
   routes: <RouteBase>[
-    GoRoute(
-      path: '/splash',
-      builder: (context, state) => const SplashPage(),
-    ),
-    GoRoute(
-      path: '/login',
-      builder: (context, state) => const LoginPage(),
-    ),
-    GoRoute(
-      path: '/',
-      builder: (context, state) {
-        final index = int.tryParse(state.pathParameters['index'] ?? '');
-        logger.w('index $index');
-        return DashboardPage(initialIndex: index);
-      },
-      routes: <GoRoute>[
-        GoRoute(
-          path: 'search',
-          builder: (context, state) => const SearchPage(),
-        ),
-        GoRoute(
-          path: 'settings',
-          builder: (context, state) => const SettingsPage(),
-        ),
-        GoRoute(
-          path: 'media/:mid',
-          builder: (context, state) {
-            return MediaDetailsPage(media: state.extra as Media);
-          },
-          routes: [
-            GoRoute(
-              path: 'after_media_details',
-              builder: (context, state) {
-                return AfterMediaDetailsPage(id: state.pathParameters['mid']!);
-              },
-            )
-          ],
-        ),
-        GoRoute(
-          path: 'chart/:cid',
-          builder: (context, state) => DetailChartPage(state.extra as Chart),
-        ),
-      ],
-    ),
+    AppRoute(GoStep.splash),
+    AppRoute(GoStep.login),
+    AppRoute(GoStep.home),
   ],
 );

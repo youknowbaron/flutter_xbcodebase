@@ -29,7 +29,7 @@ class HomePage extends HookConsumerWidget {
             },
             body: state.maybeWhen(
               orElse: () => const SizedBox.shrink(),
-              data: (_) => _buildBody(context, _),
+              data: (data) => _buildBody(context, data),
             ),
           ),
           Builder(
@@ -90,13 +90,9 @@ class HomePage extends HookConsumerWidget {
                 MediaHorizontalList(
                   mediaList: homeData.newAlbums,
                   onTap: (int idx) {
-                    // context.goNamed(
-                    //   'mediaDetails',
-                    //   params: {'mid': homeData.newAlbums[idx].id},
-                    //   extra: homeData.newAlbums[idx],
-                    // );
-                    context.go(
-                      '/media/${homeData.newAlbums[idx].id}',
+                    GoStep.mediaDetails.go(
+                      context,
+                      pathParameters: [homeData.newAlbums[idx].id],
                       extra: homeData.newAlbums[idx],
                     );
                   },
@@ -169,11 +165,11 @@ class HomePage extends HookConsumerWidget {
                         ),
                       ],
                     ),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 15.0),
+                    const Padding(
+                      padding: EdgeInsets.only(left: 15.0),
                       child: Row(
                         crossAxisAlignment: CrossAxisAlignment.end,
-                        children: const [
+                        children: [
                           Text(
                             'xuanbach',
                             style: TextStyle(
@@ -246,7 +242,7 @@ class HomePage extends HookConsumerWidget {
                         $strings.searchText,
                         style: TextStyle(
                           fontSize: 16.0,
-                          color: Theme.of(context).textTheme.caption!.color,
+                          color: Theme.of(context).textTheme.bodySmall!.color,
                           fontWeight: FontWeight.normal,
                         ),
                       ),
@@ -254,7 +250,7 @@ class HomePage extends HookConsumerWidget {
                   ),
                 ),
                 onTap: () {
-                  context.go('/search');
+                  GoStep.search.go(context);
                 },
               );
             },

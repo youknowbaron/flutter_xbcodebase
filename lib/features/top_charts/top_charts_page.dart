@@ -1,6 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:go_router/go_router.dart';
+import 'package:xbcodebase/bridges.dart';
 
 class Chart {
   final int id;
@@ -32,7 +30,8 @@ class TopChartsPage extends HookWidget {
               title: Text(chart.title),
               trailing: Text('${chart.views} views'),
               onTap: () {
-                context.go('/chart/${chart.id}', extra: chart);
+                GoStep.chart.go(context,
+                    pathParameters: [chart.id.toString()], extra: chart);
               },
             ),
             Container(

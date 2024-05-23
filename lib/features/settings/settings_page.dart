@@ -12,7 +12,7 @@ class SettingsPage extends HookConsumerWidget {
         orElse: () {},
         data: (data) {
           if (data == true) {
-            GoRouter.of(context).go('/login');
+            GoStep.login.go(context);
           }
         },
       );

@@ -1,27 +1,41 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:xbcodebase/bridges.dart';
 
 import 'top_charts_page.dart';
 
 class DetailChartPage extends StatelessWidget {
-  const DetailChartPage(this.chart, {super.key});
+  const DetailChartPage(this.chartId, {super.key});
 
-  final Chart chart;
+  final int chartId;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('#${chart.id + 1}')),
+      appBar: AppBar(title: Text('#${chartId + 1}')),
       body: Center(
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Text(chart.title),
+            // Text(chart.title),
             TextButton(
               onPressed: () {
-                context.go('/?index=0');
+                GoStep.chart.go(context, pathParameters: ['2323111']);
+              },
+              child: const Text('to another chart details'),
+            ),
+            TextButton(
+              onPressed: () {
+                GoStep.home.go(context, queryParameters: {'index': '0'});
               },
               child: const Text('Back to home'),
+            ),
+
+            TextButton(
+              onPressed: () {
+                GoStep.home.go(context, queryParameters: {'index': '1'});
+              },
+              child: const Text('Back to tab 2'),
             ),
           ],
         ),

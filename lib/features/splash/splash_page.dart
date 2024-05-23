@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:xbcodebase/bridges.dart';
 
 import 'notifiers/splash_notifier.dart';
 
@@ -27,7 +28,8 @@ class SplashPage extends HookConsumerWidget {
     animation.addStatusListener((status) async {
       if (status == AnimationStatus.completed) {
         ref.read(splashNotifierProvider).whenOrNull(data: (data) {
-          GoRouter.of(context).go(data == true ? '/' : '/login');
+          final step = data == true ? GoStep.home : GoStep.login;
+          step.go(context);
         });
       }
     });

@@ -168,7 +168,7 @@ class DashboardPage extends HookWidget {
                     ),
                     onTap: () {
                       Navigator.pop(context);
-                      context.go('/settings');
+                      GoStep.settings.go(context);
                     },
                   ),
                   ListTile(

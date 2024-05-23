@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:xbcodebase/bridges.dart';
 import 'package:xbcodebase/core/loggers/logger.dart';
 import 'package:xbcodebase/features/auth/notifiers/authentication_notifier.dart';
 
@@ -41,13 +42,13 @@ class LoginPage extends HookConsumerWidget {
               "loiroibanoi, navigate to home page in 1 seconds...";
           await Future.delayed(const Duration(seconds: 1));
           if (context.mounted) {
-            context.go('/');
+            GoStep.home.go(context);
           }
         },
         data: (data) {
           logger.w('login provider listener $data');
           if (data != null) {
-            context.go('/');
+            GoStep.home.go(context);
           }
         },
       );

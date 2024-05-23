@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:xbcodebase/bridges.dart';
 import 'package:xbcodebase/core/widgets/space.dart';
-import 'package:xbcodebase/features/home/pages/media_details_page.dart';
 
 import '../../../domain/models/media.dart';
 
@@ -25,26 +25,14 @@ class AfterMediaDetailsPage extends StatelessWidget {
             const Height(20),
             TextButton(
               onPressed: () {
-                // GoRouter.of(context).pop();
-
-                var media = GoRouter.of(context)
-                    .routeInformationProvider
-                    .value
-                    .state as Media;
-                media = media.copyWith(title: 'disconme');
-                context.go('/media/$id', extra: media);
-
-                // GoRouter.of(context)
-                // .namedLocation(MediaDetailsPage.name, params: {'mid': id});
+                GoStep.mediaDetails.go(context, pathParameters: [id]);
               },
               child: const Text('Back to previous'),
             ),
             const Height(20),
             TextButton(
               onPressed: () {
-                // GoRouter.of(context).goNamed(MediaDetailsPage.name);
-                GoRouter.of(context).go('/');
-                // GoRouter.of(context).routeInformationProvider.value.state;
+                GoStep.home.go(context);
               },
               child: const Text('Back to root'),
             ),

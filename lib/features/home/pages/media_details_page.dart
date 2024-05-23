@@ -1,18 +1,28 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:xbcodebase/bridges.dart';
 import 'package:xbcodebase/core/widgets/space.dart';
 import 'package:xbcodebase/domain/models/media.dart';
+import 'package:xbcodebase/features/top_charts/top_charts_page.dart';
 
 class MediaDetailsPage extends StatefulWidget {
-  const MediaDetailsPage({required this.media, super.key});
+  const MediaDetailsPage({required this.mediaId, super.key});
 
-  final Media media;
+  final int mediaId;
 
   @override
   State<MediaDetailsPage> createState() => _MediaDetailsPageState();
 }
 
 class _MediaDetailsPageState extends State<MediaDetailsPage> {
+  Media? media;
+
+  @override
+  void initState() {
+    // media = GoRouter.of(context).value.state as Media?;
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -23,34 +33,26 @@ class _MediaDetailsPageState extends State<MediaDetailsPage> {
             mainAxisSize: MainAxisSize.min,
             children: [
               Text(
-                widget.media.toJson().toString(),
+                media?.toJson().toString() ?? '',
               ),
               const Height(20),
               TextButton(
                 onPressed: () {
-                  // context.goNamed(
-                  //   AfterMediaDetailsPage.name,
-                  //   params: {'mid': widget.media.id},
-                  //   extra: widget.media,
-                  // );
-                  context.go(
-                    '/media/${widget.media.id}/after_media_details',
-                    extra: widget.media,
-                  );
+                  GoStep.chart.go(context,
+                      pathParameters: ['0'], extra: Chart(0, 'hehe', 23232));
+                },
+                child: const Text('To chart details'),
+              ),
+              TextButton(
+                onPressed: () {
+                  GoStep.afterMediaDetails.go(context);
                 },
                 child: const Text('Go go'),
               ),
               const Height(20),
               TextButton(
                 onPressed: () {
-                  context.go(
-                    '/?mothai=3',
-                    extra: widget.media,
-                  );
-                  // GoRouter.of(context).addListener(() {
-                  //   logger.d('addListener $runtimeType');
-                  //   logger.d('lamcuccunghongbeoi ${widget.media.id}');
-                  // });
+                  GoRouter.of(context).pop();
                 },
                 child: const Text('Back to previous'),
               ),
