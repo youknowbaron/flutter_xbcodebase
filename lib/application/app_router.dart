@@ -2,9 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:path/path.dart';
 
-import '../core/loggers/logger.dart';
 import '../core/loggers/navigator_logger.dart';
-import '../domain/models/media.dart';
 import '../features/auth/pages/login_page.dart';
 import '../features/dashboard_page.dart';
 import '../features/home/pages/after_media_details_page.dart';
@@ -13,13 +11,13 @@ import '../features/search/search_page.dart';
 import '../features/settings/settings_page.dart';
 import '../features/splash/splash_page.dart';
 import '../features/top_charts/detail_chart_page.dart';
-import '../features/top_charts/top_charts_page.dart';
 
 final class AppRoute extends GoRoute {
-  AppRoute(GoStep step, {String? name})
+  AppRoute(GoStep step, {bool root = false})
       : super(
+          // path:
+          // root && !step.path.startsWith('/') ? '/${step.path}' : step.path,
           path: step.path,
-          name: name ?? step.name,
           builder: step.builder,
           pageBuilder: step.pageBuilder,
           routes: step.routes,
@@ -45,8 +43,7 @@ enum GoStep {
         splash => (context, state) => const SplashPage(),
         login => (context, state) => const LoginPage(),
         home => (context, state) {
-            final index =
-                int.tryParse(state.uri.queryParameters['index'] ?? '');
+            final index = int.tryParse(state.uri.queryParameters['index'] ?? '');
             return DashboardPage(initialIndex: index);
           },
         search => (context, state) => const SearchPage(),
@@ -55,8 +52,7 @@ enum GoStep {
             MediaDetailsPage(mediaId: int.parse(state.pathParameters['mid']!)),
         afterMediaDetails => (context, state) =>
             AfterMediaDetailsPage(id: state.pathParameters['mid']!),
-        chart => (context, state) =>
-            DetailChartPage(int.parse(state.pathParameters['cid']!)),
+        chart => (context, state) => DetailChartPage(int.parse(state.pathParameters['cid']!)),
       };
 
   GoRouterPageBuilder? get pageBuilder => null;
@@ -69,8 +65,7 @@ enum GoStep {
 
   GlobalKey<NavigatorState>? get parentKey => null;
 
-  List<RouteBase> get routes =>
-      children?.map((e) => AppRoute(e, name: '$name-${e.name}')).toList() ?? [];
+  List<RouteBase> get routes => children?.map((e) => AppRoute(e)).toList() ?? [];
 
   // Set<GoStep>? get parent => switch (this) {
   //   search => {home},
@@ -88,8 +83,7 @@ enum GoStep {
     Object? extra,
   }) {
     context.go(
-      _location(
-          pathParameters: pathParameters, queryParameters: queryParameters),
+      _location(pathParameters: pathParameters, queryParameters: queryParameters),
       extra: extra,
     );
   }
@@ -101,8 +95,7 @@ enum GoStep {
     Object? extra,
   }) {
     return context.push(
-      _location(
-          pathParameters: pathParameters, queryParameters: queryParameters),
+      _location(pathParameters: pathParameters, queryParameters: queryParameters),
       extra: extra,
     );
   }
@@ -152,5 +145,6 @@ final appRouter = GoRouter(
     AppRoute(GoStep.splash),
     AppRoute(GoStep.login),
     AppRoute(GoStep.home),
+    // AppRoute(GoStep.mediaDetails, root: true),
   ],
 );

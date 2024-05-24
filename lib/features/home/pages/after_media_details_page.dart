@@ -1,9 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import 'package:xbcodebase/bridges.dart';
-import 'package:xbcodebase/core/widgets/space.dart';
-
-import '../../../domain/models/media.dart';
 
 class AfterMediaDetailsPage extends StatelessWidget {
   const AfterMediaDetailsPage({required this.id, super.key});
@@ -20,7 +15,7 @@ class AfterMediaDetailsPage extends StatelessWidget {
           children: [
             Text(
               id,
-              style: Theme.of(context).textTheme.headline1,
+              style: Theme.of(context).textTheme.displayLarge,
             ),
             const Height(20),
             TextButton(

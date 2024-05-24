@@ -1,8 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import 'package:xbcodebase/bridges.dart';
-
-import 'top_charts_page.dart';
 
 class DetailChartPage extends StatelessWidget {
   const DetailChartPage(this.chartId, {super.key});
@@ -20,7 +16,8 @@ class DetailChartPage extends StatelessWidget {
             // Text(chart.title),
             TextButton(
               onPressed: () {
-                GoStep.chart.go(context, pathParameters: ['2323111']);
+                // GoStep.chart.go(context, pathParameters: ['2323111']);
+                GoStep.chart.push(context, pathParameters: ['2323111']);
               },
               child: const Text('to another chart details'),
             ),
