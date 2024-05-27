@@ -26,7 +26,7 @@ class _MediaDetailsPageState extends State<MediaDetailsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(title: Text('${widget.mediaId}')),
       body: SafeArea(
         child: SingleChildScrollView(
           child: Column(
@@ -38,8 +38,15 @@ class _MediaDetailsPageState extends State<MediaDetailsPage> {
               const Height(20),
               TextButton(
                 onPressed: () {
-                  GoStep.chart.go(context,
-                      pathParameters: ['0'], extra: Chart(0, 'hehe', 23232));
+                  // context.push('/media/234234');
+                  GoStep.mediaDetails.push(context, pathParameters: ['23487238']);
+                },
+                child: const Text('To another media details'),
+              ),
+              const Height(20),
+              TextButton(
+                onPressed: () {
+                  GoStep.chart.go(context, pathParameters: ['0'], extra: Chart(0, 'hehe', 23232));
                 },
                 child: const Text('To chart details'),
               ),

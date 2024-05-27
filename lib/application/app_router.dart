@@ -15,9 +15,8 @@ import '../features/top_charts/detail_chart_page.dart';
 final class AppRoute extends GoRoute {
   AppRoute(GoStep step, {bool root = false})
       : super(
-          // path:
-          // root && !step.path.startsWith('/') ? '/${step.path}' : step.path,
-          path: step.path,
+          path: root && !step.path.startsWith('/') ? '/${step.path}' : step.path,
+          // path: step.path,
           builder: step.builder,
           pageBuilder: step.pageBuilder,
           routes: step.routes,
@@ -76,6 +75,7 @@ enum GoStep {
   //   _ => null,
   // };
 
+  /// Go to a new location, append new location to current location
   void go(
     BuildContext context, {
     List<String>? pathParameters,
@@ -88,6 +88,7 @@ enum GoStep {
     );
   }
 
+  /// Push a new page onto the page stack, do not append the new location to current location
   Future<T?> push<T extends Object?>(
     BuildContext context, {
     List<String>? pathParameters,
@@ -95,7 +96,11 @@ enum GoStep {
     Object? extra,
   }) {
     return context.push(
-      _location(pathParameters: pathParameters, queryParameters: queryParameters),
+      _location(
+        pathParameters: pathParameters,
+        queryParameters: queryParameters,
+        appendToCurrentLocation: false,
+      ),
       extra: extra,
     );
   }
@@ -103,18 +108,24 @@ enum GoStep {
   String _location({
     List<String>? pathParameters,
     Map<String, dynamic> queryParameters = const <String, dynamic>{},
+    bool appendToCurrentLocation = true,
   }) {
     var newPath = path;
     if (pathParameters != null) {
       newPath = _pathPatternToLocation(newPath, pathParameters);
     }
-    final currentUri = appRouter.routeInformationProvider.value.uri;
-    Map<String, dynamic> params = Map.of(currentUri.queryParameters);
+    Map<String, dynamic> params = {};
+    if (appendToCurrentLocation) {
+      final currentUri = appRouter.routeInformationProvider.value.uri;
+      params.addAll(Map.of(currentUri.queryParameters));
+      newPath = join(currentUri.path, newPath);
+    } else {
+      newPath = join('/', newPath);
+    }
     if (queryParameters.isNotEmpty) {
       params.addAll(queryParameters);
     }
-    final fullPath = join(currentUri.path, newPath);
-    Uri loc = Uri(path: fullPath, queryParameters: params);
+    Uri loc = Uri(path: newPath, queryParameters: params);
     return loc.toString();
   }
 
@@ -145,6 +156,8 @@ final appRouter = GoRouter(
     AppRoute(GoStep.splash),
     AppRoute(GoStep.login),
     AppRoute(GoStep.home),
+    AppRoute(GoStep.chart, root: true),
+    AppRoute(GoStep.mediaDetails, root: true),
     // AppRoute(GoStep.mediaDetails, root: true),
   ],
 );

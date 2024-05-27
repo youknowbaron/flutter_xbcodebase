@@ -17,7 +17,9 @@ class DetailChartPage extends StatelessWidget {
             TextButton(
               onPressed: () {
                 // GoStep.chart.go(context, pathParameters: ['2323111']);
-                GoStep.chart.push(context, pathParameters: ['2323111']);
+                // GoStep.chart.push(context, pathParameters: ['2323111']);
+                // context.push('/charts/237473');
+                GoStep.chart.push(context, pathParameters: ['234252122']);
               },
               child: const Text('to another chart details'),
             ),
