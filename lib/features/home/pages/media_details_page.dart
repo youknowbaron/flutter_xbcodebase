@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:xbcodebase/bridges.dart';
-import 'package:xbcodebase/core/widgets/space.dart';
-import 'package:xbcodebase/domain/models/media.dart';
-import 'package:xbcodebase/features/top_charts/top_charts_page.dart';
+import 'package:memorise_vocabulary/bridges.dart';
+import 'package:memorise_vocabulary/core/widgets/space.dart';
+import 'package:memorise_vocabulary/domain/models/media.dart';
+import 'package:memorise_vocabulary/features/top_charts/top_charts_page.dart';
 
 class MediaDetailsPage extends StatefulWidget {
   const MediaDetailsPage({required this.mediaId, super.key});

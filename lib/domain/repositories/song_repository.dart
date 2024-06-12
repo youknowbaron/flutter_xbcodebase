@@ -1,4 +1,4 @@
-import 'package:xbcodebase/domain/models/home_data.dart';
+import 'package:memorise_vocabulary/domain/models/home_data.dart';
 
 import '../base/api_result.dart';
 

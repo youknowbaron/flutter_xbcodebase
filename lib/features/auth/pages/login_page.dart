@@ -1,7 +1,7 @@
 import 'package:flutter/foundation.dart';
-import 'package:xbcodebase/bridges.dart';
-import 'package:xbcodebase/core/loggers/logger.dart';
-import 'package:xbcodebase/features/auth/notifiers/authentication_notifier.dart';
+import 'package:memorise_vocabulary/bridges.dart';
+import 'package:memorise_vocabulary/core/loggers/logger.dart';
+import 'package:memorise_vocabulary/features/auth/notifiers/authentication_notifier.dart';
 
 import '../../../common/widgets/common_input.dart';
 
@@ -11,10 +11,8 @@ class LoginPage extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     // Hooks zone
-    final animationController =
-        useAnimationController(duration: const Duration(milliseconds: 300));
-    final animation =
-        Tween<double>(begin: 0.0, end: 1.0).animate(animationController);
+    final animationController = useAnimationController(duration: const Duration(milliseconds: 300));
+    final animation = Tween<double>(begin: 0.0, end: 1.0).animate(animationController);
 
     final emailController = useTextEditingController();
     final passwordController = useTextEditingController();
@@ -28,14 +26,11 @@ class LoginPage extends HookConsumerWidget {
       next.maybeWhen(
         orElse: () {},
         error: (_, __) async {
-          errorText.value =
-              "loiroibanoi, navigate to home page in 3 seconds...";
+          errorText.value = "loiroibanoi, navigate to home page in 3 seconds...";
           await Future.delayed(const Duration(seconds: 1));
-          errorText.value =
-              "loiroibanoi, navigate to home page in 2 seconds...";
+          errorText.value = "loiroibanoi, navigate to home page in 2 seconds...";
           await Future.delayed(const Duration(seconds: 1));
-          errorText.value =
-              "loiroibanoi, navigate to home page in 1 seconds...";
+          errorText.value = "loiroibanoi, navigate to home page in 1 seconds...";
           await Future.delayed(const Duration(seconds: 1));
           if (context.mounted) {
             GoStep.home.go(context);
@@ -113,8 +108,7 @@ class LoginPage extends HookConsumerWidget {
                 children: [
                   Hero(
                     tag: 'logo_hero_tag',
-                    child: _logoWidget(
-                        size.width, emailController, passwordController),
+                    child: _logoWidget(size.width, emailController, passwordController),
                   ),
                   const SizedBox(height: 34),
                   FadeTransition(
@@ -244,17 +238,13 @@ class LoginPage extends HookConsumerWidget {
                     useValueListenable(emailErrorText),
                     useValueListenable(passwordErrorText))
                 ? () {
-                    _onLoginTapped(
-                        ref, emailController.text, passwordController.text);
+                    _onLoginTapped(ref, emailController.text, passwordController.text);
                   }
                 : null,
             style: ButtonStyle(
               backgroundColor: MaterialStateProperty.all<Color>(
-                Theme.of(context).primaryColor.withOpacity(_isEnabledButton(
-                        emailController.text,
-                        passwordController.text,
-                        emailErrorText.value,
-                        passwordErrorText.value)
+                Theme.of(context).primaryColor.withOpacity(_isEnabledButton(emailController.text,
+                        passwordController.text, emailErrorText.value, passwordErrorText.value)
                     ? 1
                     : 0.5),
               ),
@@ -342,8 +332,8 @@ class LoginPage extends HookConsumerWidget {
     );
   }
 
-  bool _isEnabledButton(String email, String password, String? emailErrorText,
-          String? passwordErrorText) =>
+  bool _isEnabledButton(
+          String email, String password, String? emailErrorText, String? passwordErrorText) =>
       emailErrorText == null &&
       passwordErrorText == null &&
       email.isNotEmpty &&

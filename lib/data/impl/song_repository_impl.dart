@@ -1,5 +1,5 @@
-import 'package:xbcodebase/data/network/api/saavn_dio.dart';
-import 'package:xbcodebase/domain/models/home_data.dart';
+import 'package:memorise_vocabulary/data/network/api/saavn_dio.dart';
+import 'package:memorise_vocabulary/domain/models/home_data.dart';
 
 import '../../domain/repositories/song_repository.dart';
 import '../../tunnels.dart';

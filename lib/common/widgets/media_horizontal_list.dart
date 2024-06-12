@@ -18,7 +18,7 @@
  */
 
 import 'package:flutter/material.dart';
-import 'package:xbcodebase/common/widgets/items/media_item.dart';
+import 'package:memorise_vocabulary/common/widgets/items/media_item.dart';
 
 import '../../domain/models/media.dart';
 
@@ -33,10 +33,9 @@ class MediaHorizontalList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double boxSize =
-        MediaQuery.of(context).size.height > MediaQuery.of(context).size.width
-            ? MediaQuery.of(context).size.width / 2
-            : MediaQuery.of(context).size.height / 2.5;
+    double boxSize = MediaQuery.of(context).size.height > MediaQuery.of(context).size.width
+        ? MediaQuery.of(context).size.width / 2
+        : MediaQuery.of(context).size.height / 2.5;
     if (boxSize > 250) boxSize = 250;
     return SizedBox(
       height: boxSize + 15,

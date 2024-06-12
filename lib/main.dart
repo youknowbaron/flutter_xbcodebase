@@ -1,4 +1,6 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:hive/hive.dart';
+import 'package:memorise_vocabulary/firebase_options.dart';
 import 'package:path_provider/path_provider.dart';
 
 import 'app.dart';
@@ -15,6 +17,10 @@ void main() async {
   final settingsBox = await Hive.openBox(BoxKeys.settings);
   await AppLocale.instance.initilize(settingsBox);
 
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+  
   runApp(
     ProviderScope(
       overrides: [

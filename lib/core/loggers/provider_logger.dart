@@ -4,10 +4,8 @@ import 'logger.dart';
 
 class ProviderLogger extends ProviderObserver {
   @override
-  void didAddProvider(
-      ProviderBase provider, Object? value, ProviderContainer container) {
-    logger.wtf(
-        'provider: ${provider.name ?? provider.runtimeType} was created.\nvalue: $value');
+  void didAddProvider(ProviderBase provider, Object? value, ProviderContainer container) {
+    logger.d('provider: ${provider.name ?? provider.runtimeType} was created.\nvalue: $value');
   }
 
   @override
@@ -17,13 +15,12 @@ class ProviderLogger extends ProviderObserver {
     Object? newValue,
     ProviderContainer container,
   ) {
-    logger.wtf(
+    logger.d(
         'previousValue: $previousValue\nprovider: ${provider.name ?? provider.runtimeType},\nnewValue: $newValue\n');
   }
 
   @override
   void didDisposeProvider(ProviderBase provider, ProviderContainer containers) {
-    logger
-        .wtf('provider: ${provider.name ?? provider.runtimeType} was disposed.');
+    logger.d('provider: ${provider.name ?? provider.runtimeType} was disposed.');
   }
 }

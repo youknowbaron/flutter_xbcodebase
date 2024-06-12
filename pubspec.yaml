@@ -1,4 +1,4 @@
-name: xbcodebase
+name: memorise_vocabulary
 description: A new Flutter project.
 
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
@@ -48,12 +48,13 @@ dependencies:
   cached_network_image: ^3.2.2
 
   # Optional
+  cupertino_icons: ^1.0.2
   salomon_bottom_bar: ^3.3.1
   material_design_icons_flutter: ^7.0.7296
   dart_des: ^1.0.2
+  firebase_core: ^3.1.0
+  cloud_firestore: ^5.0.1
   # flutter_gemini: ^2.0.4
-
-  cupertino_icons: ^1.0.2
 
 dev_dependencies:
   flutter_test:

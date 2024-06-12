@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:dio/dio.dart';
-import 'package:xbcodebase/core/loggers/logger.dart';
+import 'package:memorise_vocabulary/core/loggers/logger.dart';
 
 import '../../../domain/base/api_failure.dart';
 import '../../../domain/base/api_result.dart';
@@ -23,7 +23,7 @@ mixin DioBroker {
         return ApiResult.data(result);
       }
       return const ApiResult.failure();
-    } on DioError catch (e) {
+    } on DioException catch (e) {
       if (e.isNoConnectionError) {
         return const ApiResult.failure(ApiFailure.noConnection());
       }

@@ -143,7 +143,7 @@ enum GoStep {
 }
 
 final appRouter = GoRouter(
-  initialLocation: GoStep.splash.path,
+  initialLocation: GoStep.home.path,
   observers: [NavigatorLogger()],
   routes: <RouteBase>[
     AppRoute(GoStep.splash),

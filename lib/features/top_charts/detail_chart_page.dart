@@ -1,4 +1,4 @@
-import 'package:xbcodebase/bridges.dart';
+import 'package:memorise_vocabulary/bridges.dart';
 
 class DetailChartPage extends StatelessWidget {
   const DetailChartPage(this.chartId, {super.key});

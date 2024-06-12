@@ -1,4 +1,4 @@
-import 'package:xbcodebase/bridges.dart';
+import 'package:memorise_vocabulary/bridges.dart';
 
 class AfterMediaDetailsPage extends StatelessWidget {
   const AfterMediaDetailsPage({required this.id, super.key});

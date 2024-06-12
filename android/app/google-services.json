@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "218385830574",
+    "project_id": "memorisevocabulary",
+    "storage_bucket": "memorisevocabulary.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:218385830574:android:61ab44c1483dc7f978933f",
+        "android_client_info": {
+          "package_name": "com.example.xbcodebase"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC9esxEEEyME1jlJdmEgZ6A8F_uQbVPhhc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

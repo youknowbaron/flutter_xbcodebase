@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
@@ -31,6 +32,8 @@ final _baseOptions = Provider<BaseOptions>(
   ),
 );
 
+final firestoreProvider = Provider<FirebaseFirestore>((ref) => FirebaseFirestore.instance);
+
 final basicDioProvider = Provider<Dio>((ref) {
   final dio = Dio()..options = ref.read(_authBaseOptionsProvider);
   if (kDebugMode) {
@@ -41,13 +44,11 @@ final basicDioProvider = Provider<Dio>((ref) {
 
 final goodBoyDioProvider = Provider<Dio>((ref) {
   final dio = Dio();
-  final authenticationInterceptor =
-      ref.watch(authenticationInterceptorProvider);
+  final authenticationInterceptor = ref.watch(authenticationInterceptorProvider);
   final dioLoggerInterceptor = ref.read(loggerInterceptorProvider);
   dio
     ..options = ref.read(_baseOptions)
-    ..options.validateStatus =
-        ((status) => status != null && status >= 200 && status < 400)
+    ..options.validateStatus = ((status) => status != null && status >= 200 && status < 400)
     ..interceptors.addAll(
       [
         authenticationInterceptor,

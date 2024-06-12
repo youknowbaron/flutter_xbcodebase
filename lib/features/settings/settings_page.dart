@@ -1,4 +1,4 @@
-import 'package:xbcodebase/features/auth/notifiers/authentication_notifier.dart';
+import 'package:memorise_vocabulary/features/auth/notifiers/authentication_notifier.dart';
 
 import '../../bridges.dart';
 
@@ -67,9 +67,7 @@ class SettingsPage extends HookConsumerWidget {
                 SwitchListTile(
                   value: appSettings.themeMode == ThemeMode.dark,
                   onChanged: (value) {
-                    ref
-                        .read(appSettingsNotifierProvider.notifier)
-                        .toggleTheme();
+                    ref.read(appSettingsNotifierProvider.notifier).toggleTheme();
                   },
                   title: Text(
                     $strings.darkMode,
@@ -105,9 +103,7 @@ class SettingsPage extends HookConsumerWidget {
                             .changeLocale(Locale(newValue, ''));
                       }
                     },
-                    items: kAppLocale.keys
-                        .toList()
-                        .map<DropdownMenuItem<String>>((String key) {
+                    items: kAppLocale.keys.toList().map<DropdownMenuItem<String>>((String key) {
                       return DropdownMenuItem<String>(
                         value: key,
                         child: Text(
@@ -120,9 +116,7 @@ class SettingsPage extends HookConsumerWidget {
                 ),
                 TextButton(
                   onPressed: () async {
-                    await ref
-                        .read(authenticationNotifierProvider.notifier)
-                        .logOut();
+                    await ref.read(authenticationNotifierProvider.notifier).logOut();
                   },
                   child: const Text('Log out'),
                 )
