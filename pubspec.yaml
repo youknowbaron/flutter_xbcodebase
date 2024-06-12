@@ -51,6 +51,7 @@ dependencies:
   salomon_bottom_bar: ^3.3.1
   material_design_icons_flutter: ^7.0.7296
   dart_des: ^1.0.2
+  # flutter_gemini: ^2.0.4
 
   cupertino_icons: ^1.0.2
 

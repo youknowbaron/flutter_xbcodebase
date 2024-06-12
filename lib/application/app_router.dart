@@ -56,6 +56,8 @@ enum GoStep {
 
   GoRouterPageBuilder? get pageBuilder => null;
 
+  /// Declare child pages, bi-dimensional navigation is not supported 
+  /// (if page A is a child of page B, it can't be the parent of page B).
   Set<GoStep>? get children => switch (this) {
         home => {search, settings, mediaDetails, chart},
         mediaDetails => {afterMediaDetails, chart},
@@ -65,15 +67,6 @@ enum GoStep {
   GlobalKey<NavigatorState>? get parentKey => null;
 
   List<RouteBase> get routes => children?.map((e) => AppRoute(e)).toList() ?? [];
-
-  // Set<GoStep>? get parent => switch (this) {
-  //   search => {home},
-  //   settings => {home},
-  //   mediaDetails => {home},
-  //   afterMediaDetails => {mediaDetails},
-  //   chart => {home, mediaDetails},
-  //   _ => null,
-  // };
 
   /// Go to a new location, append new location to current location
   void go(
@@ -158,6 +151,5 @@ final appRouter = GoRouter(
     AppRoute(GoStep.home),
     AppRoute(GoStep.chart, root: true),
     AppRoute(GoStep.mediaDetails, root: true),
-    // AppRoute(GoStep.mediaDetails, root: true),
   ],
 );
