@@ -1,21 +1,23 @@
-
 import 'package:flutter/material.dart';
+import 'package:memorise_vocabulary/core/extensions/theme_extensions.dart';
 
 class CommonInput extends StatelessWidget {
   const CommonInput({
-    Key? key,
+    super.key,
     required this.controller,
-    required this.focusNode,
-    required this.hintText,
-    required this.textInputType,
+    this.enabled = true,
+    this.focusNode,
+    this.hintText,
+    this.textInputType,
     this.obscureText = false,
     this.isError = false,
-  }) : super(key: key);
+  });
 
-  final TextEditingController controller;
-  final FocusNode focusNode;
-  final String hintText;
-  final TextInputType textInputType;
+  final bool enabled;
+  final TextEditingController? controller;
+  final FocusNode? focusNode;
+  final String? hintText;
+  final TextInputType? textInputType;
   final bool obscureText;
   final bool isError;
 
@@ -30,20 +32,20 @@ class CommonInput extends StatelessWidget {
         obscureText: obscureText,
         decoration: InputDecoration(
           hintText: hintText,
+          enabled: enabled,
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(4),
-            borderSide: const BorderSide(color: Color(0xFFCCCCCC)),
+            borderSide: BorderSide(color: context.colorScheme.outline),
           ),
           enabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(4),
-            borderSide: BorderSide(
-                color: isError ? Colors.red : const Color(0xFFCCCCCC)),
+            borderSide: BorderSide(color: isError ? Colors.red : context.colorScheme.outline),
           ),
-          hintStyle: const TextStyle(
-            color: Color(0xFFCCCCCC),
+          hintStyle: TextStyle(
+            color: context.colorScheme.onSurfaceVariant,
             fontSize: 14,
           ),
-          contentPadding: const EdgeInsets.fromLTRB(12, 12, 12, 12),
+          contentPadding: const EdgeInsets.fromLTRB(12, 0, 12, 0),
         ),
       ),
     );

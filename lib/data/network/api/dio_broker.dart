@@ -37,9 +37,6 @@ mixin DioBroker {
       } else {
         return const ApiResult.failure();
       }
-    } on Exception catch (e) {
-      logger.e(e);
-      return ApiResult.failure(ApiFailure.unknown(message: e.toString()));
     } catch (err) {
       logger.e(err);
       return const ApiResult.failure(ApiFailure.unknown());

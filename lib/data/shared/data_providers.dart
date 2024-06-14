@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dio/dio.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -32,8 +33,6 @@ final _baseOptions = Provider<BaseOptions>(
   ),
 );
 
-final firestoreProvider = Provider<FirebaseFirestore>((ref) => FirebaseFirestore.instance);
-
 final basicDioProvider = Provider<Dio>((ref) {
   final dio = Dio()..options = ref.read(_authBaseOptionsProvider);
   if (kDebugMode) {
@@ -59,7 +58,14 @@ final goodBoyDioProvider = Provider<Dio>((ref) {
   return dio;
 });
 
-final storageProvider = Provider<FlutterSecureStorage>(
+final firestoreProvider = Provider<FirebaseFirestore>((ref) => FirebaseFirestore.instance);
+final firebaseAuthProvider = Provider<FirebaseAuth>((ref) => FirebaseAuth.instance);
+
+final onAuthStateChangedProvider = StreamProvider(
+  (ref) => FirebaseAuth.instance.authStateChanges(),
+);
+
+final secureStorageProvider = Provider<FlutterSecureStorage>(
   (ref) => const FlutterSecureStorage(
     aOptions: AndroidOptions(encryptedSharedPreferences: true),
   ),

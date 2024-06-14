@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:memorise_vocabulary/core/loggers/logger.dart';
+import 'package:memorise_vocabulary/tunnels.dart';
 
-import 'application/app_theme.dart';
-import 'application/app_router.dart';
-import 'application/notifiers/app_settings_notifier.dart';
+import '../localization/app_localizations.dart';
+import 'app_theme.dart';
+import 'app_router.dart';
+import 'notifiers/app_settings_notifier.dart';
 
 // final GlobalKey<NavigatorState> _rootNavigatorKey =
 //     GlobalKey<NavigatorState>(debugLabel: 'root');
@@ -17,6 +20,22 @@ class MyApp extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final appSettings = ref.watch(appSettingsNotifierProvider);
+
+    ref.listen(onAuthStateChangedProvider, (previous, next) {
+      next.whenData(
+        (user) {
+          logger.d('[onAuthStateChangedProvider] $user');
+          if (user?.emailVerified == true) {
+          } else {
+            logger.d('sendEmailVerification to email: ${user?.email}');
+            user?.sendEmailVerification();
+          }
+        },
+      );
+    });
+
+    EasyLoading.instance.userInteractions = false;
+
     return MaterialApp.router(
       routerConfig: appRouter,
       title: 'Flutter Demo',
@@ -26,6 +45,7 @@ class MyApp extends ConsumerWidget {
       locale: appSettings.locale,
       localizationsDelegates: AppLocalizations.localizationsDelegates,
       supportedLocales: AppLocalizations.supportedLocales,
+      builder: EasyLoading.init(),
     );
   }
 }

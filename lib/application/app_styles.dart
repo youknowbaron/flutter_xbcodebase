@@ -7,6 +7,7 @@ typedef $colors = _AppColors;
 typedef $styles = _AppTextStyle;
 typedef $radiues = _AppRadius;
 typedef $borderRadius = _AppBorderRadius;
+typedef $icons = Icons;
 
 class _AppColors {
   // Light Theme

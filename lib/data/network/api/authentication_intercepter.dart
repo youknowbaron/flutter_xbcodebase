@@ -42,6 +42,6 @@ class AuthenticationInterceptor extends Interceptor {
 AuthenticationInterceptor authenticationInterceptor(AuthenticationInterceptorRef ref) {
   return AuthenticationInterceptor(
     ref.read(goodBoyDioProvider),
-    ref.read(storageProvider),
+    ref.read(secureStorageProvider),
   );
 }

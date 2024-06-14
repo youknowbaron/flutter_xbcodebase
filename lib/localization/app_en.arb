@@ -1,4 +1,44 @@
 {
+  "emailAddress": "Email address",
+  "password": "Password",
+  "pleaseEnter": "Please enter {fieldName}",
+  "@pleaseEnter": {
+    "placeholders": {
+      "fieldName": {
+        "type": "String",
+        "example": "Mail address"
+      }
+    }
+  },
+  "incorrectInputFormat": "Invalid {inputFormat}",
+  "@incorrectInputFormat": {
+    "placeholders": {
+      "inputFormat": {
+        "type": "String",
+        "example": "Mail address"
+      }
+    }
+  },
+  "passwordNotEnoughLength": "Please input exactly {number} characters for your password",
+  "@passwordNotEnoughLength": {
+    "placeholders": {
+      "number": {
+        "type": "int",
+        "example": "8"
+      }
+    }
+  },
+  "continuee": "Continue",
+  "close": "Close",
+  "unknownErrorMsg": "An error has occurred.\nPlease try again after a while.",
+  "name": "Full name",
+  "mailSent": "Email transmission complete",
+  "signUpSuccessMsg": "We have sent you an email confirmation. \nPlease follow the link provided to register your account",
+  "createAccount": "Create account",
+  "passwordRequirementsMsg": "Please enter at least 8 characters",
+  "next": "Next",
+  "noConnectionTitle": "No internet connection.",
+  "noConnectionMessage": "No internet connection.\nPlease check your network connection\n and try again.",
   "aboard": "Aboard",
   "@aboard": {},
   "about": "About",

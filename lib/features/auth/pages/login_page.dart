@@ -1,5 +1,7 @@
 import 'package:flutter/foundation.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:memorise_vocabulary/bridges.dart';
+import 'package:memorise_vocabulary/common/extensions/loading.dart';
 import 'package:memorise_vocabulary/core/loggers/logger.dart';
 import 'package:memorise_vocabulary/features/auth/notifiers/authentication_notifier.dart';
 
@@ -22,28 +24,14 @@ class LoginPage extends HookConsumerWidget {
     final passwordErrorText = useValueNotifier<String?>(null);
     final errorText = useValueNotifier<String?>(null);
 
-    ref.listen<AsyncValue>(authenticationNotifierProvider, (previous, next) {
-      next.maybeWhen(
-        orElse: () {},
-        error: (_, __) async {
-          errorText.value = "loiroibanoi, navigate to home page in 3 seconds...";
-          await Future.delayed(const Duration(seconds: 1));
-          errorText.value = "loiroibanoi, navigate to home page in 2 seconds...";
-          await Future.delayed(const Duration(seconds: 1));
-          errorText.value = "loiroibanoi, navigate to home page in 1 seconds...";
-          await Future.delayed(const Duration(seconds: 1));
-          if (context.mounted) {
-            GoStep.home.go(context);
-          }
-        },
-        data: (data) {
-          logger.w('login provider listener $data');
-          if (data != null) {
-            GoStep.home.go(context);
-          }
-        },
-      );
-    });
+    ref.convenienceListen(
+      authenticationNotifierProvider,
+      (data) {
+        if (data != null) {
+          GoStep.home.go(context);
+        }
+      },
+    );
 
     final isError = errorText.value != null;
 
@@ -179,7 +167,7 @@ class LoginPage extends HookConsumerWidget {
               CommonInput(
                 controller: emailController,
                 focusNode: emailFocusNode,
-                hintText: 'メールアドレス',
+                hintText: 'Email',
                 textInputType: TextInputType.emailAddress,
                 isError: emailErrorText.value != null,
               ),
@@ -207,7 +195,7 @@ class LoginPage extends HookConsumerWidget {
               CommonInput(
                 controller: passwordController,
                 focusNode: passwordFocusNode,
-                hintText: 'パスワード',
+                hintText: 'Mật khẩu',
                 textInputType: TextInputType.visiblePassword,
                 obscureText: true,
                 isError: passwordErrorText.value != null,
@@ -255,7 +243,7 @@ class LoginPage extends HookConsumerWidget {
               ),
             ),
             child: const Text(
-              'ログイン',
+              'Đăng nhập',
               style: TextStyle(
                 color: Colors.white,
                 fontWeight: FontWeight.bold,
@@ -265,9 +253,9 @@ class LoginPage extends HookConsumerWidget {
           ),
         ),
         TextButton(
-          onPressed: null,
+          onPressed: () {},
           child: Text(
-            'パスワードを忘れた方はこちら',
+            'Quên mật khẩu?',
             style: TextStyle(
               color: Theme.of(context).primaryColor,
               fontSize: 14,
@@ -276,27 +264,16 @@ class LoginPage extends HookConsumerWidget {
           ),
         ),
         const SizedBox(height: 20),
-        SizedBox(
-          width: double.infinity,
-          height: 44,
-          child: TextButton(
-            onPressed: null,
-            style: ButtonStyle(
-              shape: MaterialStateProperty.all<OutlinedBorder>(
-                RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(4.0),
-                    side: BorderSide(color: Theme.of(context).primaryColor)),
-              ),
-            ),
-            child: Text(
-              'ガイドナビプレミアムの概要',
-              style: TextStyle(
-                color: Theme.of(context).primaryColor,
-                fontWeight: FontWeight.bold,
-                fontSize: 14,
-              ),
-            ),
-          ),
+        ElevatedButton(
+          onPressed: () => GoStep.signup.go(context),
+          child: const Text('Tạo tài khoản mới'),
+        ),
+        const SizedBox(height: 20),
+        ElevatedButton(
+          onPressed: () {
+            ref.read(authenticationNotifierProvider.notifier).logInWithGoogle();
+          },
+          child: const Text('Đăng nhập với Google'),
         ),
       ],
     );
@@ -304,7 +281,7 @@ class LoginPage extends HookConsumerWidget {
 
   void _onLoginTapped(WidgetRef ref, String email, String password) {
     FocusManager.instance.primaryFocus?.unfocus();
-    ref.read(authenticationNotifierProvider.notifier).logIn(email, password);
+    ref.read(authenticationNotifierProvider.notifier).signIn(email, password);
   }
 
   Widget _logoWidget(
@@ -315,8 +292,8 @@ class LoginPage extends HookConsumerWidget {
     return GestureDetector(
       onDoubleTap: kDebugMode
           ? () {
-              emailController.text = 'nhan.nguyen@executionlab.asia';
-              passwordController.text = 'sxnhan2806';
+              emailController.text = 'vobach1997ts@gmail.com';
+              passwordController.text = 'Password123';
             }
           : null,
       child: ConstrainedBox(

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:memorise_vocabulary/features/auth/pages/sign_up_page.dart';
 import 'package:path/path.dart';
 
 import '../core/loggers/navigator_logger.dart';
@@ -11,6 +12,18 @@ import '../features/search/search_page.dart';
 import '../features/settings/settings_page.dart';
 import '../features/splash/splash_page.dart';
 import '../features/top_charts/detail_chart_page.dart';
+
+final appRouter = GoRouter(
+  initialLocation: GoStep.splash.path,
+  observers: [NavigatorLogger()],
+  routes: <RouteBase>[
+    AppRoute(GoStep.splash),
+    AppRoute(GoStep.login),
+    AppRoute(GoStep.home),
+    AppRoute(GoStep.chart, root: true),
+    AppRoute(GoStep.mediaDetails, root: true),
+  ],
+);
 
 final class AppRoute extends GoRoute {
   AppRoute(GoStep step, {bool root = false})
@@ -28,6 +41,7 @@ enum GoStep {
   splash('/splash'),
   login('/login'),
   home('/'),
+  signup('signUp'),
   search('search'),
   settings('settings'),
   mediaDetails('media/:mid'),
@@ -41,6 +55,7 @@ enum GoStep {
   GoRouterWidgetBuilder? get builder => switch (this) {
         splash => (context, state) => const SplashPage(),
         login => (context, state) => const LoginPage(),
+        signup => (context, state) => const SignUpPage(),
         home => (context, state) {
             final index = int.tryParse(state.uri.queryParameters['index'] ?? '');
             return DashboardPage(initialIndex: index);
@@ -56,9 +71,10 @@ enum GoStep {
 
   GoRouterPageBuilder? get pageBuilder => null;
 
-  /// Declare child pages, bi-dimensional navigation is not supported 
+  /// Declare child pages, bi-dimensional navigation is not supported
   /// (if page A is a child of page B, it can't be the parent of page B).
   Set<GoStep>? get children => switch (this) {
+        login => {signup},
         home => {search, settings, mediaDetails, chart},
         mediaDetails => {afterMediaDetails, chart},
         _ => null,
@@ -141,15 +157,3 @@ enum GoStep {
     return buffer.toString();
   }
 }
-
-final appRouter = GoRouter(
-  initialLocation: GoStep.home.path,
-  observers: [NavigatorLogger()],
-  routes: <RouteBase>[
-    AppRoute(GoStep.splash),
-    AppRoute(GoStep.login),
-    AppRoute(GoStep.home),
-    AppRoute(GoStep.chart, root: true),
-    AppRoute(GoStep.mediaDetails, root: true),
-  ],
-);

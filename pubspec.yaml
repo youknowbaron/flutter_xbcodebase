@@ -33,6 +33,7 @@ dependencies:
   path_provider: ^2.0.11
   tuple: ^2.0.1
   equatable: ^2.0.5
+
   # annotation
   json_annotation: ^4.7.0
   freezed_annotation: ^2.2.0
@@ -43,6 +44,7 @@ dependencies:
   rnd: ^0.2.0 # Random
   flextras: ^1.0.0
   extra_alignments: ^1.0.0+1
+  flutter_easyloading: ^3.0.5
 
   # !!
   cached_network_image: ^3.2.2
@@ -52,8 +54,12 @@ dependencies:
   salomon_bottom_bar: ^3.3.1
   material_design_icons_flutter: ^7.0.7296
   dart_des: ^1.0.2
+
+  # Firebase
   firebase_core: ^3.1.0
   cloud_firestore: ^5.0.1
+  firebase_auth: ^5.1.0
+  google_sign_in: ^6.2.1
   # flutter_gemini: ^2.0.4
 
 dev_dependencies:

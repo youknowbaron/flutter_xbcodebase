@@ -7,10 +7,7 @@ part 'api_failure.freezed.dart';
 class ApiFailure extends AnyFailure with _$ApiFailure {
   const ApiFailure._();
   const factory ApiFailure.noConnection() = _NoConnection;
-  const factory ApiFailure.http(int? statusCode, {String? message}) =
-      _HttpError;
-  const factory ApiFailure.parse({String? errorCode, String? message}) =
-      _ParseError;
-  const factory ApiFailure.unknown({String? errorCode, String? message}) =
-      _Unknown;
+  const factory ApiFailure.http(int? statusCode, {String? message}) = _HttpError;
+  const factory ApiFailure.other({String? errorCode, String? message, Object? error}) = _OtherError;
+  const factory ApiFailure.unknown() = _UnknownError;
 }

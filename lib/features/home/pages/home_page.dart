@@ -1,13 +1,7 @@
-import 'dart:math';
-
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/gestures.dart';
 import 'package:memorise_vocabulary/common/widgets/drawer_icon.dart';
 import 'package:memorise_vocabulary/domain/models/collection.dart';
-import 'package:memorise_vocabulary/domain/models/home_data.dart';
 import 'package:memorise_vocabulary/features/home/notifiers/home_notifier.dart';
 
-import '../../../common/widgets/media_horizontal_list.dart';
 import '../../../bridges.dart';
 
 class HomePage extends HookConsumerWidget {

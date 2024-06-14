@@ -67,6 +67,7 @@ class DefaultFirebaseOptions {
     messagingSenderId: '218385830574',
     projectId: 'memorisevocabulary',
     storageBucket: 'memorisevocabulary.appspot.com',
+    iosClientId: '218385830574-thpqdajgh9oo50nd2o1fbu17n4pm3oil.apps.googleusercontent.com',
     iosBundleId: 'com.example.xbcodebase',
   );
 
@@ -76,6 +77,7 @@ class DefaultFirebaseOptions {
     messagingSenderId: '218385830574',
     projectId: 'memorisevocabulary',
     storageBucket: 'memorisevocabulary.appspot.com',
+    iosClientId: '218385830574-thpqdajgh9oo50nd2o1fbu17n4pm3oil.apps.googleusercontent.com',
     iosBundleId: 'com.example.xbcodebase',
   );
 }

@@ -1,4 +1,44 @@
 {
+  "emailAddress": "Địa chỉ email",
+  "password": "Mật khẩu",
+  "pleaseEnter": "Vui lòng nhập {fieldName}",
+  "@pleaseEnter": {
+    "placeholders": {
+      "fieldName": {
+        "type": "String",
+        "example": "địa chỉ email"
+      }
+    }
+  },
+  "incorrectInputFormat": "{inputFormat} không hợp lệ.",
+  "@incorrectInputFormat": {
+    "placeholders": {
+      "inputFormat": {
+        "type": "String",
+        "example": "Địa chỉ email"
+      }
+    }
+  },
+  "passwordNotEnoughLength": "Vui lòng nhập mật khẩu nhiều hơn {number} ký tự",
+  "@passwordNotEnoughLength": {
+    "placeholders": {
+      "number": {
+        "type": "int",
+        "example": "8"
+      }
+    }
+  },
+  "continuee": "Tiếp tục",
+  "close": "Đóng",
+  "unknownErrorMsg": "Có lỗi xảy ra, vui lòng thử lại sau.",
+  "name": "Tên đầy đủ",
+  "mailSent": "Kiểm tra hộp thư",
+  "signUpSuccessMsg": "Chúng tôi đã gửi cho bạn một email xác nhận. \nVui lòng kiểm tra hộp thư để hoàn tất đăng ký.",
+  "createAccount": "Tạo tài khoản",
+  "passwordRequirementsMsg": "Vui lòng nhập nhiều hơn 8 ký tự",
+  "next": "Tiếp theo",
+  "noConnectionTitle": "Không có kết nối mạng",
+  "noConnectionMessage": "Không có kết nối mạng.\nVui lòng kiểm tra đường truyền của bạn\n và thử lại.",
   "aboard": "Aboard",
   "@aboard": {},
   "about": "Về chúng tôi",

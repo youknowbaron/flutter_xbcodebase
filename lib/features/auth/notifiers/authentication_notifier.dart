@@ -12,16 +12,20 @@ class AuthenticationNotifier extends _$AuthenticationNotifier {
     return null;
   }
 
-  AuthenticationRepository get _repository =>
-      ref.read(authenticationRepositoryProvider);
+  AuthenticationRepository get _repository => ref.read(authenticationRepositoryProvider);
 
-  Future<void> logIn(String email, String password) async {
-    final result = await _repository.logIn(email, password);
+  Future<void> signIn(String email, String password) async {
+    final result = await _repository.signIn(email, password);
     state = result.mapToAsyncValue();
   }
 
   Future<void> logOut() async {
     await _repository.logOut();
     state = const AsyncValue.data(true);
+  }
+
+  Future<void> logInWithGoogle() async {
+    final result = await _repository.signInWithGoogle();
+    state = result.mapToAsyncValue();
   }
 }
