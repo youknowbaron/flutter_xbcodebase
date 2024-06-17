@@ -22,6 +22,8 @@ Collection _$CollectionFromJson(Map<String, dynamic> json) {
 mixin _$Collection {
   String get id => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
+  @TimestampConverter()
+  Timestamp? get createdAt => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -35,7 +37,8 @@ abstract class $CollectionCopyWith<$Res> {
           Collection value, $Res Function(Collection) then) =
       _$CollectionCopyWithImpl<$Res, Collection>;
   @useResult
-  $Res call({String id, String name});
+  $Res call(
+      {String id, String name, @TimestampConverter() Timestamp? createdAt});
 }
 
 /// @nodoc
@@ -53,6 +56,7 @@ class _$CollectionCopyWithImpl<$Res, $Val extends Collection>
   $Res call({
     Object? id = null,
     Object? name = null,
+    Object? createdAt = freezed,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -63,6 +67,10 @@ class _$CollectionCopyWithImpl<$Res, $Val extends Collection>
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
+      createdAt: freezed == createdAt
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as Timestamp?,
     ) as $Val);
   }
 }
@@ -75,7 +83,8 @@ abstract class _$$CollectionImplCopyWith<$Res>
       __$$CollectionImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String id, String name});
+  $Res call(
+      {String id, String name, @TimestampConverter() Timestamp? createdAt});
 }
 
 /// @nodoc
@@ -91,6 +100,7 @@ class __$$CollectionImplCopyWithImpl<$Res>
   $Res call({
     Object? id = null,
     Object? name = null,
+    Object? createdAt = freezed,
   }) {
     return _then(_$CollectionImpl(
       id: null == id
@@ -101,6 +111,10 @@ class __$$CollectionImplCopyWithImpl<$Res>
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
+      createdAt: freezed == createdAt
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as Timestamp?,
     ));
   }
 }
@@ -108,7 +122,11 @@ class __$$CollectionImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$CollectionImpl extends _Collection {
-  _$CollectionImpl({required this.id, required this.name}) : super._();
+  _$CollectionImpl(
+      {required this.id,
+      required this.name,
+      @TimestampConverter() this.createdAt})
+      : super._();
 
   factory _$CollectionImpl.fromJson(Map<String, dynamic> json) =>
       _$$CollectionImplFromJson(json);
@@ -117,10 +135,13 @@ class _$CollectionImpl extends _Collection {
   final String id;
   @override
   final String name;
+  @override
+  @TimestampConverter()
+  final Timestamp? createdAt;
 
   @override
   String toString() {
-    return 'Collection(id: $id, name: $name)';
+    return 'Collection(id: $id, name: $name, createdAt: $createdAt)';
   }
 
   @override
@@ -129,12 +150,14 @@ class _$CollectionImpl extends _Collection {
         (other.runtimeType == runtimeType &&
             other is _$CollectionImpl &&
             (identical(other.id, id) || other.id == id) &&
-            (identical(other.name, name) || other.name == name));
+            (identical(other.name, name) || other.name == name) &&
+            (identical(other.createdAt, createdAt) ||
+                other.createdAt == createdAt));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, name);
+  int get hashCode => Object.hash(runtimeType, id, name, createdAt);
 
   @JsonKey(ignore: true)
   @override
@@ -151,8 +174,10 @@ class _$CollectionImpl extends _Collection {
 }
 
 abstract class _Collection extends Collection {
-  factory _Collection({required final String id, required final String name}) =
-      _$CollectionImpl;
+  factory _Collection(
+      {required final String id,
+      required final String name,
+      @TimestampConverter() final Timestamp? createdAt}) = _$CollectionImpl;
   _Collection._() : super._();
 
   factory _Collection.fromJson(Map<String, dynamic> json) =
@@ -162,6 +187,9 @@ abstract class _Collection extends Collection {
   String get id;
   @override
   String get name;
+  @override
+  @TimestampConverter()
+  Timestamp? get createdAt;
   @override
   @JsonKey(ignore: true)
   _$$CollectionImplCopyWith<_$CollectionImpl> get copyWith =>

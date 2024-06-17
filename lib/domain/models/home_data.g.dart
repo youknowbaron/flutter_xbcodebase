@@ -24,7 +24,7 @@ _$HomeDataImpl _$$HomeDataImplFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$$HomeDataImplToJson(_$HomeDataImpl instance) =>
     <String, dynamic>{
-      'top_playlists': instance.topPlaylists,
-      'new_albums': instance.newAlbums,
-      'radio': instance.radio,
+      'top_playlists': instance.topPlaylists.map((e) => e.toJson()).toList(),
+      'new_albums': instance.newAlbums.map((e) => e.toJson()).toList(),
+      'radio': instance.radio.map((e) => e.toJson()).toList(),
     };

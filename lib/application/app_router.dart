@@ -14,8 +14,8 @@ import '../features/splash/splash_page.dart';
 import '../features/top_charts/detail_chart_page.dart';
 
 final appRouter = GoRouter(
-  // initialLocation: GoStep.splash.path,
-  initialLocation: GoStep.home.path,
+  initialLocation: GoStep.splash.path,
+  // initialLocation: GoStep.home.path,
   observers: [NavigatorLogger()],
   routes: <RouteBase>[
     AppRoute(GoStep.splash),

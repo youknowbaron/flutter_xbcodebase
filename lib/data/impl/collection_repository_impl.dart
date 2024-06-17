@@ -16,8 +16,14 @@ class CollectionRepositoryImpl with FirestoreBroker implements CollectionReposit
 
   @override
   Future<ApiResult<List<Collection>>> getCollections() async {
+    if (_auth.currentUser?.uid == null) return const ApiResult.failure();
+    final call = _db
+        .collection(CollectionKeys.collections)
+        .where('user_id', isEqualTo: _auth.currentUser!.uid)
+        .orderBy('created_at')
+        .get();
     return mapResponseToResult(
-      _db.collection(CollectionKeys.collections).get(),
+      call,
       converter: (data) => data.map((e) => Collection.fromJson(e.dataWithId)).toList(),
     );
   }

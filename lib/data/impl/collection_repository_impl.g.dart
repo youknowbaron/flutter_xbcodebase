@@ -7,7 +7,7 @@ part of 'collection_repository_impl.dart';
 // **************************************************************************
 
 String _$collectionRepositoryHash() =>
-    r'd986a0b8d50a0a605ea40c7f8c4332f413ce6b78';
+    r'150150cbfb57bd76008bf09f765cbfac36e0b501';
 
 /// See also [collectionRepository].
 @ProviderFor(collectionRepository)

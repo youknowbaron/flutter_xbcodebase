@@ -1,3 +1,5 @@
+import 'package:memorise_vocabulary/core/loggers/logger.dart';
+import 'package:memorise_vocabulary/domain/base/api_failure.dart';
 import 'package:memorise_vocabulary/tunnels.dart';
 
 mixin FirestoreBroker {
@@ -17,7 +19,8 @@ mixin FirestoreBroker {
       }
       return const ApiResult.failure();
     } catch (e) {
-      return const ApiResult.failure();
+      logger.e(e);
+      return ApiResult.failure(ApiFailure.other(error: e));
     }
   }
 
