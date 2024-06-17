@@ -1,4 +1,3 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:memorise_vocabulary/tunnels.dart';
 
 mixin FirestoreBroker {
@@ -20,5 +19,16 @@ mixin FirestoreBroker {
     } catch (e) {
       return const ApiResult.failure();
     }
+  }
+
+  // Wrapping data by user_id
+  Map<String, dynamic> wrapData(FirebaseAuth auth, Map<String, dynamic> data) {
+    if (auth.currentUser?.uid == null) {
+      throw AssertionError('userId == null');
+    }
+    return {
+      'user_id': auth.currentUser!.uid,
+      'created_at': Timestamp.now(),
+    }..addAll(data);
   }
 }

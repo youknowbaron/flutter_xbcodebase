@@ -9,7 +9,6 @@ abstract class AuthenticationRepository {
   });
   Future<ApiResult<bool>> signIn(String email, String password);
 
-  Future<void> saveSession(String accessToken, String? refreshToken);
   Future<bool> checkSession();
   Future<void> logOut();
 }

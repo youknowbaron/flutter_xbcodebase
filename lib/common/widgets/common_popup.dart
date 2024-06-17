@@ -1,5 +1,4 @@
 import 'package:memorise_vocabulary/bridges.dart';
-import 'package:memorise_vocabulary/core/extensions/theme_extensions.dart';
 
 enum PopupActionType { one, two }
 
@@ -9,7 +8,7 @@ class PopupContainer extends HookConsumerWidget {
     required this.child,
     this.padding = const EdgeInsets.all(16),
     this.widthPct = 0.9,
-    this.dismissOnBarrier = false,
+    this.dismissOnBarrier = true,
     this.dismissKeyboardOnTap = false,
   });
 
@@ -45,46 +44,6 @@ class PopupContainer extends HookConsumerWidget {
         ),
       ),
     );
-  }
-}
-
-class CommonRoundedDialog extends AlertDialog {
-  CommonRoundedDialog({
-    super.key,
-    required Widget content,
-    required super.insetPadding,
-    required Color super.backgroundColor,
-    EdgeInsets? super.contentPadding,
-    super.alignment,
-    double? borderRadius,
-  }) : super(
-            shape: borderRadius != null
-                ? RoundedRectangleBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(borderRadius)))
-                : null,
-            surfaceTintColor: backgroundColor,
-            content: SizedBox(
-              width: double.maxFinite,
-              child: content,
-            ));
-
-  static void show(
-    BuildContext context, {
-    EdgeInsets insetPadding = const EdgeInsets.fromLTRB(10, 0, 10, 0),
-    EdgeInsets? contentPadding = const EdgeInsets.fromLTRB(0, 10, 0, 16),
-    AlignmentGeometry? alignment,
-    double? borderRadius = 20,
-    required Widget content,
-  }) {
-    showDialog(
-        context: context,
-        builder: (context) => CommonRoundedDialog(
-            content: content,
-            backgroundColor: context.colorScheme.background,
-            insetPadding: insetPadding,
-            contentPadding: contentPadding,
-            alignment: alignment,
-            borderRadius: borderRadius));
   }
 }
 

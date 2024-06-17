@@ -39,6 +39,7 @@
   "next": "Next",
   "noConnectionTitle": "No internet connection.",
   "noConnectionMessage": "No internet connection.\nPlease check your network connection\n and try again.",
+  "done": "Done",
   "aboard": "Aboard",
   "@aboard": {},
   "about": "About",

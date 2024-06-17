@@ -24,7 +24,6 @@ class MyApp extends ConsumerWidget {
     ref.listen(onAuthStateChangedProvider, (previous, next) {
       next.whenData(
         (user) {
-          logger.d('[onAuthStateChangedProvider] $user');
           if (user?.emailVerified == true) {
           } else {
             logger.d('sendEmailVerification to email: ${user?.email}');

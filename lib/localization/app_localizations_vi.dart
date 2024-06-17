@@ -59,6 +59,9 @@ class AppLocalizationsVi extends AppLocalizations {
   String get noConnectionMessage => 'Không có kết nối mạng.\nVui lòng kiểm tra đường truyền của bạn\n và thử lại.';
 
   @override
+  String get done => 'Xong';
+
+  @override
   String get aboard => 'Aboard';
 
   @override

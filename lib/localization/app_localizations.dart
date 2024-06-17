@@ -189,6 +189,12 @@ abstract class AppLocalizations {
   /// **'No internet connection.\nPlease check your network connection\n and try again.'**
   String get noConnectionMessage;
 
+  /// No description provided for @done.
+  ///
+  /// In en, this message translates to:
+  /// **'Done'**
+  String get done;
+
   /// No description provided for @aboard.
   ///
   /// In en, this message translates to:

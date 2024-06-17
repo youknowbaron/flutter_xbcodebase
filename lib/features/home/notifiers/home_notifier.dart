@@ -15,4 +15,13 @@ class HomeNotifier extends _$HomeNotifier {
   Future<List<Collection>?> build() async {
     return (await _repository.getCollections()).mapToData();
   }
+
+  Future<bool> addNewCollection(String name) async {
+    final result = await _repository.createCollection(name);
+    final res = result.mapToData();
+    if (res == true) {
+      state = (await _repository.getCollections()).mapToAsyncValue();
+    }
+    return res == true;
+  }
 }

@@ -5,7 +5,6 @@ import 'package:memorise_vocabulary/bridges.dart';
 import 'package:memorise_vocabulary/core/loggers/logger.dart';
 import 'package:memorise_vocabulary/domain/base/api_failure.dart';
 
-import '../../domain/models/token_response.dart';
 import '../../domain/repositories/authentication_repository.dart';
 import '../../tunnels.dart';
 
@@ -43,12 +42,10 @@ class AuthenticationRepositoryImpl with DioBroker implements AuthenticationRepos
     logger.d(credential.toString());
     final accessToken = credential.credential?.accessToken;
     final refreshToken = credential.user?.refreshToken;
-    if (accessToken != null) {
-      await saveSession(accessToken, refreshToken);
-      await _settingsBox.put(PKeys.signInMethod, SignInMethod.google.name);
-      return true;
-    }
-    return false;
+
+    await saveSession(accessToken, refreshToken);
+    await _settingsBox.put(PKeys.signInMethod, SignInMethod.google.name);
+    return true;
   }
 
   @override
@@ -56,6 +53,7 @@ class AuthenticationRepositoryImpl with DioBroker implements AuthenticationRepos
       {required String name, required String email, required String password}) async {
     try {
       final result = await _auth.createUserWithEmailAndPassword(email: email, password: password);
+      result.user?.updateDisplayName(name);
       logger.d(result);
       return const ApiResult.data(true);
     } on FirebaseAuthException catch (e) {
@@ -88,23 +86,22 @@ class AuthenticationRepositoryImpl with DioBroker implements AuthenticationRepos
     }
   }
 
-  @override
-  Future<void> saveSession(String accessToken, String? refreshToken) async {
+  Future<void> saveSession(String? accessToken, String? refreshToken) async {
     await _secureStorage.write(key: kAccessTokenKey, value: accessToken);
     await _secureStorage.write(key: kRefreshTokenKey, value: refreshToken);
   }
 
   @override
   Future<bool> checkSession() async {
-    await Future.delayed(const Duration(milliseconds: 500));
-    final accessToken = await _secureStorage.read(key: kAccessTokenKey);
-    return accessToken != null && accessToken.isNotEmpty;
+    return _auth.currentUser != null && _auth.currentUser!.emailVerified == true;
   }
 
   @override
   Future<void> logOut() async {
     if (_settingsBox.get(PKeys.signInMethod) == SignInMethod.google.name) {
       await GoogleSignIn().signOut();
+    } else {
+      await _auth.signOut();
     }
     await _secureStorage.delete(key: kAccessTokenKey);
     await _secureStorage.delete(key: kRefreshTokenKey);

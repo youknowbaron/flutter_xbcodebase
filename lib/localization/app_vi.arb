@@ -39,6 +39,7 @@
   "next": "Tiếp theo",
   "noConnectionTitle": "Không có kết nối mạng",
   "noConnectionMessage": "Không có kết nối mạng.\nVui lòng kiểm tra đường truyền của bạn\n và thử lại.",
+  "done": "Xong",
   "aboard": "Aboard",
   "@aboard": {},
   "about": "Về chúng tôi",

@@ -59,6 +59,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get noConnectionMessage => 'No internet connection.\nPlease check your network connection\n and try again.';
 
   @override
+  String get done => 'Done';
+
+  @override
   String get aboard => 'Aboard';
 
   @override

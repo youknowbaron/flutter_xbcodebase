@@ -25,7 +25,6 @@ class SignUpPage extends HookConsumerWidget {
     final nameFocusNode = useFocusNode();
     final emailFocusNode = useFocusNode();
     final passwordFocusNode = useFocusNode();
-    final pickedImage = useValueNotifier<File?>(null);
     final nameErrorText = useValueNotifier<String?>(null);
     final emailErrorText = useValueNotifier<String?>(null);
     final passwordErrorText = useValueNotifier<String?>(null);
