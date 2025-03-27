@@ -1,27 +1,26 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'logger_intercepter.dart';
+part of 'search_notifier.dart';
 
 // **************************************************************************
 // RiverpodGenerator
 // **************************************************************************
 
-String _$loggerInterceptorHash() => r'5bd9106fa4641dbb8a03aa000174e3aad487a62f';
+String _$searchNotifierHash() => r'65f47ffbc5b325cf21888d00c59e116665b2ccea';
 
-/// See also [loggerInterceptor].
-@ProviderFor(loggerInterceptor)
-final loggerInterceptorProvider = Provider<LoggerInterceptor>.internal(
-  loggerInterceptor,
-  name: r'loggerInterceptorProvider',
+/// See also [SearchNotifier].
+@ProviderFor(SearchNotifier)
+final searchNotifierProvider = AutoDisposeAsyncNotifierProvider<SearchNotifier,
+    List<DictionaryWord>?>.internal(
+  SearchNotifier.new,
+  name: r'searchNotifierProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
       ? null
-      : _$loggerInterceptorHash,
+      : _$searchNotifierHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );
 
-@Deprecated('Will be removed in 3.0. Use Ref instead')
-// ignore: unused_element
-typedef LoggerInterceptorRef = ProviderRef<LoggerInterceptor>;
+typedef _$SearchNotifier = AutoDisposeAsyncNotifier<List<DictionaryWord>?>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

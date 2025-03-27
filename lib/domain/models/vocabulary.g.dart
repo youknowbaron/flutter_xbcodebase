@@ -1,23 +1,25 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'collection.dart';
+part of 'vocabulary.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$CollectionImpl _$$CollectionImplFromJson(Map<String, dynamic> json) =>
-    _$CollectionImpl(
+_$VocabularyImpl _$$VocabularyImplFromJson(Map<String, dynamic> json) =>
+    _$VocabularyImpl(
       id: json['id'] as String,
-      name: json['name'] as String,
+      word: json['word'] as String,
+      meaning: json['meaning'] as String,
       createdAt: _$JsonConverterFromJson<Timestamp, Timestamp>(
           json['createdAt'], const TimestampConverter().fromJson),
     );
 
-Map<String, dynamic> _$$CollectionImplToJson(_$CollectionImpl instance) =>
+Map<String, dynamic> _$$VocabularyImplToJson(_$VocabularyImpl instance) =>
     <String, dynamic>{
       'id': instance.id,
-      'name': instance.name,
+      'word': instance.word,
+      'meaning': instance.meaning,
       'createdAt': _$JsonConverterToJson<Timestamp, Timestamp>(
           instance.createdAt, const TimestampConverter().toJson),
     };

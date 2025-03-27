@@ -85,6 +85,9 @@ class _$ApiFailureCopyWithImpl<$Res, $Val extends ApiFailure>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  /// Create a copy of ApiFailure
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -101,6 +104,9 @@ class __$$NoConnectionImplCopyWithImpl<$Res>
   __$$NoConnectionImplCopyWithImpl(
       _$NoConnectionImpl _value, $Res Function(_$NoConnectionImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of ApiFailure
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -220,6 +226,8 @@ class __$$HttpErrorImplCopyWithImpl<$Res>
       _$HttpErrorImpl _value, $Res Function(_$HttpErrorImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of ApiFailure
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -267,7 +275,9 @@ class _$HttpErrorImpl extends _HttpError {
   @override
   int get hashCode => Object.hash(runtimeType, statusCode, message);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ApiFailure
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$HttpErrorImplCopyWith<_$HttpErrorImpl> get copyWith =>
@@ -356,7 +366,10 @@ abstract class _HttpError extends ApiFailure {
 
   int? get statusCode;
   String? get message;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of ApiFailure
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$HttpErrorImplCopyWith<_$HttpErrorImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -378,6 +391,8 @@ class __$$OtherErrorImplCopyWithImpl<$Res>
       _$OtherErrorImpl _value, $Res Function(_$OtherErrorImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of ApiFailure
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -432,7 +447,9 @@ class _$OtherErrorImpl extends _OtherError {
   int get hashCode => Object.hash(runtimeType, errorCode, message,
       const DeepCollectionEquality().hash(error));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ApiFailure
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$OtherErrorImplCopyWith<_$OtherErrorImpl> get copyWith =>
@@ -524,7 +541,10 @@ abstract class _OtherError extends ApiFailure {
   String? get errorCode;
   String? get message;
   Object? get error;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of ApiFailure
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$OtherErrorImplCopyWith<_$OtherErrorImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -543,6 +563,9 @@ class __$$UnknownErrorImplCopyWithImpl<$Res>
   __$$UnknownErrorImplCopyWithImpl(
       _$UnknownErrorImpl _value, $Res Function(_$UnknownErrorImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of ApiFailure
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc

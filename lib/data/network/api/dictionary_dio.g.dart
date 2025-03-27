@@ -1,29 +1,27 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'authentication_intercepter.dart';
+part of 'dictionary_dio.dart';
 
 // **************************************************************************
 // RiverpodGenerator
 // **************************************************************************
 
-String _$authenticationInterceptorHash() =>
-    r'be5251ebe6380284368e49225a57990772e72329';
+String _$dictionaryDioHash() => r'a9e3c2a913df5a167e5c189633f7c3236d807ee0';
 
-/// See also [authenticationInterceptor].
-@ProviderFor(authenticationInterceptor)
-final authenticationInterceptorProvider =
-    Provider<AuthenticationInterceptor>.internal(
-  authenticationInterceptor,
-  name: r'authenticationInterceptorProvider',
+/// See also [dictionaryDio].
+@ProviderFor(dictionaryDio)
+final dictionaryDioProvider = Provider<DictionaryDio>.internal(
+  dictionaryDio,
+  name: r'dictionaryDioProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
       ? null
-      : _$authenticationInterceptorHash,
+      : _$dictionaryDioHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );
 
 @Deprecated('Will be removed in 3.0. Use Ref instead')
 // ignore: unused_element
-typedef AuthenticationInterceptorRef = ProviderRef<AuthenticationInterceptor>;
+typedef DictionaryDioRef = ProviderRef<DictionaryDio>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

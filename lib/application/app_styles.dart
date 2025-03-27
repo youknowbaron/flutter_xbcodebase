@@ -17,7 +17,7 @@ class _AppColors {
   static const error = Color(0xFFB3261E);
 
   static const background = Color(0xFFFFFFFF);
-  static const surface = Color(0xFFE7E0EC);
+  static const surface = Color(0xFFFFFFFF);
 
   /// Equals to [context.colorScheme.onSurface]
   static const text = Color(0xFF000000);

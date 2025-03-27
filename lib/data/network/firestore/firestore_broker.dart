@@ -25,7 +25,7 @@ mixin FirestoreBroker {
   }
 
   // Wrapping data by user_id
-  Map<String, dynamic> wrapData(FirebaseAuth auth, Map<String, dynamic> data) {
+  Map<String, dynamic> wrapDataByUser(FirebaseAuth auth, Map<String, dynamic> data) {
     if (auth.currentUser?.uid == null) {
       throw AssertionError('userId == null');
     }

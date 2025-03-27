@@ -1,3 +1,4 @@
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:memorise_vocabulary/data/network/firestore/firestore_broker.dart';
 import 'package:memorise_vocabulary/data/network/firestore/firestore_constants.dart';
 import 'package:memorise_vocabulary/data/network/firestore/firestore_extensions.dart';
@@ -31,7 +32,7 @@ class CollectionRepositoryImpl with FirestoreBroker implements CollectionReposit
   @override
   Future<ApiResult<bool>> createCollection(String name) async {
     try {
-      final data = wrapData(
+      final data = wrapDataByUser(
         _auth,
         {
           'name': name,
@@ -46,6 +47,6 @@ class CollectionRepositoryImpl with FirestoreBroker implements CollectionReposit
 }
 
 @riverpod
-CollectionRepository collectionRepository(CollectionRepositoryRef ref) {
+CollectionRepository collectionRepository(Ref ref) {
   return CollectionRepositoryImpl(ref.read(firestoreProvider), ref.read(firebaseAuthProvider));
 }

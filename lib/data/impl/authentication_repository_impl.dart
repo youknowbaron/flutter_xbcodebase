@@ -1,7 +1,7 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import 'package:memorise_vocabulary/bridges.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:memorise_vocabulary/application/app_constants.dart';
 import 'package:memorise_vocabulary/core/loggers/logger.dart';
 import 'package:memorise_vocabulary/domain/base/api_failure.dart';
 
@@ -11,9 +11,8 @@ import '../../tunnels.dart';
 part 'authentication_repository_impl.g.dart';
 
 class AuthenticationRepositoryImpl with DioBroker implements AuthenticationRepository {
-  AuthenticationRepositoryImpl(this._dio, this._auth, this._secureStorage, this._settingsBox);
+  AuthenticationRepositoryImpl(this._auth, this._secureStorage, this._settingsBox);
 
-  final Dio _dio;
   final FirebaseAuth _auth;
   final FlutterSecureStorage _secureStorage;
   final Box _settingsBox;
@@ -109,9 +108,8 @@ class AuthenticationRepositoryImpl with DioBroker implements AuthenticationRepos
 }
 
 @riverpod
-AuthenticationRepository authenticationRepository(AuthenticationRepositoryRef ref) {
+AuthenticationRepository authenticationRepository(Ref ref) {
   return AuthenticationRepositoryImpl(
-    ref.read(basicDioProvider),
     ref.read(firebaseAuthProvider),
     ref.read(secureStorageProvider),
     ref.read(settingsBoxProvider),

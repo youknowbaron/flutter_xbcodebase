@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:memorise_vocabulary/common/extensions/loading.dart';
 import 'package:memorise_vocabulary/common/widgets/drawer_icon.dart';
 import 'package:memorise_vocabulary/common/widgets/pull_to_refresh.dart';
@@ -65,30 +66,23 @@ class HomePage extends HookConsumerWidget {
             },
             body: buildBody(context, state.value),
           ),
-          Builder(
-            builder: (context) => Row(
-              children: [
-                const Padding(
-                  padding: EdgeInsets.only(
-                    top: 8.0,
-                    left: 4.0,
-                  ),
-                  child: DrawerIconButton(),
-                ),
-                const Spacer(),
-                Padding(
-                  padding: const EdgeInsets.only(
-                    top: 8.0,
-                    right: 4.0,
-                  ),
-                  child: IconButton(
-                    icon: const Icon($icons.add),
-                    onPressed: addNewCollection,
-                  ),
-                ),
-              ],
-            ),
-          ),
+          PaddedRow(
+            padding: const EdgeInsets.only(top: 8),
+            children: [
+              DrawerIconButton(),
+              const Spacer(),
+              IconButton(
+                icon: const Icon($icons.add),
+                onPressed: addNewCollection,
+              ),
+              IconButton(
+                icon: const Icon($icons.search),
+                onPressed: () {
+                  GoStep.search.go(context);
+                },
+              ),
+            ],
+          )
         ],
       ),
     );

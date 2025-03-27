@@ -78,6 +78,9 @@ class _$ApiResultCopyWithImpl<T, $Res, $Val extends ApiResult<T>>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  /// Create a copy of ApiResult
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -97,6 +100,8 @@ class __$$NotModifiedImplCopyWithImpl<T, $Res>
       _$NotModifiedImpl<T> _value, $Res Function(_$NotModifiedImpl<T>) _then)
       : super(_value, _then);
 
+  /// Create a copy of ApiResult
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -136,7 +141,9 @@ class _$NotModifiedImpl<T> extends _NotModified<T> {
   int get hashCode =>
       Object.hash(runtimeType, const DeepCollectionEquality().hash(data));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ApiResult
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$NotModifiedImplCopyWith<T, _$NotModifiedImpl<T>> get copyWith =>
@@ -217,7 +224,10 @@ abstract class _NotModified<T> extends ApiResult<T> {
   const _NotModified._() : super._();
 
   T get data;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of ApiResult
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$NotModifiedImplCopyWith<T, _$NotModifiedImpl<T>> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -239,6 +249,8 @@ class __$$DataImplCopyWithImpl<T, $Res>
       _$DataImpl<T> _value, $Res Function(_$DataImpl<T>) _then)
       : super(_value, _then);
 
+  /// Create a copy of ApiResult
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -278,7 +290,9 @@ class _$DataImpl<T> extends _Data<T> {
   int get hashCode =>
       Object.hash(runtimeType, const DeepCollectionEquality().hash(data));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ApiResult
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$DataImplCopyWith<T, _$DataImpl<T>> get copyWith =>
@@ -358,7 +372,10 @@ abstract class _Data<T> extends ApiResult<T> {
   const _Data._() : super._();
 
   T get data;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of ApiResult
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$DataImplCopyWith<T, _$DataImpl<T>> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -382,6 +399,8 @@ class __$$FailureImplCopyWithImpl<T, $Res>
       _$FailureImpl<T> _value, $Res Function(_$FailureImpl<T>) _then)
       : super(_value, _then);
 
+  /// Create a copy of ApiResult
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -395,6 +414,8 @@ class __$$FailureImplCopyWithImpl<T, $Res>
     ));
   }
 
+  /// Create a copy of ApiResult
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ApiFailureCopyWith<$Res>? get failure {
@@ -432,7 +453,9 @@ class _$FailureImpl<T> extends _Failure<T> {
   @override
   int get hashCode => Object.hash(runtimeType, failure);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ApiResult
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$FailureImplCopyWith<T, _$FailureImpl<T>> get copyWith =>
@@ -512,7 +535,10 @@ abstract class _Failure<T> extends ApiResult<T> {
   const _Failure._() : super._();
 
   ApiFailure? get failure;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of ApiResult
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$FailureImplCopyWith<T, _$FailureImpl<T>> get copyWith =>
       throw _privateConstructorUsedError;
 }
