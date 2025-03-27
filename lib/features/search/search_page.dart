@@ -1,5 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:memorise_vocabulary/bridges.dart';
 
 class SearchPage extends HookConsumerWidget {
   const SearchPage({super.key});
@@ -10,7 +9,7 @@ class SearchPage extends HookConsumerWidget {
       body: Center(
         child: Text(
           'Search Page',
-          style: Theme.of(context).textTheme.headline1,
+          style: context.textTheme.headlineMedium,
         ),
       ),
     );

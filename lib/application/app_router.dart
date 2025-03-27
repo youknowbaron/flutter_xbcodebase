@@ -6,8 +6,6 @@ import 'package:path/path.dart';
 import '../core/loggers/navigator_logger.dart';
 import '../features/auth/pages/login_page.dart';
 import '../features/dashboard_page.dart';
-import '../features/home/pages/after_media_details_page.dart';
-import '../features/home/pages/media_details_page.dart';
 import '../features/search/search_page.dart';
 import '../features/settings/settings_page.dart';
 import '../features/splash/splash_page.dart';
@@ -22,7 +20,6 @@ final appRouter = GoRouter(
     AppRoute(GoStep.login),
     AppRoute(GoStep.home),
     AppRoute(GoStep.chart, root: true),
-    AppRoute(GoStep.mediaDetails, root: true),
   ],
 );
 
@@ -45,8 +42,6 @@ enum GoStep {
   signup('signUp'),
   search('search'),
   settings('settings'),
-  mediaDetails('media/:mid'),
-  afterMediaDetails('after_media_details'),
   chart('charts/:cid');
 
   final String path;
@@ -63,10 +58,6 @@ enum GoStep {
           },
         search => (context, state) => const SearchPage(),
         settings => (context, state) => const SettingsPage(),
-        mediaDetails => (context, state) =>
-            MediaDetailsPage(mediaId: int.parse(state.pathParameters['mid']!)),
-        afterMediaDetails => (context, state) =>
-            AfterMediaDetailsPage(id: state.pathParameters['mid']!),
         chart => (context, state) => DetailChartPage(int.parse(state.pathParameters['cid']!)),
       };
 
@@ -76,8 +67,7 @@ enum GoStep {
   /// (if page A is a child of page B, it can't be the parent of page B).
   Set<GoStep>? get children => switch (this) {
         login => {signup},
-        home => {search, settings, mediaDetails, chart},
-        mediaDetails => {afterMediaDetails, chart},
+        home => {search, settings, chart},
         _ => null,
       };
 

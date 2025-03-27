@@ -1,6 +1,5 @@
 import 'package:memorise_vocabulary/data/impl/collection_repository_impl.dart';
 import 'package:memorise_vocabulary/domain/models/collection.dart';
-import 'package:memorise_vocabulary/domain/models/home_data.dart';
 import 'package:memorise_vocabulary/domain/repositories/collection_repository.dart';
 
 import '../../../tunnels.dart';

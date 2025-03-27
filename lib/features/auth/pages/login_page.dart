@@ -1,11 +1,7 @@
 import 'package:flutter/foundation.dart';
-import 'package:google_sign_in/google_sign_in.dart';
 import 'package:memorise_vocabulary/bridges.dart';
 import 'package:memorise_vocabulary/common/extensions/loading.dart';
-import 'package:memorise_vocabulary/core/loggers/logger.dart';
 import 'package:memorise_vocabulary/features/auth/notifiers/authentication_notifier.dart';
-
-import '../../../common/widgets/common_input.dart';
 
 class LoginPage extends HookConsumerWidget {
   const LoginPage({super.key});

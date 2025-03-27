@@ -93,7 +93,7 @@ class SettingsPage extends HookConsumerWidget {
                     value: appSettings.locale?.languageCode,
                     style: TextStyle(
                       fontSize: 12,
-                      color: Theme.of(context).textTheme.bodyText1!.color,
+                      color: context.textTheme.bodyMedium?.color,
                     ),
                     underline: const SizedBox(),
                     onChanged: (String? newValue) {
