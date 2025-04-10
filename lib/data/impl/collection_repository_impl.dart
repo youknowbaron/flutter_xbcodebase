@@ -23,7 +23,7 @@ class CollectionRepositoryImpl with FirestoreBroker implements CollectionReposit
         .where('user_id', isEqualTo: _auth.currentUser!.uid)
         .orderBy('created_at')
         .get();
-    return mapResponseToResult(
+    return mapQuerySnapshotToResult(
       call,
       converter: (data) => data.map((e) => Collection.fromJson(e.dataWithId)).toList(),
     );

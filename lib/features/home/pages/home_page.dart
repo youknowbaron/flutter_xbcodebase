@@ -43,11 +43,22 @@ class HomePage extends HookConsumerWidget {
         child: ListView.builder(
           itemCount: collections.length,
           padding: const EdgeInsets.fromLTRB(16, 16, 16, 16),
-          itemBuilder: (context, index) => Card(
-            child: Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: Text(
-                collections[index].name,
+          itemBuilder: (context, index) => Padding(
+            padding: const EdgeInsets.only(bottom: 16.0),
+            child: Card(
+              elevation: 2,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(12),
+              ),
+              child: Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: Text(
+                  collections[index].name,
+                  style: const TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
               ),
             ),
           ),

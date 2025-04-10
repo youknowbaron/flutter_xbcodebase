@@ -5,6 +5,7 @@ export 'package:hive/hive.dart';
 
 // ignore: invalid_export_of_internal_element
 export 'package:riverpod_annotation/riverpod_annotation.dart';
+export 'package:hooks_riverpod/hooks_riverpod.dart';
 
 export 'package:cloud_firestore/cloud_firestore.dart';
 export 'package:firebase_auth/firebase_auth.dart';

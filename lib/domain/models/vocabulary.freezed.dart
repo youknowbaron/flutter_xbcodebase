@@ -23,8 +23,12 @@ mixin _$Vocabulary {
   String get id => throw _privateConstructorUsedError;
   String get word => throw _privateConstructorUsedError;
   String get meaning => throw _privateConstructorUsedError;
+  String? get collectionId => throw _privateConstructorUsedError;
   @TimestampConverter()
   Timestamp? get createdAt => throw _privateConstructorUsedError;
+  int get wrongAnswerCount =>
+      throw _privateConstructorUsedError; // New field: Number of wrong answers
+  int get correctAnswerCount => throw _privateConstructorUsedError;
 
   /// Serializes this Vocabulary to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -46,7 +50,10 @@ abstract class $VocabularyCopyWith<$Res> {
       {String id,
       String word,
       String meaning,
-      @TimestampConverter() Timestamp? createdAt});
+      String? collectionId,
+      @TimestampConverter() Timestamp? createdAt,
+      int wrongAnswerCount,
+      int correctAnswerCount});
 }
 
 /// @nodoc
@@ -67,7 +74,10 @@ class _$VocabularyCopyWithImpl<$Res, $Val extends Vocabulary>
     Object? id = null,
     Object? word = null,
     Object? meaning = null,
+    Object? collectionId = freezed,
     Object? createdAt = freezed,
+    Object? wrongAnswerCount = null,
+    Object? correctAnswerCount = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -82,10 +92,22 @@ class _$VocabularyCopyWithImpl<$Res, $Val extends Vocabulary>
           ? _value.meaning
           : meaning // ignore: cast_nullable_to_non_nullable
               as String,
+      collectionId: freezed == collectionId
+          ? _value.collectionId
+          : collectionId // ignore: cast_nullable_to_non_nullable
+              as String?,
       createdAt: freezed == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
               as Timestamp?,
+      wrongAnswerCount: null == wrongAnswerCount
+          ? _value.wrongAnswerCount
+          : wrongAnswerCount // ignore: cast_nullable_to_non_nullable
+              as int,
+      correctAnswerCount: null == correctAnswerCount
+          ? _value.correctAnswerCount
+          : correctAnswerCount // ignore: cast_nullable_to_non_nullable
+              as int,
     ) as $Val);
   }
 }
@@ -102,7 +124,10 @@ abstract class _$$VocabularyImplCopyWith<$Res>
       {String id,
       String word,
       String meaning,
-      @TimestampConverter() Timestamp? createdAt});
+      String? collectionId,
+      @TimestampConverter() Timestamp? createdAt,
+      int wrongAnswerCount,
+      int correctAnswerCount});
 }
 
 /// @nodoc
@@ -121,7 +146,10 @@ class __$$VocabularyImplCopyWithImpl<$Res>
     Object? id = null,
     Object? word = null,
     Object? meaning = null,
+    Object? collectionId = freezed,
     Object? createdAt = freezed,
+    Object? wrongAnswerCount = null,
+    Object? correctAnswerCount = null,
   }) {
     return _then(_$VocabularyImpl(
       id: null == id
@@ -136,10 +164,22 @@ class __$$VocabularyImplCopyWithImpl<$Res>
           ? _value.meaning
           : meaning // ignore: cast_nullable_to_non_nullable
               as String,
+      collectionId: freezed == collectionId
+          ? _value.collectionId
+          : collectionId // ignore: cast_nullable_to_non_nullable
+              as String?,
       createdAt: freezed == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
               as Timestamp?,
+      wrongAnswerCount: null == wrongAnswerCount
+          ? _value.wrongAnswerCount
+          : wrongAnswerCount // ignore: cast_nullable_to_non_nullable
+              as int,
+      correctAnswerCount: null == correctAnswerCount
+          ? _value.correctAnswerCount
+          : correctAnswerCount // ignore: cast_nullable_to_non_nullable
+              as int,
     ));
   }
 }
@@ -151,7 +191,10 @@ class _$VocabularyImpl extends _Vocabulary {
       {required this.id,
       required this.word,
       required this.meaning,
-      @TimestampConverter() this.createdAt})
+      this.collectionId,
+      @TimestampConverter() this.createdAt,
+      this.wrongAnswerCount = 0,
+      this.correctAnswerCount = 0})
       : super._();
 
   factory _$VocabularyImpl.fromJson(Map<String, dynamic> json) =>
@@ -164,12 +207,21 @@ class _$VocabularyImpl extends _Vocabulary {
   @override
   final String meaning;
   @override
+  final String? collectionId;
+  @override
   @TimestampConverter()
   final Timestamp? createdAt;
+  @override
+  @JsonKey()
+  final int wrongAnswerCount;
+// New field: Number of wrong answers
+  @override
+  @JsonKey()
+  final int correctAnswerCount;
 
   @override
   String toString() {
-    return 'Vocabulary(id: $id, word: $word, meaning: $meaning, createdAt: $createdAt)';
+    return 'Vocabulary(id: $id, word: $word, meaning: $meaning, collectionId: $collectionId, createdAt: $createdAt, wrongAnswerCount: $wrongAnswerCount, correctAnswerCount: $correctAnswerCount)';
   }
 
   @override
@@ -180,13 +232,20 @@ class _$VocabularyImpl extends _Vocabulary {
             (identical(other.id, id) || other.id == id) &&
             (identical(other.word, word) || other.word == word) &&
             (identical(other.meaning, meaning) || other.meaning == meaning) &&
+            (identical(other.collectionId, collectionId) ||
+                other.collectionId == collectionId) &&
             (identical(other.createdAt, createdAt) ||
-                other.createdAt == createdAt));
+                other.createdAt == createdAt) &&
+            (identical(other.wrongAnswerCount, wrongAnswerCount) ||
+                other.wrongAnswerCount == wrongAnswerCount) &&
+            (identical(other.correctAnswerCount, correctAnswerCount) ||
+                other.correctAnswerCount == correctAnswerCount));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, id, word, meaning, createdAt);
+  int get hashCode => Object.hash(runtimeType, id, word, meaning, collectionId,
+      createdAt, wrongAnswerCount, correctAnswerCount);
 
   /// Create a copy of Vocabulary
   /// with the given fields replaced by the non-null parameter values.
@@ -209,7 +268,10 @@ abstract class _Vocabulary extends Vocabulary {
       {required final String id,
       required final String word,
       required final String meaning,
-      @TimestampConverter() final Timestamp? createdAt}) = _$VocabularyImpl;
+      final String? collectionId,
+      @TimestampConverter() final Timestamp? createdAt,
+      final int wrongAnswerCount,
+      final int correctAnswerCount}) = _$VocabularyImpl;
   _Vocabulary._() : super._();
 
   factory _Vocabulary.fromJson(Map<String, dynamic> json) =
@@ -222,8 +284,14 @@ abstract class _Vocabulary extends Vocabulary {
   @override
   String get meaning;
   @override
+  String? get collectionId;
+  @override
   @TimestampConverter()
   Timestamp? get createdAt;
+  @override
+  int get wrongAnswerCount; // New field: Number of wrong answers
+  @override
+  int get correctAnswerCount;
 
   /// Create a copy of Vocabulary
   /// with the given fields replaced by the non-null parameter values.
