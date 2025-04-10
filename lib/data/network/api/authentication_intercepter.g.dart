@@ -7,7 +7,7 @@ part of 'authentication_intercepter.dart';
 // **************************************************************************
 
 String _$authenticationInterceptorHash() =>
-    r'f489394829a37bb8b69dc574b68612c2e1efe0fb';
+    r'be5251ebe6380284368e49225a57990772e72329';
 
 /// See also [authenticationInterceptor].
 @ProviderFor(authenticationInterceptor)
@@ -22,6 +22,8 @@ final authenticationInterceptorProvider =
   allTransitiveDependencies: null,
 );
 
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
 typedef AuthenticationInterceptorRef = ProviderRef<AuthenticationInterceptor>;
 // ignore_for_file: type=lint
-// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member
+// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

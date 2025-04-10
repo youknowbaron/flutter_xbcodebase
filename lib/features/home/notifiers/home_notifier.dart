@@ -1,17 +1,26 @@
-import 'package:xbcodebase/domain/models/home_data.dart';
-import 'package:xbcodebase/domain/repositories/song_repository.dart';
+import 'package:memorise_vocabulary/data/impl/collection_repository_impl.dart';
+import 'package:memorise_vocabulary/domain/models/collection.dart';
+import 'package:memorise_vocabulary/domain/repositories/collection_repository.dart';
 
-import '../../../data/impl/song_repository_impl.dart';
 import '../../../tunnels.dart';
 
 part 'home_notifier.g.dart';
 
 @riverpod
 class HomeNotifier extends _$HomeNotifier {
-  SongRepository get _repository => ref.read(songRepositoryProvider);
+  CollectionRepository get _repository => ref.read(collectionRepositoryProvider);
 
   @override
-  FutureOr<HomeData?> build() async {
-    return (await _repository.getHomePageData()).mapToData();
+  Future<List<Collection>?> build() async {
+    return (await _repository.getCollections()).mapToData();
+  }
+
+  Future<bool> addNewCollection(String name) async {
+    final result = await _repository.createCollection(name);
+    final res = result.mapToData();
+    if (res == true) {
+      state = (await _repository.getCollections()).mapToAsyncValue();
+    }
+    return res == true;
   }
 }

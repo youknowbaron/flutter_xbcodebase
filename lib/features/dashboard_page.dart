@@ -2,11 +2,11 @@ import 'dart:io';
 
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
-import 'package:xbcodebase/common/widgets/no_app_bar.dart';
-import 'package:xbcodebase/features/home/pages/home_page.dart';
-import 'package:xbcodebase/features/library_page.dart';
-import 'package:xbcodebase/features/top_charts/top_charts_page.dart';
-import 'package:xbcodebase/features/youtube_page.dart';
+import 'package:memorise_vocabulary/common/widgets/no_app_bar.dart';
+import 'package:memorise_vocabulary/features/home/pages/home_page.dart';
+import 'package:memorise_vocabulary/features/library_page.dart';
+import 'package:memorise_vocabulary/features/top_charts/top_charts_page.dart';
+import 'package:memorise_vocabulary/features/youtube_page.dart';
 
 import '../bridges.dart';
 
@@ -100,8 +100,7 @@ class DashboardPage extends HookWidget {
                         color: Theme.of(context).colorScheme.secondary,
                       ),
                     ),
-                    contentPadding:
-                        const EdgeInsets.symmetric(horizontal: 20.0),
+                    contentPadding: const EdgeInsets.symmetric(horizontal: 20.0),
                     leading: Icon(
                       Icons.home_rounded,
                       color: Theme.of(context).colorScheme.secondary,
@@ -114,8 +113,7 @@ class DashboardPage extends HookWidget {
                   if (Platform.isAndroid)
                     ListTile(
                       title: Text($strings.myMusic),
-                      contentPadding:
-                          const EdgeInsets.symmetric(horizontal: 20.0),
+                      contentPadding: const EdgeInsets.symmetric(horizontal: 20.0),
                       leading: Icon(
                         MdiIcons.folderMusic,
                         color: Theme.of(context).iconTheme.color,
@@ -134,8 +132,7 @@ class DashboardPage extends HookWidget {
                     ),
                   ListTile(
                     title: Text($strings.downs),
-                    contentPadding:
-                        const EdgeInsets.symmetric(horizontal: 20.0),
+                    contentPadding: const EdgeInsets.symmetric(horizontal: 20.0),
                     leading: Icon(
                       Icons.download_done_rounded,
                       color: Theme.of(context).iconTheme.color,
@@ -147,8 +144,7 @@ class DashboardPage extends HookWidget {
                   ),
                   ListTile(
                     title: Text($strings.playlists),
-                    contentPadding:
-                        const EdgeInsets.symmetric(horizontal: 20.0),
+                    contentPadding: const EdgeInsets.symmetric(horizontal: 20.0),
                     leading: Icon(
                       Icons.playlist_play_rounded,
                       color: Theme.of(context).iconTheme.color,
@@ -160,8 +156,7 @@ class DashboardPage extends HookWidget {
                   ),
                   ListTile(
                     title: Text($strings.settings),
-                    contentPadding:
-                        const EdgeInsets.symmetric(horizontal: 20.0),
+                    contentPadding: const EdgeInsets.symmetric(horizontal: 20.0),
                     leading: Icon(
                       Icons.settings_rounded, // miscellaneous_services_rounded,
                       color: Theme.of(context).iconTheme.color,
@@ -173,8 +168,7 @@ class DashboardPage extends HookWidget {
                   ),
                   ListTile(
                     title: Text($strings.about),
-                    contentPadding:
-                        const EdgeInsets.symmetric(horizontal: 20.0),
+                    contentPadding: const EdgeInsets.symmetric(horizontal: 20.0),
                     leading: Icon(
                       Icons.info_outline_rounded,
                       color: Theme.of(context).iconTheme.color,

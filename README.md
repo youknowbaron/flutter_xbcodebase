@@ -1,4 +1,4 @@
-# xbcodebase
+# Vocabulify
 
 A codebase for Flutter projects uses Riverpod for the state management, adopts Clean Architecture.
 

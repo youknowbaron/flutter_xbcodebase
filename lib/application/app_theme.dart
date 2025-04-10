@@ -1,33 +1,70 @@
-import 'package:xbcodebase/bridges.dart';
+import 'package:memorise_vocabulary/bridges.dart';
 
 class AppTheme {
-  static ThemeData lightTheme(BuildContext context) => ThemeData(
+  static ThemeData get lightTheme => ThemeData(
         // primarySwatch: Colors.deepOrange,
         brightness: Brightness.light,
         useMaterial3: true,
+        // fontFamily: FontFamily.notosansJP,
         colorScheme: const ColorScheme(
           brightness: Brightness.light,
           primary: $colors.primary,
-          onPrimary: $colors.text,
+          onPrimary: $colors.surface,
           secondary: $colors.secondary,
-          onSecondary: $colors.text,
+          onSecondary: $colors.surface,
           error: $colors.error,
-          onError: $colors.text,
-          background: $colors.background,
-          onBackground: $colors.text,
+          onError: $colors.surface,
           surface: $colors.surface,
           onSurface: $colors.text,
+          onSurfaceVariant: $colors.secondaryText,
+          outline: $colors.border,
+          outlineVariant: $colors.divider,
         ),
-        appBarTheme: const AppBarTheme(
-          elevation: 0,
-          color: Colors.transparent,
+        appBarTheme: AppBarTheme(
+          elevation: 5,
+          shadowColor: Colors.black12,
+          backgroundColor: $colors.background,
+          surfaceTintColor: $colors.background,
+        ),
+        textTheme: const TextTheme(
+          titleLarge: TextStyle(fontWeight: FontWeight.bold),
+        ),
+        elevatedButtonTheme: ElevatedButtonThemeData(
+          style: ElevatedButton.styleFrom(
+            backgroundColor: $colors.primary,
+            foregroundColor: Colors.white,
+            textStyle: const TextStyle(
+              fontWeight: FontWeight.bold,
+              fontSize: 16,
+            ),
+          ),
+        ),
+        textButtonTheme: TextButtonThemeData(
+          style: TextButton.styleFrom(
+            foregroundColor: $colors.secondary,
+            textStyle: const TextStyle(
+              fontWeight: FontWeight.bold,
+              fontSize: 14,
+            ),
+          ),
+        ),
+        outlinedButtonTheme: OutlinedButtonThemeData(
+          style: OutlinedButton.styleFrom(
+            foregroundColor: $colors.primary,
+            textStyle: const TextStyle(fontWeight: FontWeight.bold),
+            side: const BorderSide(color: $colors.primary),
+          ),
         ),
       );
 
-  static ThemeData darkTheme(BuildContext context) => ThemeData(
+  static ThemeData get darkTheme => ThemeData(
         // primarySwatch: Colors.deepPurple,
+
+        // this line may make dark theme look better
+        applyElevationOverlayColor: true,
         brightness: Brightness.dark,
         useMaterial3: true,
+        // fontFamily: FontFamily.notosansJP,
         colorScheme: const ColorScheme(
           brightness: Brightness.dark,
           primary: $colors.dprimary,
@@ -36,14 +73,46 @@ class AppTheme {
           onSecondary: $colors.dtext,
           error: $colors.derror,
           onError: $colors.dtext,
-          background: $colors.dbackground,
-          onBackground: $colors.dtext,
           surface: $colors.dsurface,
           onSurface: $colors.dtext,
+          onSurfaceVariant: $colors.dsecondaryText,
+          outline: $colors.dborder,
+          outlineVariant: $colors.ddivider,
         ),
-        appBarTheme: const AppBarTheme(
-          elevation: 0,
-          color: Colors.transparent,
+        appBarTheme: AppBarTheme(
+          elevation: 5,
+          backgroundColor: $colors.dbackground,
+          surfaceTintColor: $colors.dbackground,
+          shadowColor: Colors.white12,
+        ),
+        textTheme: const TextTheme(
+          titleLarge: TextStyle(fontWeight: FontWeight.bold),
+        ),
+        elevatedButtonTheme: ElevatedButtonThemeData(
+          style: ElevatedButton.styleFrom(
+            backgroundColor: $colors.primary,
+            foregroundColor: Colors.white,
+            textStyle: const TextStyle(
+              fontWeight: FontWeight.bold,
+              fontSize: 16,
+            ),
+          ),
+        ),
+        textButtonTheme: TextButtonThemeData(
+          style: TextButton.styleFrom(
+            foregroundColor: $colors.secondary,
+            textStyle: const TextStyle(
+              fontWeight: FontWeight.bold,
+              fontSize: 14,
+            ),
+          ),
+        ),
+        outlinedButtonTheme: OutlinedButtonThemeData(
+          style: OutlinedButton.styleFrom(
+            foregroundColor: $colors.primary,
+            textStyle: const TextStyle(fontWeight: FontWeight.bold),
+            side: const BorderSide(color: $colors.primary),
+          ),
         ),
       );
 }

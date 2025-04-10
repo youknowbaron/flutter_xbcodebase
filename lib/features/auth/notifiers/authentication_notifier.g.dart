@@ -7,7 +7,7 @@ part of 'authentication_notifier.dart';
 // **************************************************************************
 
 String _$authenticationNotifierHash() =>
-    r'ac1383025a700910cde4eb6bd37b0dabdd00e0f4';
+    r'4ee4b54fbea8e3c556dff05b81de78483a01e36c';
 
 /// See also [AuthenticationNotifier].
 @ProviderFor(AuthenticationNotifier)
@@ -24,4 +24,4 @@ final authenticationNotifierProvider =
 
 typedef _$AuthenticationNotifier = AutoDisposeAsyncNotifier<dynamic>;
 // ignore_for_file: type=lint
-// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member
+// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

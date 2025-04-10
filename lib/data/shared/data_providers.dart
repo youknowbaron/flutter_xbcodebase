@@ -1,4 +1,6 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dio/dio.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -41,13 +43,11 @@ final basicDioProvider = Provider<Dio>((ref) {
 
 final goodBoyDioProvider = Provider<Dio>((ref) {
   final dio = Dio();
-  final authenticationInterceptor =
-      ref.watch(authenticationInterceptorProvider);
+  final authenticationInterceptor = ref.watch(authenticationInterceptorProvider);
   final dioLoggerInterceptor = ref.read(loggerInterceptorProvider);
   dio
     ..options = ref.read(_baseOptions)
-    ..options.validateStatus =
-        ((status) => status != null && status >= 200 && status < 400)
+    ..options.validateStatus = ((status) => status != null && status >= 200 && status < 400)
     ..interceptors.addAll(
       [
         authenticationInterceptor,
@@ -58,7 +58,14 @@ final goodBoyDioProvider = Provider<Dio>((ref) {
   return dio;
 });
 
-final storageProvider = Provider<FlutterSecureStorage>(
+final firestoreProvider = Provider<FirebaseFirestore>((ref) => FirebaseFirestore.instance);
+final firebaseAuthProvider = Provider<FirebaseAuth>((ref) => FirebaseAuth.instance);
+
+final onAuthStateChangedProvider = StreamProvider(
+  (ref) => FirebaseAuth.instance.authStateChanges(),
+);
+
+final secureStorageProvider = Provider<FlutterSecureStorage>(
   (ref) => const FlutterSecureStorage(
     aOptions: AndroidOptions(encryptedSharedPreferences: true),
   ),

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:xbcodebase/application/app_locale.dart';
+import 'package:memorise_vocabulary/application/app_locale.dart';
 
 import '../../tunnels.dart';
 import '../app_constants.dart';

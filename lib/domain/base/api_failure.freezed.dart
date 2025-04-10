@@ -20,24 +20,25 @@ mixin _$ApiFailure {
   TResult when<TResult extends Object?>({
     required TResult Function() noConnection,
     required TResult Function(int? statusCode, String? message) http,
-    required TResult Function(String? errorCode, String? message) parse,
-    required TResult Function(String? errorCode, String? message) unknown,
+    required TResult Function(String? errorCode, String? message, Object? error)
+        other,
+    required TResult Function() unknown,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? noConnection,
     TResult? Function(int? statusCode, String? message)? http,
-    TResult? Function(String? errorCode, String? message)? parse,
-    TResult? Function(String? errorCode, String? message)? unknown,
+    TResult? Function(String? errorCode, String? message, Object? error)? other,
+    TResult? Function()? unknown,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? noConnection,
     TResult Function(int? statusCode, String? message)? http,
-    TResult Function(String? errorCode, String? message)? parse,
-    TResult Function(String? errorCode, String? message)? unknown,
+    TResult Function(String? errorCode, String? message, Object? error)? other,
+    TResult Function()? unknown,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -45,24 +46,24 @@ mixin _$ApiFailure {
   TResult map<TResult extends Object?>({
     required TResult Function(_NoConnection value) noConnection,
     required TResult Function(_HttpError value) http,
-    required TResult Function(_ParseError value) parse,
-    required TResult Function(_Unknown value) unknown,
+    required TResult Function(_OtherError value) other,
+    required TResult Function(_UnknownError value) unknown,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_NoConnection value)? noConnection,
     TResult? Function(_HttpError value)? http,
-    TResult? Function(_ParseError value)? parse,
-    TResult? Function(_Unknown value)? unknown,
+    TResult? Function(_OtherError value)? other,
+    TResult? Function(_UnknownError value)? unknown,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_NoConnection value)? noConnection,
     TResult Function(_HttpError value)? http,
-    TResult Function(_ParseError value)? parse,
-    TResult Function(_Unknown value)? unknown,
+    TResult Function(_OtherError value)? other,
+    TResult Function(_UnknownError value)? unknown,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -84,6 +85,9 @@ class _$ApiFailureCopyWithImpl<$Res, $Val extends ApiFailure>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  /// Create a copy of ApiFailure
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -100,6 +104,9 @@ class __$$NoConnectionImplCopyWithImpl<$Res>
   __$$NoConnectionImplCopyWithImpl(
       _$NoConnectionImpl _value, $Res Function(_$NoConnectionImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of ApiFailure
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -126,8 +133,9 @@ class _$NoConnectionImpl extends _NoConnection {
   TResult when<TResult extends Object?>({
     required TResult Function() noConnection,
     required TResult Function(int? statusCode, String? message) http,
-    required TResult Function(String? errorCode, String? message) parse,
-    required TResult Function(String? errorCode, String? message) unknown,
+    required TResult Function(String? errorCode, String? message, Object? error)
+        other,
+    required TResult Function() unknown,
   }) {
     return noConnection();
   }
@@ -137,8 +145,8 @@ class _$NoConnectionImpl extends _NoConnection {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? noConnection,
     TResult? Function(int? statusCode, String? message)? http,
-    TResult? Function(String? errorCode, String? message)? parse,
-    TResult? Function(String? errorCode, String? message)? unknown,
+    TResult? Function(String? errorCode, String? message, Object? error)? other,
+    TResult? Function()? unknown,
   }) {
     return noConnection?.call();
   }
@@ -148,8 +156,8 @@ class _$NoConnectionImpl extends _NoConnection {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? noConnection,
     TResult Function(int? statusCode, String? message)? http,
-    TResult Function(String? errorCode, String? message)? parse,
-    TResult Function(String? errorCode, String? message)? unknown,
+    TResult Function(String? errorCode, String? message, Object? error)? other,
+    TResult Function()? unknown,
     required TResult orElse(),
   }) {
     if (noConnection != null) {
@@ -163,8 +171,8 @@ class _$NoConnectionImpl extends _NoConnection {
   TResult map<TResult extends Object?>({
     required TResult Function(_NoConnection value) noConnection,
     required TResult Function(_HttpError value) http,
-    required TResult Function(_ParseError value) parse,
-    required TResult Function(_Unknown value) unknown,
+    required TResult Function(_OtherError value) other,
+    required TResult Function(_UnknownError value) unknown,
   }) {
     return noConnection(this);
   }
@@ -174,8 +182,8 @@ class _$NoConnectionImpl extends _NoConnection {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_NoConnection value)? noConnection,
     TResult? Function(_HttpError value)? http,
-    TResult? Function(_ParseError value)? parse,
-    TResult? Function(_Unknown value)? unknown,
+    TResult? Function(_OtherError value)? other,
+    TResult? Function(_UnknownError value)? unknown,
   }) {
     return noConnection?.call(this);
   }
@@ -185,8 +193,8 @@ class _$NoConnectionImpl extends _NoConnection {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_NoConnection value)? noConnection,
     TResult Function(_HttpError value)? http,
-    TResult Function(_ParseError value)? parse,
-    TResult Function(_Unknown value)? unknown,
+    TResult Function(_OtherError value)? other,
+    TResult Function(_UnknownError value)? unknown,
     required TResult orElse(),
   }) {
     if (noConnection != null) {
@@ -218,6 +226,8 @@ class __$$HttpErrorImplCopyWithImpl<$Res>
       _$HttpErrorImpl _value, $Res Function(_$HttpErrorImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of ApiFailure
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -265,7 +275,9 @@ class _$HttpErrorImpl extends _HttpError {
   @override
   int get hashCode => Object.hash(runtimeType, statusCode, message);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ApiFailure
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$HttpErrorImplCopyWith<_$HttpErrorImpl> get copyWith =>
@@ -276,8 +288,9 @@ class _$HttpErrorImpl extends _HttpError {
   TResult when<TResult extends Object?>({
     required TResult Function() noConnection,
     required TResult Function(int? statusCode, String? message) http,
-    required TResult Function(String? errorCode, String? message) parse,
-    required TResult Function(String? errorCode, String? message) unknown,
+    required TResult Function(String? errorCode, String? message, Object? error)
+        other,
+    required TResult Function() unknown,
   }) {
     return http(statusCode, message);
   }
@@ -287,8 +300,8 @@ class _$HttpErrorImpl extends _HttpError {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? noConnection,
     TResult? Function(int? statusCode, String? message)? http,
-    TResult? Function(String? errorCode, String? message)? parse,
-    TResult? Function(String? errorCode, String? message)? unknown,
+    TResult? Function(String? errorCode, String? message, Object? error)? other,
+    TResult? Function()? unknown,
   }) {
     return http?.call(statusCode, message);
   }
@@ -298,8 +311,8 @@ class _$HttpErrorImpl extends _HttpError {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? noConnection,
     TResult Function(int? statusCode, String? message)? http,
-    TResult Function(String? errorCode, String? message)? parse,
-    TResult Function(String? errorCode, String? message)? unknown,
+    TResult Function(String? errorCode, String? message, Object? error)? other,
+    TResult Function()? unknown,
     required TResult orElse(),
   }) {
     if (http != null) {
@@ -313,8 +326,8 @@ class _$HttpErrorImpl extends _HttpError {
   TResult map<TResult extends Object?>({
     required TResult Function(_NoConnection value) noConnection,
     required TResult Function(_HttpError value) http,
-    required TResult Function(_ParseError value) parse,
-    required TResult Function(_Unknown value) unknown,
+    required TResult Function(_OtherError value) other,
+    required TResult Function(_UnknownError value) unknown,
   }) {
     return http(this);
   }
@@ -324,8 +337,8 @@ class _$HttpErrorImpl extends _HttpError {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_NoConnection value)? noConnection,
     TResult? Function(_HttpError value)? http,
-    TResult? Function(_ParseError value)? parse,
-    TResult? Function(_Unknown value)? unknown,
+    TResult? Function(_OtherError value)? other,
+    TResult? Function(_UnknownError value)? unknown,
   }) {
     return http?.call(this);
   }
@@ -335,8 +348,8 @@ class _$HttpErrorImpl extends _HttpError {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_NoConnection value)? noConnection,
     TResult Function(_HttpError value)? http,
-    TResult Function(_ParseError value)? parse,
-    TResult Function(_Unknown value)? unknown,
+    TResult Function(_OtherError value)? other,
+    TResult Function(_UnknownError value)? unknown,
     required TResult orElse(),
   }) {
     if (http != null) {
@@ -353,35 +366,41 @@ abstract class _HttpError extends ApiFailure {
 
   int? get statusCode;
   String? get message;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of ApiFailure
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$HttpErrorImplCopyWith<_$HttpErrorImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$ParseErrorImplCopyWith<$Res> {
-  factory _$$ParseErrorImplCopyWith(
-          _$ParseErrorImpl value, $Res Function(_$ParseErrorImpl) then) =
-      __$$ParseErrorImplCopyWithImpl<$Res>;
+abstract class _$$OtherErrorImplCopyWith<$Res> {
+  factory _$$OtherErrorImplCopyWith(
+          _$OtherErrorImpl value, $Res Function(_$OtherErrorImpl) then) =
+      __$$OtherErrorImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({String? errorCode, String? message});
+  $Res call({String? errorCode, String? message, Object? error});
 }
 
 /// @nodoc
-class __$$ParseErrorImplCopyWithImpl<$Res>
-    extends _$ApiFailureCopyWithImpl<$Res, _$ParseErrorImpl>
-    implements _$$ParseErrorImplCopyWith<$Res> {
-  __$$ParseErrorImplCopyWithImpl(
-      _$ParseErrorImpl _value, $Res Function(_$ParseErrorImpl) _then)
+class __$$OtherErrorImplCopyWithImpl<$Res>
+    extends _$ApiFailureCopyWithImpl<$Res, _$OtherErrorImpl>
+    implements _$$OtherErrorImplCopyWith<$Res> {
+  __$$OtherErrorImplCopyWithImpl(
+      _$OtherErrorImpl _value, $Res Function(_$OtherErrorImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of ApiFailure
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? errorCode = freezed,
     Object? message = freezed,
+    Object? error = freezed,
   }) {
-    return _then(_$ParseErrorImpl(
+    return _then(_$OtherErrorImpl(
       errorCode: freezed == errorCode
           ? _value.errorCode
           : errorCode // ignore: cast_nullable_to_non_nullable
@@ -390,53 +409,62 @@ class __$$ParseErrorImplCopyWithImpl<$Res>
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
               as String?,
+      error: freezed == error ? _value.error : error,
     ));
   }
 }
 
 /// @nodoc
 
-class _$ParseErrorImpl extends _ParseError {
-  const _$ParseErrorImpl({this.errorCode, this.message}) : super._();
+class _$OtherErrorImpl extends _OtherError {
+  const _$OtherErrorImpl({this.errorCode, this.message, this.error})
+      : super._();
 
   @override
   final String? errorCode;
   @override
   final String? message;
+  @override
+  final Object? error;
 
   @override
   String toString() {
-    return 'ApiFailure.parse(errorCode: $errorCode, message: $message)';
+    return 'ApiFailure.other(errorCode: $errorCode, message: $message, error: $error)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$ParseErrorImpl &&
+            other is _$OtherErrorImpl &&
             (identical(other.errorCode, errorCode) ||
                 other.errorCode == errorCode) &&
-            (identical(other.message, message) || other.message == message));
+            (identical(other.message, message) || other.message == message) &&
+            const DeepCollectionEquality().equals(other.error, error));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, errorCode, message);
+  int get hashCode => Object.hash(runtimeType, errorCode, message,
+      const DeepCollectionEquality().hash(error));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ApiFailure
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$ParseErrorImplCopyWith<_$ParseErrorImpl> get copyWith =>
-      __$$ParseErrorImplCopyWithImpl<_$ParseErrorImpl>(this, _$identity);
+  _$$OtherErrorImplCopyWith<_$OtherErrorImpl> get copyWith =>
+      __$$OtherErrorImplCopyWithImpl<_$OtherErrorImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() noConnection,
     required TResult Function(int? statusCode, String? message) http,
-    required TResult Function(String? errorCode, String? message) parse,
-    required TResult Function(String? errorCode, String? message) unknown,
+    required TResult Function(String? errorCode, String? message, Object? error)
+        other,
+    required TResult Function() unknown,
   }) {
-    return parse(errorCode, message);
+    return other(errorCode, message, error);
   }
 
   @override
@@ -444,10 +472,10 @@ class _$ParseErrorImpl extends _ParseError {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? noConnection,
     TResult? Function(int? statusCode, String? message)? http,
-    TResult? Function(String? errorCode, String? message)? parse,
-    TResult? Function(String? errorCode, String? message)? unknown,
+    TResult? Function(String? errorCode, String? message, Object? error)? other,
+    TResult? Function()? unknown,
   }) {
-    return parse?.call(errorCode, message);
+    return other?.call(errorCode, message, error);
   }
 
   @override
@@ -455,12 +483,12 @@ class _$ParseErrorImpl extends _ParseError {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? noConnection,
     TResult Function(int? statusCode, String? message)? http,
-    TResult Function(String? errorCode, String? message)? parse,
-    TResult Function(String? errorCode, String? message)? unknown,
+    TResult Function(String? errorCode, String? message, Object? error)? other,
+    TResult Function()? unknown,
     required TResult orElse(),
   }) {
-    if (parse != null) {
-      return parse(errorCode, message);
+    if (other != null) {
+      return other(errorCode, message, error);
     }
     return orElse();
   }
@@ -470,10 +498,10 @@ class _$ParseErrorImpl extends _ParseError {
   TResult map<TResult extends Object?>({
     required TResult Function(_NoConnection value) noConnection,
     required TResult Function(_HttpError value) http,
-    required TResult Function(_ParseError value) parse,
-    required TResult Function(_Unknown value) unknown,
+    required TResult Function(_OtherError value) other,
+    required TResult Function(_UnknownError value) unknown,
   }) {
-    return parse(this);
+    return other(this);
   }
 
   @override
@@ -481,10 +509,10 @@ class _$ParseErrorImpl extends _ParseError {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_NoConnection value)? noConnection,
     TResult? Function(_HttpError value)? http,
-    TResult? Function(_ParseError value)? parse,
-    TResult? Function(_Unknown value)? unknown,
+    TResult? Function(_OtherError value)? other,
+    TResult? Function(_UnknownError value)? unknown,
   }) {
-    return parse?.call(this);
+    return other?.call(this);
   }
 
   @override
@@ -492,108 +520,83 @@ class _$ParseErrorImpl extends _ParseError {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_NoConnection value)? noConnection,
     TResult Function(_HttpError value)? http,
-    TResult Function(_ParseError value)? parse,
-    TResult Function(_Unknown value)? unknown,
+    TResult Function(_OtherError value)? other,
+    TResult Function(_UnknownError value)? unknown,
     required TResult orElse(),
   }) {
-    if (parse != null) {
-      return parse(this);
+    if (other != null) {
+      return other(this);
     }
     return orElse();
   }
 }
 
-abstract class _ParseError extends ApiFailure {
-  const factory _ParseError({final String? errorCode, final String? message}) =
-      _$ParseErrorImpl;
-  const _ParseError._() : super._();
+abstract class _OtherError extends ApiFailure {
+  const factory _OtherError(
+      {final String? errorCode,
+      final String? message,
+      final Object? error}) = _$OtherErrorImpl;
+  const _OtherError._() : super._();
 
   String? get errorCode;
   String? get message;
-  @JsonKey(ignore: true)
-  _$$ParseErrorImplCopyWith<_$ParseErrorImpl> get copyWith =>
+  Object? get error;
+
+  /// Create a copy of ApiFailure
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$OtherErrorImplCopyWith<_$OtherErrorImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$UnknownImplCopyWith<$Res> {
-  factory _$$UnknownImplCopyWith(
-          _$UnknownImpl value, $Res Function(_$UnknownImpl) then) =
-      __$$UnknownImplCopyWithImpl<$Res>;
-  @useResult
-  $Res call({String? errorCode, String? message});
+abstract class _$$UnknownErrorImplCopyWith<$Res> {
+  factory _$$UnknownErrorImplCopyWith(
+          _$UnknownErrorImpl value, $Res Function(_$UnknownErrorImpl) then) =
+      __$$UnknownErrorImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$UnknownImplCopyWithImpl<$Res>
-    extends _$ApiFailureCopyWithImpl<$Res, _$UnknownImpl>
-    implements _$$UnknownImplCopyWith<$Res> {
-  __$$UnknownImplCopyWithImpl(
-      _$UnknownImpl _value, $Res Function(_$UnknownImpl) _then)
+class __$$UnknownErrorImplCopyWithImpl<$Res>
+    extends _$ApiFailureCopyWithImpl<$Res, _$UnknownErrorImpl>
+    implements _$$UnknownErrorImplCopyWith<$Res> {
+  __$$UnknownErrorImplCopyWithImpl(
+      _$UnknownErrorImpl _value, $Res Function(_$UnknownErrorImpl) _then)
       : super(_value, _then);
 
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? errorCode = freezed,
-    Object? message = freezed,
-  }) {
-    return _then(_$UnknownImpl(
-      errorCode: freezed == errorCode
-          ? _value.errorCode
-          : errorCode // ignore: cast_nullable_to_non_nullable
-              as String?,
-      message: freezed == message
-          ? _value.message
-          : message // ignore: cast_nullable_to_non_nullable
-              as String?,
-    ));
-  }
+  /// Create a copy of ApiFailure
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
 
-class _$UnknownImpl extends _Unknown {
-  const _$UnknownImpl({this.errorCode, this.message}) : super._();
-
-  @override
-  final String? errorCode;
-  @override
-  final String? message;
+class _$UnknownErrorImpl extends _UnknownError {
+  const _$UnknownErrorImpl() : super._();
 
   @override
   String toString() {
-    return 'ApiFailure.unknown(errorCode: $errorCode, message: $message)';
+    return 'ApiFailure.unknown()';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$UnknownImpl &&
-            (identical(other.errorCode, errorCode) ||
-                other.errorCode == errorCode) &&
-            (identical(other.message, message) || other.message == message));
+        (other.runtimeType == runtimeType && other is _$UnknownErrorImpl);
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, errorCode, message);
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$UnknownImplCopyWith<_$UnknownImpl> get copyWith =>
-      __$$UnknownImplCopyWithImpl<_$UnknownImpl>(this, _$identity);
+  int get hashCode => runtimeType.hashCode;
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() noConnection,
     required TResult Function(int? statusCode, String? message) http,
-    required TResult Function(String? errorCode, String? message) parse,
-    required TResult Function(String? errorCode, String? message) unknown,
+    required TResult Function(String? errorCode, String? message, Object? error)
+        other,
+    required TResult Function() unknown,
   }) {
-    return unknown(errorCode, message);
+    return unknown();
   }
 
   @override
@@ -601,10 +604,10 @@ class _$UnknownImpl extends _Unknown {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? noConnection,
     TResult? Function(int? statusCode, String? message)? http,
-    TResult? Function(String? errorCode, String? message)? parse,
-    TResult? Function(String? errorCode, String? message)? unknown,
+    TResult? Function(String? errorCode, String? message, Object? error)? other,
+    TResult? Function()? unknown,
   }) {
-    return unknown?.call(errorCode, message);
+    return unknown?.call();
   }
 
   @override
@@ -612,12 +615,12 @@ class _$UnknownImpl extends _Unknown {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? noConnection,
     TResult Function(int? statusCode, String? message)? http,
-    TResult Function(String? errorCode, String? message)? parse,
-    TResult Function(String? errorCode, String? message)? unknown,
+    TResult Function(String? errorCode, String? message, Object? error)? other,
+    TResult Function()? unknown,
     required TResult orElse(),
   }) {
     if (unknown != null) {
-      return unknown(errorCode, message);
+      return unknown();
     }
     return orElse();
   }
@@ -627,8 +630,8 @@ class _$UnknownImpl extends _Unknown {
   TResult map<TResult extends Object?>({
     required TResult Function(_NoConnection value) noConnection,
     required TResult Function(_HttpError value) http,
-    required TResult Function(_ParseError value) parse,
-    required TResult Function(_Unknown value) unknown,
+    required TResult Function(_OtherError value) other,
+    required TResult Function(_UnknownError value) unknown,
   }) {
     return unknown(this);
   }
@@ -638,8 +641,8 @@ class _$UnknownImpl extends _Unknown {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_NoConnection value)? noConnection,
     TResult? Function(_HttpError value)? http,
-    TResult? Function(_ParseError value)? parse,
-    TResult? Function(_Unknown value)? unknown,
+    TResult? Function(_OtherError value)? other,
+    TResult? Function(_UnknownError value)? unknown,
   }) {
     return unknown?.call(this);
   }
@@ -649,8 +652,8 @@ class _$UnknownImpl extends _Unknown {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_NoConnection value)? noConnection,
     TResult Function(_HttpError value)? http,
-    TResult Function(_ParseError value)? parse,
-    TResult Function(_Unknown value)? unknown,
+    TResult Function(_OtherError value)? other,
+    TResult Function(_UnknownError value)? unknown,
     required TResult orElse(),
   }) {
     if (unknown != null) {
@@ -660,14 +663,7 @@ class _$UnknownImpl extends _Unknown {
   }
 }
 
-abstract class _Unknown extends ApiFailure {
-  const factory _Unknown({final String? errorCode, final String? message}) =
-      _$UnknownImpl;
-  const _Unknown._() : super._();
-
-  String? get errorCode;
-  String? get message;
-  @JsonKey(ignore: true)
-  _$$UnknownImplCopyWith<_$UnknownImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+abstract class _UnknownError extends ApiFailure {
+  const factory _UnknownError() = _$UnknownErrorImpl;
+  const _UnknownError._() : super._();
 }

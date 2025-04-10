@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:memorise_vocabulary/core/loggers/logger.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
-
-import '../../../core/loggers/logger.dart';
 
 part 'logger_intercepter.g.dart';
 
@@ -25,7 +25,7 @@ class LoggerInterceptor extends Interceptor {
   }
 
   @override
-  void onError(DioError err, ErrorInterceptorHandler handler) {
+  void onError(DioException err, ErrorInterceptorHandler handler) {
     logger.e(
         '[DIO] Path: ${err.requestOptions.uri} Error: ${err.error}: ${err.response?.toString()}');
     handler.next(err);
@@ -33,6 +33,6 @@ class LoggerInterceptor extends Interceptor {
 }
 
 @Riverpod(keepAlive: true)
-LoggerInterceptor loggerInterceptor(LoggerInterceptorRef ref) {
+LoggerInterceptor loggerInterceptor(Ref ref) {
   return LoggerInterceptor();
 }

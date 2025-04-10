@@ -1,6 +1,6 @@
 import 'dart:math';
 
-import 'package:xbcodebase/bridges.dart';
+import 'package:memorise_vocabulary/bridges.dart';
 
 import 'notifiers/splash_notifier.dart';
 
@@ -64,11 +64,9 @@ class SplashPage extends HookConsumerWidget {
     final originalGradientWidth = screenWidth;
     final originalGradientHeight = screenWidth / sqrt2 / (7 / 3);
 
-    final animationValue =
-        originalGradientWidth * useValueListenable(animation) / sqrt2;
-    final animationValue2 = originalGradientWidth *
-        (useValueListenable(animation) - 2.75 / 3) /
-        sqrt2;
+    final animationValue = originalGradientWidth * useValueListenable(animation) / sqrt2;
+    final animationValue2 =
+        originalGradientWidth * (useValueListenable(animation) - 2.75 / 3) / sqrt2;
 
     return Container(
       color: Colors.white,

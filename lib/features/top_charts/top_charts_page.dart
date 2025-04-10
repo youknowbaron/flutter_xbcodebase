@@ -1,4 +1,4 @@
-import 'package:xbcodebase/bridges.dart';
+import 'package:memorise_vocabulary/bridges.dart';
 
 class Chart {
   final int id;
@@ -30,8 +30,7 @@ class TopChartsPage extends HookWidget {
               title: Text(chart.title),
               trailing: Text('${chart.views} views'),
               onTap: () {
-                GoStep.chart.go(context,
-                    pathParameters: [chart.id.toString()], extra: chart);
+                GoStep.chart.go(context, pathParameters: [chart.id.toString()], extra: chart);
               },
             ),
             Container(
